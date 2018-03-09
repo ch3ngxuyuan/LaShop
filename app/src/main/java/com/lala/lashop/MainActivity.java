@@ -1,4 +1,4 @@
-package com.lala.lashop.lashop;
+package com.lala.lashop;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

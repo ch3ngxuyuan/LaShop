@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--SupportMultipleScreensUtil适配工具类-->
+    <item name="is_scale_size_tag" type="id" />
+    <item name="is_scale_font_tag" type="id" />
+
+</resources>

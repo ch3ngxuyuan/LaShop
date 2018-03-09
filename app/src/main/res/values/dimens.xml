@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--字体大小-->
+    <dimen name="text_20">40px</dimen>
+    <dimen name="text_18">36px</dimen>
+    <dimen name="text_16">32px</dimen>
+    <dimen name="text_14">28px</dimen>
+    <dimen name="text_12">24px</dimen>
+    <dimen name="text_10">20px</dimen>
+
+    <dimen name="toolbar_height">98px</dimen>
+
+    <dimen name="dp5">10px</dimen>
+
+</resources>
