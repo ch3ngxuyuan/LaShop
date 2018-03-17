@@ -13,4 +13,7 @@
 
     <dimen name="dp5">10px</dimen>
 
+
+    <dimen name="px1">1px</dimen>
+
 </resources>

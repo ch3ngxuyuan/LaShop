@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">LaShop</string>
+
+    <string name="home">首页</string>
+    <string name="cate">分类</string>
+    <string name="shop">购物车</string>
+    <string name="user">我的</string>
+
 </resources>

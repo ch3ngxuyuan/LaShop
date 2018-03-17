@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.lala.lashop.R;
+import com.lala.lashop.app.App;
 import com.lala.lashop.base.mvp.AbstractActivity;
 import com.lala.lashop.base.mvp.BasePresenter;
 import com.lala.lashop.base.mvp.BaseView;
@@ -110,15 +111,15 @@ public abstract class BaseActivity<V extends BaseView, P extends BasePresenter<V
      *
      * @return
      */
-//    @Override
-//    public boolean checkUser() {
+    @Override
+    public boolean checkUser() {
 //        if (App.getUser() == null) {
 //            startActivityForResult(LoginActivity.class, Constant.LOGIN);
 //            toast(R.string.no_login);
 //            return false;
 //        }
-//        return true;
-//    }
+        return true;
+    }
 
     @Override
     public void startActivity(Class<? extends Activity> activity) {
