@@ -1,4 +1,4 @@
-package com.biguo.biguock.http.exception;
+package com.lala.lashop.http.exception;
 
 import retrofit2.HttpException;
 

@@ -18,8 +18,6 @@ public class BaseModel {
 
     private Map<String, String> mParamsMap;
 
-    private String biguo = "biguo2018";
-
     public BaseModel() {
         mParamsMap = new TreeMap<>();
     }
@@ -55,7 +53,6 @@ public class BaseModel {
         L.e("参数：" + params.toString());
         return params;
     }
-
 
     public MultipartBody.Builder getBody() {
         Map<String, String> map = getParams();

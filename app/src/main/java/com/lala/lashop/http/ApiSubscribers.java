@@ -1,11 +1,10 @@
-package com.biguo.biguock.http;
+package com.lala.lashop.http;
 
-import com.biguo.biguock.App;
-import com.biguo.biguock.base.mvp.BaseView;
-import com.biguo.biguock.http.exception.ApiException;
-import com.biguo.biguock.utils.L;
-import com.biguo.biguock.utils.Tos;
-import com.google.gson.Gson;
+import com.lala.lashop.app.App;
+import com.lala.lashop.base.mvp.BaseView;
+import com.lala.lashop.http.exception.ApiException;
+import com.lala.lashop.utils.L;
+import com.lala.lashop.utils.Tos;
 
 import io.reactivex.Observer;
 import io.reactivex.annotations.NonNull;
@@ -30,20 +29,20 @@ public abstract class ApiSubscribers<T> implements Observer<T> {
 
     @Override
     public void onNext(@NonNull T t) {
-        HttpResult result = (HttpResult) t;
-        String json = new Gson().toJson(t);
-        L.e("ApiSubscribers", "json:" + json);
-
-        if (mView != null) {
-            mView.hideLoadingDialog();
-            mView.hideMultipleView();
-        }
-
-        if (result.getResult_code() == 0) {
-            onFail(result.getResult_info());
-        } else {
-            onSuccess(t);
-        }
+//        HttpResult result = (HttpResult) t;
+//        String json = new Gson().toJson(t);
+//        L.e("ApiSubscribers", "json:" + json);
+//
+//        if (mView != null) {
+//            mView.hideLoadingDialog();
+//            mView.hideMultipleView();
+//        }
+//
+//        if (result.getResult_code() == 0) {
+//            onFail(result.getResult_info());
+//        } else {
+//            onSuccess(t);
+//        }
 
     }
 

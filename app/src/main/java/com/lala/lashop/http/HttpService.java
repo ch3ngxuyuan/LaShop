@@ -1,8 +1,6 @@
-package com.biguo.biguock.http;
+package com.lala.lashop.http;
 
-import com.biguo.biguock.App;
-import com.biguo.biguock.utils.L;
-import com.biguo.biguock.utils.Utils;
+import com.lala.lashop.utils.L;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -42,12 +40,12 @@ public class HttpService {
                     public Response intercept(Chain chain) throws IOException {
                         L.e("request_url:" + chain.request().url());
                         Request.Builder builder = chain.request().newBuilder();
-                        if (App.getUser() != null) {
-                            L.e("token:" + App.getUser().getToken());
-                            builder.addHeader("token", App.getUser().getToken());
-                        }
-                        builder.addHeader("device", "Android")
-                                .addHeader("version", Utils.getVersionName(App.getContext()));
+//                        if (App.getUser() != null) {
+//                            L.e("token:" + App.getUser().getToken());
+//                            builder.addHeader("token", App.getUser().getToken());
+//                        }
+//                        builder.addHeader("device", "Android")
+//                                .addHeader("version", Utils.getVersionName(App.getContext()));
                         return chain.proceed(builder.build());
                     }
                 })
