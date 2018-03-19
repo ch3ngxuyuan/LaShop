@@ -23,9 +23,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textColor="@color/white"
         android:text="商城"
-        android:textSize="@dimen/text_16" />
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_18" />
 
     <TextView
         android:id="@+id/tv_right"
@@ -37,6 +37,6 @@
         android:text="右侧"
         android:textColor="@color/white"
         android:textSize="@dimen/text_14"
-        android:visibility="visible" />
+        android:visibility="gone" />
 
 </android.support.v7.widget.Toolbar>

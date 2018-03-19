@@ -1,5 +1,6 @@
 package com.lala.lashop.http;
 
+import com.google.gson.Gson;
 import com.lala.lashop.app.App;
 import com.lala.lashop.base.mvp.BaseView;
 import com.lala.lashop.http.exception.ApiException;
@@ -29,9 +30,9 @@ public abstract class ApiSubscribers<T> implements Observer<T> {
 
     @Override
     public void onNext(@NonNull T t) {
-//        HttpResult result = (HttpResult) t;
-//        String json = new Gson().toJson(t);
-//        L.e("ApiSubscribers", "json:" + json);
+        HttpResult result = (HttpResult) t;
+        String json = new Gson().toJson(t);
+        L.e("ApiSubscribers", "json:" + json);
 //
 //        if (mView != null) {
 //            mView.hideLoadingDialog();

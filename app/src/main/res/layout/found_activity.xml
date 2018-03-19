@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/tool_bar" />
+
+    <LinearLayout
+        android:id="@+id/found_ly_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="40px"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <include layout="@layout/line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="30px"
+            android:paddingTop="30px">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="账号"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_16" />
+
+            <EditText
+                android:id="@+id/found_et_phone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/tran"
+                android:gravity="right"
+                android:hint="请输入您的手机号"
+                android:inputType="textPassword"
+                android:textSize="@dimen/text_16" />
+
+        </LinearLayout>
+
+        <include layout="@layout/line" />
+
+        <TextView
+            android:id="@+id/found_tv_check"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80px"
+            android:background="@drawable/round_btn_blue"
+            android:gravity="center"
+            android:padding="25px"
+            android:text="验证"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_16" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/found_ly_two"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="40px"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20px"
+            android:text="用户名："
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_16" />
+
+        <include layout="@layout/line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="30px"
+            android:paddingTop="30px">
+
+            <EditText
+                android:id="@+id/found_et_code"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/tran"
+                android:hint="请输入验证码"
+                android:inputType="number"
+                android:textSize="@dimen/text_16" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_btn_blue"
+                android:gravity="center"
+                android:paddingBottom="15px"
+                android:paddingLeft="20px"
+                android:paddingRight="20px"
+                android:paddingTop="15px"
+                android:text="发送"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_14" />
+
+        </LinearLayout>
+
+        <include layout="@layout/line" />
+
+        <TextView
+            android:id="@+id/found_tv_next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80px"
+            android:background="@drawable/round_btn_blue"
+            android:gravity="center"
+            android:padding="25px"
+            android:text="下一步"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_16" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/found_ly_three"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="40px"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <include layout="@layout/line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="30px"
+            android:paddingTop="30px">
+
+            <EditText
+                android:id="@+id/found_et_pass"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/tran"
+                android:hint="请输入新密码"
+                android:inputType="textPassword"
+                android:textSize="@dimen/text_16" />
+
+        </LinearLayout>
+
+        <include layout="@layout/line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="30px"
+            android:paddingTop="30px">
+
+            <EditText
+                android:id="@+id/found_et_confirm"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/tran"
+                android:hint="请重新输入密码"
+                android:inputType="textPassword"
+                android:textSize="@dimen/text_16" />
+
+        </LinearLayout>
+
+        <include layout="@layout/line" />
+
+        <TextView
+            android:id="@+id/found_tv_complete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80px"
+            android:background="@drawable/round_btn_blue"
+            android:gravity="center"
+            android:padding="25px"
+            android:text="完成"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_16" />
+
+    </LinearLayout>
+
+</LinearLayout>

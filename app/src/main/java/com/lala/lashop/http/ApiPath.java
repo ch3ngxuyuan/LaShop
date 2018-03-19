@@ -6,6 +6,6 @@ package com.lala.lashop.http;
 
 public interface ApiPath {
 
-    public static final String BASE_URL = "";
+    public static final String BASE_URL = "http://jointron.cn/kxsp/";
 
 }

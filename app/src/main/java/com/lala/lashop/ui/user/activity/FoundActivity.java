@@ -4,19 +4,19 @@ import com.lala.lashop.R;
 import com.lala.lashop.base.BaseActivity;
 
 /**
- * 注册
+ * 忘记密码
  * Created by JX on 2018/3/19.
  */
 
-public class RegisterActivity extends BaseActivity {
+public class FoundActivity extends BaseActivity {
 
     @Override
     public int setContentView() {
-        return R.layout.register_activity;
+        return R.layout.found_activity;
     }
 
     @Override
     public void onCreate() {
-        getToolbar().setTitle("注册");
+        getToolbar().setTitle("忘记密码");
     }
 }

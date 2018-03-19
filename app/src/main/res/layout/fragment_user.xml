@@ -7,22 +7,58 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="300px"
+        android:layout_height="400px"
         android:background="@color/main"
         android:gravity="center"
         android:orientation="vertical">
 
         <com.makeramen.roundedimageview.RoundedImageView
-            android:layout_width="200px"
-            android:layout_height="200px"
-            app:riv_border_color="@color/white"
-            app:riv_border_width="2px" />
+            android:id="@+id/user_iv_head"
+            android:layout_width="220px"
+            android:layout_height="220px"
+            android:src="@drawable/user_head" />
 
         <TextView
+            android:id="@+id/user_tv_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20px"
+            android:text="注册/登录"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_20"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/user_tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20px"
+            android:text="昵称"
             android:textColor="@color/black"
             android:textSize="@dimen/text_18" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="5px"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="40px"
+                android:scaleType="centerInside"
+                android:layout_height="40px"
+                android:src="@drawable/user_vip" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5px"
+                android:textSize="@dimen/text_14"
+                android:textColor="#B97400"
+                android:text="个人会员" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -30,7 +66,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -40,16 +76,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=""
+                android:text="我的订单"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_16" />
+                android:textSize="@dimen/text_14" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
+                android:text="全部订单"
                 android:textColor="@color/black3"
-                android:textSize="@dimen/text_16" />
+                android:textSize="@dimen/text_14" />
 
         </FrameLayout>
 
@@ -57,29 +94,256 @@
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="4"
-            android:layout_height="wrap_content">
+            android:weightSum="4">
 
             <LinearLayout
+                android:id="@+id/user_ly_pay"
                 android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingTop="20px"
-                android:paddingBottom="20px"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
-                android:layout_height="wrap_content">
+                android:paddingBottom="20px"
+                android:paddingTop="20px">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="50px"
+                    android:layout_height="50px"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/user_pay" />
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:textSize="@dimen/sp_14"
-                    android:textColor="@color/black"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="20px"
-                    android:layout_height="wrap_content" />
+                    android:text="待付款"
+                    android:textColor="@color/black2"
+                    android:textSize="@dimen/text_14" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/user_ly_fa"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingBottom="20px"
+                android:paddingTop="20px">
+
+                <ImageView
+                    android:layout_width="50px"
+                    android:layout_height="50px"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/user_fa" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20px"
+                    android:text="待发货"
+                    android:textColor="@color/black2"
+                    android:textSize="@dimen/text_14" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/user_ly_tui"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingBottom="20px"
+                android:paddingTop="20px">
+
+                <ImageView
+                    android:layout_width="50px"
+                    android:layout_height="50px"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/user_tui" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20px"
+                    android:text="退货/售后"
+                    android:textColor="@color/black2"
+                    android:textSize="@dimen/text_14" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/user_ly_pos"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingBottom="20px"
+                android:paddingTop="20px">
+
+                <ImageView
+                    android:layout_width="50px"
+                    android:layout_height="50px"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/user_pos" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20px"
+                    android:text="收货地址"
+                    android:textColor="@color/black2"
+                    android:textSize="@dimen/text_14" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10px"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20px">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我的订单"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_14" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="全部订单"
+                android:textColor="@color/black3"
+                android:textSize="@dimen/text_14" />
+
+        </FrameLayout>
+
+        <include layout="@layout/line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <LinearLayout
+                android:id="@+id/user_ly_you"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingBottom="20px"
+                android:paddingTop="20px">
+
+                <ImageView
+                    android:layout_width="50px"
+                    android:layout_height="50px"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/user_you" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20px"
+                    android:text="优惠券"
+                    android:textColor="@color/black2"
+                    android:textSize="@dimen/text_14" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/user_ly_ji"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingBottom="20px"
+                android:paddingTop="20px">
+
+                <ImageView
+                    android:layout_width="50px"
+                    android:layout_height="50px"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/user_ji" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20px"
+                    android:text="积分"
+                    android:textColor="@color/black2"
+                    android:textSize="@dimen/text_14" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/user_ly_zu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingBottom="20px"
+                android:paddingTop="20px">
+
+                <ImageView
+                    android:layout_width="50px"
+                    android:layout_height="50px"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/user_zu" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20px"
+                    android:text="我的足迹"
+                    android:textColor="@color/black2"
+                    android:textSize="@dimen/text_14" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/user_ly_shou"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingBottom="20px"
+                android:paddingTop="20px">
+
+                <ImageView
+                    android:layout_width="50px"
+                    android:layout_height="50px"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/user_shou" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20px"
+                    android:text="我的收藏"
+                    android:textColor="@color/black2"
+                    android:textSize="@dimen/text_14" />
 
             </LinearLayout>
 
