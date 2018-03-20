@@ -15,8 +15,57 @@
         android:textSize="@dimen/text_18" />
 
     <com.youth.banner.Banner
+        android:id="@+id/banner"
         android:layout_width="match_parent"
         android:layout_height="300px"
-        android:layout_margin="20px" />
+        android:layout_margin="20px"
+        app:indicator_drawable_selected="@drawable/home_banner_indicator_select"
+        app:indicator_drawable_unselected="@drawable/home_banner_indicator_unselect" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="20px">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:src="@drawable/home_icon_qi" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:src="@drawable/home_icon_zhuang" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:src="@drawable/home_icon_yong" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:src="@drawable/home_icon_jiao" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:src="@drawable/home_icon_shi" />
+
+    </LinearLayout>
+
+    <include layout="@layout/line" />
 
 </LinearLayout>

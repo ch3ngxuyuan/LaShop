@@ -1,10 +1,13 @@
 package com.lala.lashop;
 
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.lala.lashop.base.BaseActivity;
@@ -12,13 +15,22 @@ import com.lala.lashop.fragment.CateFragment;
 import com.lala.lashop.fragment.HomeFragment;
 import com.lala.lashop.fragment.ShopFragment;
 import com.lala.lashop.fragment.UserFragment;
+import com.lala.lashop.utils.Utils;
 
 import butterknife.BindView;
 
-public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener{
+public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
 
     @BindView(R.id.rg_bottom)
     RadioGroup rgBottom;
+    @BindView(R.id.rb_home)
+    RadioButton rbHome;
+    @BindView(R.id.rb_cate)
+    RadioButton rbCate;
+    @BindView(R.id.rb_shop)
+    RadioButton rbShop;
+    @BindView(R.id.rb_user)
+    RadioButton rbUser;
 
     private FragmentManager fragmentManager;
     private HomeFragment homeFragment;
@@ -36,16 +48,30 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     @Override
     public void onCreate() {
+        imageSize(rbHome);
+        imageSize(rbCate);
+        imageSize(rbShop);
+        imageSize(rbUser);
+
         fragmentManager = getSupportFragmentManager();
         homeFragment = new HomeFragment();
         cateFragment = new CateFragment();
         shopFragment = new ShopFragment();
         userFragment = new UserFragment();
-//
+
         fragmentManager.beginTransaction().replace(R.id.main_content, homeFragment).commit();
         markFragment = homeFragment;
 
         rgBottom.setOnCheckedChangeListener(this);
+    }
+
+    private void imageSize(RadioButton rb) {
+        Drawable[] drs;
+        drs = rb.getCompoundDrawables();
+        int n = Utils.dip2px(this, 25);
+        Rect r = new Rect(0, 0, n, n);
+        drs[1].setBounds(r);
+        rb.setCompoundDrawables(null, drs[1], null, null);
     }
 
     @Override
@@ -84,6 +110,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     }
 
     private long clickTime = 0;
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (KeyEvent.KEYCODE_BACK == keyCode) {
