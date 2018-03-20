@@ -17,6 +17,6 @@ public class AddressAddActivity extends BaseActivity {
 
     @Override
     public void onCreate() {
-
+        getToolbar().setTitle("新增收货地址");
     }
 }

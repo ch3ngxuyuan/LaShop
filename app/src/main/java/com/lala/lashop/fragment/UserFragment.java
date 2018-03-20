@@ -1,5 +1,6 @@
 package com.lala.lashop.fragment;
 
+import android.graphics.Point;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +10,11 @@ import android.widget.TextView;
 
 import com.lala.lashop.R;
 import com.lala.lashop.base.BaseFragment;
+import com.lala.lashop.ui.user.activity.AddressActivity;
+import com.lala.lashop.ui.user.activity.CollActivity;
+import com.lala.lashop.ui.user.activity.DiscountActivity;
 import com.lala.lashop.ui.user.activity.LoginActivity;
+import com.lala.lashop.ui.user.activity.PointActivity;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import butterknife.BindView;
@@ -72,14 +77,18 @@ public class UserFragment extends BaseFragment {
             case R.id.user_ly_tui:
                 break;
             case R.id.user_ly_pos:
+                startActivity(AddressActivity.class);
                 break;
             case R.id.user_ly_you:
+                startActivity(DiscountActivity.class);
                 break;
             case R.id.user_ly_ji:
+                startActivity(PointActivity.class);
                 break;
             case R.id.user_ly_zu:
                 break;
             case R.id.user_ly_shou:
+                startActivity(CollActivity.class);
                 break;
         }
     }

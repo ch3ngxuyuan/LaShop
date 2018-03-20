@@ -4,9 +4,21 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:text="分类"
-        android:layout_height="wrap_content" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbar_height"
+        android:background="@color/main">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20px"
+            android:background="@drawable/round_bg_white"
+            android:hint="请输入名称"
+            android:paddingLeft="20px"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_16" />
+
+    </FrameLayout>
 
 </LinearLayout>

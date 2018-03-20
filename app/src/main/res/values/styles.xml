@@ -9,7 +9,7 @@
 
         <item name="android:fitsSystemWindows">true</item>
 
-        <!--<item name="android:listDivider">@drawable/recy_line</item>-->
+        <item name="android:listDivider">@drawable/rv_line</item>
 
     </style>
 

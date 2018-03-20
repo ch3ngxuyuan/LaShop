@@ -36,7 +36,7 @@
             android:id="@+id/rb_shop"
             style="@style/homeBottomRadioButton"
             android:drawableTop="@drawable/main_bottom_ic_shop"
-            android:text="@string/cate" />
+            android:text="@string/shop" />
 
         <RadioButton
             android:id="@+id/rb_user"

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg"
     android:orientation="vertical">
 
     <TextView
@@ -14,58 +15,91 @@
         android:textColor="@color/black"
         android:textSize="@dimen/text_18" />
 
-    <com.youth.banner.Banner
-        android:id="@+id/banner"
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="300px"
-        android:layout_margin="20px"
-        app:indicator_drawable_selected="@drawable/home_banner_indicator_select"
-        app:indicator_drawable_unselected="@drawable/home_banner_indicator_unselect" />
+        android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="horizontal"
-        android:padding="20px">
-
-        <ImageView
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:scaleType="centerInside"
-            android:src="@drawable/home_icon_qi" />
+            android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:scaleType="centerInside"
-            android:src="@drawable/home_icon_zhuang" />
+            <com.youth.banner.Banner
+                android:id="@+id/banner"
+                android:layout_width="match_parent"
+                android:layout_height="300px"
+                android:layout_margin="20px"
+                app:indicator_drawable_selected="@drawable/home_banner_indicator_select"
+                app:indicator_drawable_unselected="@drawable/home_banner_indicator_unselect"
+                app:indicator_height="25px"
+                app:indicator_margin="15px"
+                app:indicator_width="25px" />
 
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:scaleType="centerInside"
-            android:src="@drawable/home_icon_yong" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:padding="20px">
 
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:scaleType="centerInside"
-            android:src="@drawable/home_icon_jiao" />
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/home_icon_qi" />
 
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:scaleType="centerInside"
-            android:src="@drawable/home_icon_shi" />
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/home_icon_zhuang" />
 
-    </LinearLayout>
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/home_icon_yong" />
 
-    <include layout="@layout/line" />
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/home_icon_jiao" />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/home_icon_shi" />
+
+            </LinearLayout>
+
+            <include layout="@layout/line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20px"
+                    android:text="团购特价"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_14" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
 
 </LinearLayout>

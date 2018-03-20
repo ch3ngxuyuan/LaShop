@@ -23,6 +23,11 @@
         <activity android:name=".ui.user.activity.RegisterActivity" />
         <activity android:name=".ui.user.activity.LoginActivity" />
         <activity android:name=".ui.user.activity.FoundActivity" />
+        <activity android:name=".ui.user.activity.AddressActivity" />
+        <activity android:name=".ui.user.activity.AddressAddActivity" />
+        <activity android:name=".ui.user.activity.DiscountActivity" />
+        <activity android:name=".ui.user.activity.PointActivity" />
+        <activity android:name=".ui.user.activity.CollActivity" />
 
     </application>
 
