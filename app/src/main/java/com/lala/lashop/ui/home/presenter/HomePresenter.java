@@ -23,12 +23,14 @@ public class HomePresenter extends BasePresenter<HomeView> {
     }
 
     public void getBanner() {
+        getView().showLoadingDialog();
+
         mModel.getBanner()
                 .compose(this.<HttpResult<List<BannerBean>>>compose())
                 .subscribe(new ApiSubscribers<HttpResult<List<BannerBean>>>(getView()) {
                     @Override
                     public void onSuccess(HttpResult<List<BannerBean>> listHttpResult) {
-
+                        getView().setBannerData(listHttpResult.getMess());
                     }
 
                     @Override

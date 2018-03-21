@@ -33,17 +33,17 @@ public abstract class ApiSubscribers<T> implements Observer<T> {
         HttpResult result = (HttpResult) t;
         String json = new Gson().toJson(t);
         L.e("ApiSubscribers", "json:" + json);
-//
-//        if (mView != null) {
-//            mView.hideLoadingDialog();
-//            mView.hideMultipleView();
-//        }
-//
-//        if (result.getResult_code() == 0) {
-//            onFail(result.getResult_info());
-//        } else {
-//            onSuccess(t);
-//        }
+
+        if (mView != null) {
+            mView.hideLoadingDialog();
+            mView.hideMultipleView();
+        }
+
+        if (result.getCode() != 200) {
+            onFail("访问不成功");
+        } else {
+            onSuccess(t);
+        }
 
     }
 

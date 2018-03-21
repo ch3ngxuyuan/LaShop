@@ -3,6 +3,7 @@ package com.lala.lashop.fragment;
 import com.lala.lashop.R;
 import com.lala.lashop.base.BaseFragment;
 import com.lala.lashop.base.mvp.CreatePresenter;
+import com.lala.lashop.ui.home.bean.BannerBean;
 import com.lala.lashop.ui.home.presenter.HomePresenter;
 import com.lala.lashop.ui.home.view.HomeView;
 import com.lala.lashop.utils.BannerImageLoader;
@@ -37,14 +38,24 @@ public class HomeFragment extends BaseFragment<HomeView, HomePresenter> implemen
     }
 
     private void initBanner() {
-        List<Integer> images = new ArrayList<>();
-        images.add(R.drawable.image);
-        images.add(R.drawable.image);
-        images.add(R.drawable.image);
-        images.add(R.drawable.image);
-        banner.setImages(images);
+//        List<Integer> images = new ArrayList<>();
+//        images.add(R.drawable.image);
+//        images.add(R.drawable.image);
+//        images.add(R.drawable.image);
+//        images.add(R.drawable.image);
+//        banner.setImages(images);
         banner.setImageLoader(new BannerImageLoader());
         banner.setIndicatorGravity(BannerConfig.CENTER);
+//        banner.start();
+    }
+
+    @Override
+    public void setBannerData(List<BannerBean> data) {
+        List<String> images = new ArrayList<>();
+        for (BannerBean bean : data) {
+            images.add(bean.getImg());
+        }
+        banner.setImages(images);
         banner.start();
     }
 }
