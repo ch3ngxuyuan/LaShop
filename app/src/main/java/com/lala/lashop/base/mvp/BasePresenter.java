@@ -73,36 +73,6 @@ public class BasePresenter<V extends BaseView> {
     }
 
     /**
-     * Activity线程调度
-     */
-    public <T> ObservableTransformer<T, T> composeAct() {
-        return new ObservableTransformer<T, T>() {
-            @Override
-            public ObservableSource<T> apply(Observable<T> observable) {
-                return observable
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .compose(mView.getRxAct().<T>bindToLifecycle());
-            }
-        };
-    }
-
-    /**
-     * Fragment线程调度
-     */
-    public <T> ObservableTransformer<T, T> composeFra() {
-        return new ObservableTransformer<T, T>() {
-            @Override
-            public ObservableSource<T> apply(Observable<T> observable) {
-                return observable
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .compose(mView.getRxFra().<T>bindToLifecycle());
-            }
-        };
-    }
-
-    /**
      * 通用
      *
      * @param <T>

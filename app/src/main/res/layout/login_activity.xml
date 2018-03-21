@@ -37,7 +37,7 @@
                 android:background="@color/tran"
                 android:gravity="right"
                 android:hint="请输入您的手机号"
-                android:inputType="textPassword"
+                android:inputType="number"
                 android:textSize="@dimen/text_16" />
 
         </LinearLayout>

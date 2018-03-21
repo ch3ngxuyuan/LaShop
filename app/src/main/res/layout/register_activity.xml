@@ -51,14 +51,14 @@
                 android:textSize="@dimen/text_16" />
 
             <EditText
-                android:id="@+id/login_et_phone"
+                android:id="@+id/register_et_phone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@color/tran"
                 android:gravity="right"
                 android:hint="请输入您的手机号"
-                android:inputType="textPassword"
+                android:inputType="number"
                 android:textSize="@dimen/text_16" />
 
         </LinearLayout>
@@ -123,6 +123,7 @@
                 android:textSize="@dimen/text_16" />
 
             <TextView
+                android:id="@+id/register_tv_send"
                 android:layout_width="150px"
                 android:layout_height="wrap_content"
                 android:background="@drawable/round_btn_blue"

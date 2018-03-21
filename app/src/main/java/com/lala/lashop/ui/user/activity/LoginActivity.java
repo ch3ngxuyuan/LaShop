@@ -5,6 +5,9 @@ import android.widget.EditText;
 
 import com.lala.lashop.R;
 import com.lala.lashop.base.BaseActivity;
+import com.lala.lashop.base.mvp.CreatePresenter;
+import com.lala.lashop.ui.user.presenter.LoginPresenter;
+import com.lala.lashop.ui.user.view.LoginView;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -13,7 +16,8 @@ import butterknife.OnClick;
  * Created by JX on 2018/3/19.
  */
 
-public class LoginActivity extends BaseActivity {
+@CreatePresenter(LoginPresenter.class)
+public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> implements LoginView {
 
     @BindView(R.id.login_et_pass)
     EditText loginEtPass;
@@ -40,7 +44,23 @@ public class LoginActivity extends BaseActivity {
                 startActivity(FoundActivity.class);
                 break;
             case R.id.login_tv_login:
+                getPresenter().login();
                 break;
         }
+    }
+
+    @Override
+    public String getPhone() {
+        return loginEtPhone.getText().toString();
+    }
+
+    @Override
+    public String getPwd() {
+        return loginEtPass.getText().toString();
+    }
+
+    @Override
+    public void loginSuccess() {
+
     }
 }

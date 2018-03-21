@@ -1,8 +1,10 @@
 package com.lala.lashop.base;
 
 
+import com.google.gson.Gson;
 import com.lala.lashop.utils.L;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -17,9 +19,11 @@ import okhttp3.MultipartBody;
 public class BaseModel {
 
     private Map<String, String> mParamsMap;
+    private Map<String, String> mJsonMap;
 
     public BaseModel() {
         mParamsMap = new TreeMap<>();
+        mJsonMap = new TreeMap<>();
     }
 
     /**
@@ -31,6 +35,8 @@ public class BaseModel {
      */
     public BaseModel p(String key, String value) {
         mParamsMap.put(key, value);
+        mJsonMap.put(key, new Gson().toJson(mParamsMap));
+        mParamsMap.clear();
         return this;
     }
 
@@ -43,13 +49,16 @@ public class BaseModel {
      */
     public BaseModel p(String key, int value) {
         mParamsMap.put(key, String.valueOf(value));
+        mJsonMap.put(key, new Gson().toJson(mParamsMap));
+        mParamsMap.clear();
         return this;
     }
 
     public Map<String, String> getParams() {
         Map<String, String> params = new TreeMap<>();
-        params.putAll(mParamsMap);
-        mParamsMap.clear();
+        params.putAll(mJsonMap);
+        mJsonMap.clear();
+
         L.e("参数：" + params.toString());
         return params;
     }
