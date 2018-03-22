@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
-import retrofit2.http.Field;
+import okhttp3.RequestBody;
+import retrofit2.http.Body;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
@@ -32,9 +33,9 @@ public interface Http {
      * reg_from 来源方式 3.安卓
      * account
      */
-    @FormUrlEncoded
+//    @Headers({"Content-Type: application/json","Accept: application/json"})
     @POST("userHandler/reg.action")
-    Observable<HttpResult> user_register(@FieldMap Map<String, String> map);
+    Observable<HttpResult> user_register(@Body RequestBody body);
 
     /**
      * 登录
