@@ -49,7 +49,8 @@ public class RegisterActivity extends BaseActivity<RegisterView, RegisterPresent
 
     @Override
     public void registerSuccess() {
-
+        toast("注册成功");
+        finish();
     }
 
     @OnClick({R.id.register_tv_send, R.id.register_tv_complete})

@@ -62,33 +62,33 @@ public class BaseModel {
     public static final MediaType JSON
             = MediaType.parse("application/json; charset=utf-8");
 
-    public MultipartBody.Builder getBody() {
-        Map<String, String> map = getParams();
-        JSONObject para = new JSONObject();
-
-        MultipartBody.Builder builder = new MultipartBody.Builder();
-
-        Set keySet = map.keySet(); // key的set集合
-        Iterator it = keySet.iterator();
-        try {
-            while (it.hasNext()) {
-                String k = it.next().toString(); // key
-                String v = map.get(k).toString();  //value
-
-                para.put(k, v);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        RequestBody body = RequestBody.create(JSON, para.toString());
-
-        builder.addPart(body);
-//        builder.addPart(Headers.of("Content-Type: application/json","Accept: application/json"), body);
-        L.e("参数：" + para.toString());
-
-        return builder;
-    }
+//    public MultipartBody.Builder getBody() {
+//        Map<String, String> map = getParams();
+//        JSONObject para = new JSONObject();
+//
+//        MultipartBody.Builder builder = new MultipartBody.Builder();
+//
+//        Set keySet = map.keySet(); // key的set集合
+//        Iterator it = keySet.iterator();
+//        try {
+//            while (it.hasNext()) {
+//                String k = it.next().toString(); // key
+//                String v = map.get(k).toString();  //value
+//
+//                para.put(k, v);
+//            }
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//
+//        RequestBody body = RequestBody.create(JSON, para.toString());
+//
+//        builder.addPart(body);
+////        builder.addPart(Headers.of("Content-Type: application/json","Accept: application/json"), body);
+//        L.e("参数：" + para.toString());
+//
+//        return builder;
+//    }
 
     public RequestBody getRequestBody() {
         Map<String, String> map = getParams();

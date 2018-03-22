@@ -6,6 +6,7 @@ import com.lala.lashop.base.mvp.BasePresenter;
 import com.lala.lashop.http.ApiSubscribers;
 import com.lala.lashop.http.HttpResult;
 import com.lala.lashop.http.exception.ApiException;
+import com.lala.lashop.ui.user.bean.UserBean;
 import com.lala.lashop.ui.user.model.LoginModel;
 import com.lala.lashop.ui.user.view.LoginView;
 
@@ -38,11 +39,11 @@ public class LoginPresenter extends BasePresenter<LoginView> {
         getView().showLoadingDialog();
 
         mModel.login(phone, pwd)
-                .compose(this.<HttpResult>compose())
-                .subscribe(new ApiSubscribers<HttpResult>(getView()) {
+                .compose(this.<HttpResult<UserBean>>compose())
+                .subscribe(new ApiSubscribers<HttpResult<UserBean>>(getView()) {
                     @Override
-                    public void onSuccess(HttpResult httpResult) {
-                        getView().loginSuccess();
+                    public void onSuccess(HttpResult<UserBean> userBeanHttpResult) {
+                        getView().loginSuccess(userBeanHttpResult.getMess());
                     }
 
                     @Override
@@ -50,6 +51,5 @@ public class LoginPresenter extends BasePresenter<LoginView> {
 
                     }
                 });
-
     }
 }

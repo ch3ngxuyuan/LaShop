@@ -1,6 +1,7 @@
 package com.lala.lashop.http;
 
 import com.lala.lashop.ui.home.bean.BannerBean;
+import com.lala.lashop.ui.user.bean.UserBean;
 
 import java.util.List;
 import java.util.Map;
@@ -27,13 +28,24 @@ public interface Http {
     Observable<HttpResult<List<BannerBean>>> getBanner();
 
     /**
+     * 首页数据
+     */
+    @POST("homeHandler/home.action")
+    Observable<HttpResult> getHome();
+
+    /**
+     * 产品分类
+     */
+    @POST("homeHandler/category.action")
+    Observable<HttpResult> getCategory();
+
+    /**
      * 注册
      * phone
      * pwd
      * reg_from 来源方式 3.安卓
      * account
      */
-//    @Headers({"Content-Type: application/json","Accept: application/json"})
     @POST("userHandler/reg.action")
     Observable<HttpResult> user_register(@Body RequestBody body);
 
@@ -42,9 +54,15 @@ public interface Http {
      * phone
      * pwd
      */
-    @FormUrlEncoded
     @POST("userHandler/login.action")
-    Observable<HttpResult> user_login(@FieldMap Map<String, String> map);
+    Observable<HttpResult<UserBean>> user_login(@Body RequestBody body);
+
+    /**
+     * 查询省市区地址
+     * pid 地区上级ID 如果为1，则查出的是省份
+     */
+    @POST("locationHandler/list.action")
+    Observable<HttpResult> address_province(@Body RequestBody body);
 
     /**
      * 添加地址

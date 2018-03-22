@@ -6,8 +6,11 @@ import android.support.v7.widget.RecyclerView;
 
 import com.lala.lashop.R;
 import com.lala.lashop.base.BaseActivity;
+import com.lala.lashop.base.mvp.CreatePresenter;
 import com.lala.lashop.ui.user.adapter.AddressAdapter;
 import com.lala.lashop.ui.user.bean.AddressBean;
+import com.lala.lashop.ui.user.presenter.AddressPresenter;
+import com.lala.lashop.ui.user.view.AddressView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +23,8 @@ import butterknife.OnClick;
  * Created by JX on 2018/3/20.
  */
 
-public class AddressActivity extends BaseActivity {
+@CreatePresenter(AddressPresenter.class)
+public class AddressActivity extends BaseActivity<AddressView, AddressPresenter> implements AddressView {
 
     @BindView(R.id.address_rv_list)
     RecyclerView rvList;
@@ -49,10 +53,22 @@ public class AddressActivity extends BaseActivity {
         mAdapter.bindToRecyclerView(rvList);
         rvList.setLayoutManager(new LinearLayoutManager(this));
         rvList.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+
+        getPresenter().getAddress();
     }
 
     @OnClick(R.id.address_tv_add)
     public void onViewClicked() {
         startActivity(AddressAddActivity.class);
+    }
+
+    @Override
+    public void setData(List<AddressBean> data) {
+
+    }
+
+    @Override
+    public void deleteSuccess() {
+
     }
 }

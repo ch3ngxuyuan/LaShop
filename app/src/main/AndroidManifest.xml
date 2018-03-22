@@ -28,6 +28,7 @@
         <activity android:name=".ui.user.activity.DiscountActivity" />
         <activity android:name=".ui.user.activity.PointActivity" />
         <activity android:name=".ui.user.activity.CollActivity" />
+        <activity android:name=".ui.user.activity.UserDetailActivity" />
 
     </application>
 

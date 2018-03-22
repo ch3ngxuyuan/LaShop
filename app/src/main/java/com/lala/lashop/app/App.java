@@ -3,6 +3,7 @@ package com.lala.lashop.app;
 import android.app.Application;
 import android.content.Context;
 
+import com.lala.lashop.ui.user.bean.UserBean;
 import com.lala.lashop.utils.SupportMultipleScreensUtil;
 
 /**
@@ -12,6 +13,8 @@ import com.lala.lashop.utils.SupportMultipleScreensUtil;
 public class App extends Application {
 
     private static Context mContext;
+
+    private static UserBean mUser;
 
     @Override
     public void onCreate() {
@@ -24,5 +27,13 @@ public class App extends Application {
 
     public static Context getContext() {
         return mContext;
+    }
+
+    public static UserBean getUser() {
+        return mUser;
+    }
+
+    public static void cacheUser(UserBean user) {
+        mUser = user;
     }
 }

@@ -17,6 +17,7 @@ import com.lala.lashop.utils.SupportMultipleScreensUtil;
 import com.lala.lashop.utils.ToolbarManager;
 import com.lala.lashop.utils.Tos;
 import com.lala.lashop.utils.Utils;
+import com.lala.lashop.widget.LoadingDialog;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 import com.trello.rxlifecycle2.components.support.RxFragment;
 
@@ -36,7 +37,7 @@ public abstract class BaseActivity<V extends BaseView, P extends BasePresenter<V
     private ToolbarManager mToolbarManager;
 
     //加载框
-//    private LoadingDialog loadingDialog;
+    private LoadingDialog loadingDialog;
 
     //多状态View
 //    private MultipleStatusView multipleStatusView;
@@ -144,19 +145,19 @@ public abstract class BaseActivity<V extends BaseView, P extends BasePresenter<V
 
     @Override
     public void showLoadingDialog() {
-//        if (loadingDialog == null) {
-//            loadingDialog = new LoadingDialog(this);
-//        }
-//        if (!loadingDialog.isShowing()) {
-//            loadingDialog.show();
-//        }
+        if (loadingDialog == null) {
+            loadingDialog = new LoadingDialog(this);
+        }
+        if (!loadingDialog.isShowing()) {
+            loadingDialog.show();
+        }
     }
 
     @Override
     public void hideLoadingDialog() {
-//        if (loadingDialog != null && loadingDialog.isShowing()) {
-//            loadingDialog.dismiss();
-//        }
+        if (loadingDialog != null && loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+        }
     }
 
     @Override

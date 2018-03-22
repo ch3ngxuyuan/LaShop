@@ -26,4 +26,12 @@
         <item name="android:textColor">@drawable/main_bottom_text_color</item>
     </style>
 
+    <!--对话框透明样式-->
+    <style name="DialogStyle" parent="android:style/Theme.Dialog">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
 </resources>
