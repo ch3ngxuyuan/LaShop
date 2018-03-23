@@ -29,6 +29,7 @@
         <activity android:name=".ui.user.activity.PointActivity" />
         <activity android:name=".ui.user.activity.CollActivity" />
         <activity android:name=".ui.user.activity.UserDetailActivity" />
+        <activity android:name=".ui.user.activity.IndentActivity" />
 
     </application>
 
