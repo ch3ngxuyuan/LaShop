@@ -4,6 +4,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import com.lala.lashop.R;
 import com.lala.lashop.base.BaseActivity;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * 收藏
@@ -26,6 +28,8 @@ public class CollActivity extends BaseActivity {
     RecyclerView rv;
     @BindView(R.id.coll_fl_delete)
     FrameLayout flDelete;
+    @BindView(R.id.coll_iv_select)
+    ImageView ivSelect;
 
     private CollAdapter mAdapter;
     private List<CollBean> mData;
@@ -62,5 +66,27 @@ public class CollActivity extends BaseActivity {
         mAdapter.bindToRecyclerView(rv);
         rv.setLayoutManager(new GridLayoutManager(this, 2));
         rv.getItemAnimator().setChangeDuration(0);
+
+        mAdapter.setOnSelectAllListener(new CollAdapter.OnSelectAllListener() {
+            @Override
+            public void onSelectAll(boolean isAll) {
+                checkSelectAll(isAll);
+            }
+        });
+    }
+
+    private void checkSelectAll(boolean isAll) {
+        ivSelect.setImageResource(isAll ? R.drawable.general_icon_select : R.drawable.general_icon_unselect);
+    }
+
+    @OnClick({R.id.coll_ll_all, R.id.coll_tv_delete})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.coll_ll_all:
+                mAdapter.selectAll();
+                break;
+            case R.id.coll_tv_delete:
+                break;
+        }
     }
 }

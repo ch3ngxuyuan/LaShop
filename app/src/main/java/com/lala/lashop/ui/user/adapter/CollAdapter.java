@@ -19,7 +19,8 @@ import java.util.List;
 
 public class CollAdapter extends BaseAdapter<CollBean> {
 
-    public boolean deleteFlag = false;
+    public boolean deleteFlag = false; //是否删除
+    private boolean isSelectAll = false; //是否全选
     private List<Boolean> mSelectList;
 
     public CollAdapter(int layoutResId, @Nullable List<CollBean> data) {
@@ -45,6 +46,10 @@ public class CollAdapter extends BaseAdapter<CollBean> {
                     mSelectList.set(holder.getLayoutPosition(), !mSelectList.get(holder.getLayoutPosition()));
                     L.e("mSelectList = " + mSelectList.get(holder.getLayoutPosition()));
                     notifyItemChanged(holder.getLayoutPosition());
+
+                    if (onSelectAllListener != null) {
+                        onSelectAllListener.onSelectAll(checkSelectAll());
+                    }
                 } else {
                     Tos.toast(mContext, "跳转详情");
                 }
@@ -52,8 +57,44 @@ public class CollAdapter extends BaseAdapter<CollBean> {
         });
     }
 
+    //开启删除
     public void openDelete(boolean flag) {
         deleteFlag = flag;
         notifyDataSetChanged();
+    }
+
+    //全选按钮
+    public void selectAll() {
+        isSelectAll = !isSelectAll;
+        for (int i = 0; i < mSelectList.size(); i++) {
+            mSelectList.set(i, isSelectAll);
+        }
+
+        if (onSelectAllListener != null) {
+            onSelectAllListener.onSelectAll(checkSelectAll());
+        }
+        notifyDataSetChanged();
+    }
+
+    //判断是否全选
+    public boolean checkSelectAll() {
+        for (Boolean is : mSelectList) {
+            if (!is) {
+                isSelectAll = false;
+                return isSelectAll;
+            }
+        }
+        isSelectAll = true;
+        return isSelectAll;
+    }
+
+    private OnSelectAllListener onSelectAllListener;
+
+    public void setOnSelectAllListener(OnSelectAllListener onSelectAllListener) {
+        this.onSelectAllListener = onSelectAllListener;
+    }
+
+    public interface OnSelectAllListener {
+        void onSelectAll(boolean isAll);
     }
 }
