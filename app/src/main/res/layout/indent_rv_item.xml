@@ -11,29 +11,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="20px"
         android:orientation="horizontal">
 
         <ImageView
             android:layout_width="200px"
             android:layout_height="200px"
-            android:scaleType="centerInside" />
+            android:scaleType="centerCrop"
+            android:src="@drawable/image" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="Man,M,Blue"
                 android:textColor="@color/black3"
                 android:textSize="@dimen/text_16" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10px"
+                android:layout_marginTop="5px"
+                android:text="Blue Oxford Shirt"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_18"
                 android:textStyle="bold" />
@@ -41,8 +44,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10px"
-                android:text="$"
+                android:layout_marginTop="5px"
+                android:text="$189,99"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_18"
                 android:textStyle="bold" />
@@ -54,10 +57,77 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20px"
         android:gravity="right"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="4">
 
-        
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10px"
+            android:layout_marginRight="10px"
+            android:layout_weight="1"
+            android:background="@drawable/round_big_red"
+            android:gravity="center"
+            android:padding="5px"
+            android:text="立即付款"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_12" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10px"
+            android:layout_marginRight="10px"
+            android:layout_weight="1"
+            android:background="@drawable/round_big_red"
+            android:gravity="center"
+            android:padding="5px"
+            android:text="物流信息"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_12" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10px"
+            android:layout_marginRight="10px"
+            android:layout_weight="1"
+            android:background="@drawable/round_big_red"
+            android:gravity="center"
+            android:padding="5px"
+            android:text="确认收货"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_12" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10px"
+            android:layout_marginRight="10px"
+            android:layout_weight="1"
+            android:background="@drawable/round_big_bg_gray"
+            android:gravity="center"
+            android:padding="5px"
+            android:text="订单完成"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_12"
+            android:visibility="gone" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10px"
+            android:layout_marginRight="10px"
+            android:layout_weight="1"
+            android:background="@drawable/round_big_bg_red"
+            android:gravity="center"
+            android:padding="5px"
+            android:text="已收货"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_12"
+            android:visibility="visible" />
 
     </LinearLayout>
 
