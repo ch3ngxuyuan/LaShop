@@ -13,6 +13,7 @@ import com.lala.lashop.base.BaseFragment;
 import com.lala.lashop.ui.user.activity.AddressActivity;
 import com.lala.lashop.ui.user.activity.CollActivity;
 import com.lala.lashop.ui.user.activity.DiscountActivity;
+import com.lala.lashop.ui.user.activity.IndentActivity;
 import com.lala.lashop.ui.user.activity.LoginActivity;
 import com.lala.lashop.ui.user.activity.PointActivity;
 import com.makeramen.roundedimageview.RoundedImageView;
@@ -50,7 +51,6 @@ public class UserFragment extends BaseFragment {
     LinearLayout userLyZu;
     @BindView(R.id.user_ly_shou)
     LinearLayout userLyShou;
-    Unbinder unbinder;
 
     @Override
     public int setContentView() {
@@ -71,8 +71,10 @@ public class UserFragment extends BaseFragment {
             case R.id.user_tv_login:
                 break;
             case R.id.user_ly_pay:
+                startActivity(IndentActivity.class);
                 break;
             case R.id.user_ly_fa:
+                startActivity(IndentActivity.class);
                 break;
             case R.id.user_ly_tui:
                 break;
