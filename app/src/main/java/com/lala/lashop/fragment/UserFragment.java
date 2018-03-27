@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.lala.lashop.R;
 import com.lala.lashop.base.BaseFragment;
 import com.lala.lashop.ui.user.activity.AddressActivity;
+import com.lala.lashop.ui.user.activity.ApplyActivity;
 import com.lala.lashop.ui.user.activity.CollActivity;
 import com.lala.lashop.ui.user.activity.DiscountActivity;
 import com.lala.lashop.ui.user.activity.IndentActivity;
@@ -65,31 +66,32 @@ public class UserFragment extends BaseFragment {
     @OnClick({R.id.user_iv_head, R.id.user_tv_login, R.id.user_ly_pay, R.id.user_ly_fa, R.id.user_ly_tui, R.id.user_ly_pos, R.id.user_ly_you, R.id.user_ly_ji, R.id.user_ly_zu, R.id.user_ly_shou})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.user_iv_head:
+            case R.id.user_iv_head: //头像
                 startActivity(LoginActivity.class);
                 break;
             case R.id.user_tv_login:
                 break;
-            case R.id.user_ly_pay:
+            case R.id.user_ly_pay: //待付款
                 startActivity(IndentActivity.class);
                 break;
-            case R.id.user_ly_fa:
+            case R.id.user_ly_fa://待发货
                 startActivity(IndentActivity.class);
                 break;
-            case R.id.user_ly_tui:
+            case R.id.user_ly_tui://退货 售后
+                startActivity(ApplyActivity.class);
                 break;
-            case R.id.user_ly_pos:
+            case R.id.user_ly_pos://收货地址
                 startActivity(AddressActivity.class);
                 break;
-            case R.id.user_ly_you:
+            case R.id.user_ly_you://优惠券
                 startActivity(DiscountActivity.class);
                 break;
-            case R.id.user_ly_ji:
+            case R.id.user_ly_ji://积分
                 startActivity(PointActivity.class);
                 break;
-            case R.id.user_ly_zu:
+            case R.id.user_ly_zu: //我的足迹
                 break;
-            case R.id.user_ly_shou:
+            case R.id.user_ly_shou: //收藏
                 startActivity(CollActivity.class);
                 break;
         }

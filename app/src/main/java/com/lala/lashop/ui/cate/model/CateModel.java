@@ -20,4 +20,9 @@ public class CateModel extends BaseModel {
         return HttpService.execute(Http.class).getCategory();
     }
 
+    public Observable<HttpResult> search(int page, String sp_classification) {
+        p("page", page).p("sp_classification", sp_classification);
+        return HttpService.execute(Http.class).cate_search(getRequestBody());
+    }
+
 }

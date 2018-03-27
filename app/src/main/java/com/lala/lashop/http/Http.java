@@ -39,6 +39,14 @@ public interface Http {
     Observable<HttpResult<List<CategoryBean>>> getCategory();
 
     /**
+     * 分类查询
+     * page， 当前第几页，默认1，第一页
+     * sp_classification: 分类 small_id
+     */
+    @POST("homeHandler/minishopList.action")
+    Observable<HttpResult> cate_search(@Body RequestBody body);
+
+    /**
      * 注册
      * phone
      * pwd

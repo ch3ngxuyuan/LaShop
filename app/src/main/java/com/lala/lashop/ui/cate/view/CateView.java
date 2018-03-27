@@ -13,4 +13,6 @@ public interface CateView extends BaseView {
 
     void setData(List<CategoryBean> data);
 
+    String getSmallId();
+
 }
