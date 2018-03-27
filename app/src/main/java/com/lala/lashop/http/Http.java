@@ -1,15 +1,14 @@
 package com.lala.lashop.http;
 
 import com.lala.lashop.ui.home.bean.BannerBean;
+import com.lala.lashop.ui.home.bean.CategoryBean;
 import com.lala.lashop.ui.user.bean.UserBean;
 
 import java.util.List;
-import java.util.Map;
 
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
 import retrofit2.http.Body;
-import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
@@ -37,7 +36,7 @@ public interface Http {
      * 产品分类
      */
     @POST("homeHandler/category.action")
-    Observable<HttpResult> getCategory();
+    Observable<HttpResult<List<CategoryBean>>> getCategory();
 
     /**
      * 注册
@@ -77,7 +76,7 @@ public interface Http {
      */
     @FormUrlEncoded
     @POST("addressHandler/add.action")
-    Observable<HttpResult> address_add(@FieldMap Map<String, String> map);
+    Observable<HttpResult> address_add(@Body RequestBody body);
 
     /**
      * 更新地址
@@ -92,7 +91,7 @@ public interface Http {
      */
     @FormUrlEncoded
     @POST("addressHandler/update.action")
-    Observable<HttpResult> address_update(@FieldMap Map<String, String> map);
+    Observable<HttpResult> address_update(@Body RequestBody body);
 
     /**
      * 删除地址
@@ -101,7 +100,7 @@ public interface Http {
      */
     @FormUrlEncoded
     @POST("addressHandler/delete.action")
-    Observable<HttpResult> address_delete(@FieldMap Map<String, String> map);
+    Observable<HttpResult> address_delete(@Body RequestBody body);
 
     /**
      * 查询地址
@@ -109,7 +108,7 @@ public interface Http {
      */
     @FormUrlEncoded
     @POST("addressHandler/getList.action")
-    Observable<HttpResult> address_list(@FieldMap Map<String, String> map);
+    Observable<HttpResult> address_list(@Body RequestBody body);
 
     /**
      * 地址详情
@@ -117,5 +116,5 @@ public interface Http {
      */
     @FormUrlEncoded
     @POST("addressHandler/getAddress.action")
-    Observable<HttpResult> address_detail(@FieldMap Map<String, String> map);
+    Observable<HttpResult> address_detail(@Body RequestBody body);
 }
