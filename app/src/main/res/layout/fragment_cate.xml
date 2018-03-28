@@ -37,6 +37,7 @@
             android:background="@color/white" />
 
         <FrameLayout
+            android:id="@+id/cate_fl_search"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="10px"

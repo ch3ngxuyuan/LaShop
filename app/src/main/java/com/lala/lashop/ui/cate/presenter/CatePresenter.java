@@ -41,21 +41,4 @@ public class CatePresenter extends BasePresenter<CateView> {
                 });
     }
 
-    public void search() {
-
-        mModel.search(1, "20170118224150")
-                .compose(this.<HttpResult>compose())
-                .subscribe(new ApiSubscribers<HttpResult>(getView()) {
-                    @Override
-                    public void onSuccess(HttpResult httpResult) {
-
-                    }
-
-                    @Override
-                    public void onError(ApiException e) {
-
-                    }
-                });
-    }
-
 }

@@ -2,6 +2,7 @@ package com.lala.lashop.http;
 
 import com.lala.lashop.ui.home.bean.BannerBean;
 import com.lala.lashop.ui.home.bean.CategoryBean;
+import com.lala.lashop.ui.home.bean.ShopsBean;
 import com.lala.lashop.ui.user.bean.UserBean;
 
 import java.util.List;
@@ -44,7 +45,14 @@ public interface Http {
      * sp_classification: 分类 small_id
      */
     @POST("homeHandler/minishopList.action")
-    Observable<HttpResult> cate_search(@Body RequestBody body);
+    Observable<HttpResult<List<ShopsBean>>> cate_search(@Body RequestBody body);
+
+    /**
+     * shopid 商品id
+     * userid user 用户user_id
+     */
+    @POST("shopHandler/shopinfo.action")
+    Observable<HttpResult> shops_info(@Body RequestBody body);
 
     /**
      * 注册

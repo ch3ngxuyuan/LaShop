@@ -3,7 +3,6 @@
     android:id="@+id/cate_tv_name"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/red"
     android:ellipsize="end"
     android:maxLines="1"
     android:paddingBottom="20px"

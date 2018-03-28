@@ -39,9 +39,9 @@ public abstract class ApiSubscribers<T> implements Observer<T> {
             mView.hideMultipleView();
         }
 
-        if (result.getCode() == 200) {
+        if (result.getCode() == 200 || result.getCode() == 0) {
             onSuccess(t);
-        }else{
+        } else {
             onFail((String) result.getMess());
         }
 
