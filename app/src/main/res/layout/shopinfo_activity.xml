@@ -50,6 +50,7 @@
                 android:textSize="@dimen/text_14" />
 
             <TextView
+                android:id="@+id/shopinfo_tv_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20px"

@@ -12,6 +12,24 @@ public class ShopInfoBean {
 
     private ShopsBean shop;
     private List<ShopsBean> shopPhoto;
+    private List<ColorsBean> colors;
+    private List<GuisBean> guis;
+
+    public List<GuisBean> getGuis() {
+        return guis;
+    }
+
+    public void setGuis(List<GuisBean> guis) {
+        this.guis = guis;
+    }
+
+    public List<ColorsBean> getColors() {
+        return colors;
+    }
+
+    public void setColors(List<ColorsBean> colors) {
+        this.colors = colors;
+    }
 
     public ShopsBean getShop() {
         return shop;

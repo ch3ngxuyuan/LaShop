@@ -6,6 +6,8 @@ import com.lala.lashop.base.BaseModel;
 import com.lala.lashop.http.Http;
 import com.lala.lashop.http.HttpResult;
 import com.lala.lashop.http.HttpService;
+import com.lala.lashop.ui.cate.bean.ShopInfoBean;
+import com.lala.lashop.ui.home.bean.ShopsBean;
 
 import io.reactivex.Observable;
 
@@ -15,7 +17,7 @@ import io.reactivex.Observable;
 
 public class ShopInfoModel extends BaseModel {
 
-    public Observable<HttpResult> getShopInfo(String shopid, String userid) {
+    public Observable<HttpResult<ShopInfoBean>> getShopInfo(String shopid, String userid) {
         p("shopid", shopid);
         if (!TextUtils.isEmpty(userid)) {
             p("userid", userid);

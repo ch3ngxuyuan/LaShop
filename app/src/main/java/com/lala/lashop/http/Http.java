@@ -1,5 +1,6 @@
 package com.lala.lashop.http;
 
+import com.lala.lashop.ui.cate.bean.ShopInfoBean;
 import com.lala.lashop.ui.home.bean.BannerBean;
 import com.lala.lashop.ui.home.bean.CategoryBean;
 import com.lala.lashop.ui.home.bean.ShopsBean;
@@ -52,7 +53,7 @@ public interface Http {
      * userid user 用户user_id
      */
     @POST("shopHandler/shopinfo.action")
-    Observable<HttpResult> shops_info(@Body RequestBody body);
+    Observable<HttpResult<ShopInfoBean>> shops_info(@Body RequestBody body);
 
     /**
      * 注册
