@@ -7,6 +7,7 @@
     android:orientation="vertical">
 
     <com.lala.lashop.widget.RectImage
+        android:id="@+id/coll_iv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"

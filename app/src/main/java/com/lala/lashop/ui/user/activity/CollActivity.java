@@ -7,9 +7,13 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.lala.lashop.R;
+import com.lala.lashop.app.App;
 import com.lala.lashop.base.BaseActivity;
+import com.lala.lashop.base.mvp.CreatePresenter;
 import com.lala.lashop.ui.user.adapter.CollAdapter;
 import com.lala.lashop.ui.user.bean.CollBean;
+import com.lala.lashop.ui.user.presenter.CollPresenter;
+import com.lala.lashop.ui.user.view.CollView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +26,8 @@ import butterknife.OnClick;
  * Created by JX on 2018/3/20.
  */
 
-public class CollActivity extends BaseActivity {
+@CreatePresenter(CollPresenter.class)
+public class CollActivity extends BaseActivity<CollView, CollPresenter> implements CollView {
 
     @BindView(R.id.coll_rv)
     RecyclerView rv;
@@ -56,12 +61,6 @@ public class CollActivity extends BaseActivity {
                 });
 
         mData = new ArrayList<>();
-
-        //测试数据
-        for (int i = 0; i < 10; i++) {
-            mData.add(new CollBean());
-        }
-
         mAdapter = new CollAdapter(R.layout.coll_rv_item, mData);
         mAdapter.bindToRecyclerView(rv);
         rv.setLayoutManager(new GridLayoutManager(this, 2));
@@ -73,6 +72,8 @@ public class CollActivity extends BaseActivity {
                 checkSelectAll(isAll);
             }
         });
+
+        getPresenter().getColl();
     }
 
     private void checkSelectAll(boolean isAll) {
@@ -88,5 +89,16 @@ public class CollActivity extends BaseActivity {
             case R.id.coll_tv_delete:
                 break;
         }
+    }
+
+    @Override
+    public void setData(List<CollBean> data) {
+        mAdapter.setNewData(data);
+        mData = mAdapter.getData();
+    }
+
+    @Override
+    public String getUserId() {
+        return App.getUser() != null ? App.getUser().getUser_id() : "";
     }
 }

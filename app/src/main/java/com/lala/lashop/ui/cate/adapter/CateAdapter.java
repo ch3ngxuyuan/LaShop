@@ -10,7 +10,6 @@ import com.lala.lashop.R;
 import com.lala.lashop.base.BaseAdapter;
 import com.lala.lashop.base.BaseViewHolder;
 import com.lala.lashop.ui.home.bean.CategoryBean;
-import com.lala.lashop.utils.L;
 
 import java.util.List;
 
@@ -21,6 +20,9 @@ import java.util.List;
 public class CateAdapter extends BaseAdapter<CategoryBean> {
 
     private CateSubAdapter subAdapter;
+
+    private int parentPosition = -1;
+    private int childPosition = -1;
 
     public CateAdapter(int layoutResId, @Nullable List<CategoryBean> data) {
         super(layoutResId, data);
@@ -39,10 +41,19 @@ public class CateAdapter extends BaseAdapter<CategoryBean> {
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 if (onItemClickListener != null) {
                     onItemClickListener.onItemClick(view, holder.getLayoutPosition(), position);
+                    parentPosition = holder.getLayoutPosition();
+                    childPosition = position;
+                    notifyDataSetChanged();
                 }
             }
         });
         rvSub.setAdapter(subAdapter);
+
+        if (parentPosition == holder.getLayoutPosition()) {
+            subAdapter.setSelectPosition(childPosition);
+        } else {
+            subAdapter.setSelectPosition(-1);
+        }
     }
 
     private OnAdapterItemClickListener onItemClickListener;

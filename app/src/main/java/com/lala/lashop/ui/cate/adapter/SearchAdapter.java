@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import com.lala.lashop.R;
 import com.lala.lashop.base.BaseAdapter;
 import com.lala.lashop.base.BaseViewHolder;
+import com.lala.lashop.http.ApiPath;
 import com.lala.lashop.ui.home.bean.ShopsBean;
 
 import java.util.List;
@@ -22,5 +23,6 @@ public class SearchAdapter extends BaseAdapter<ShopsBean> {
     @Override
     protected void convert(BaseViewHolder holder, ShopsBean item) {
         holder.setText(R.id.search_tv_title, item.getSp_title());
+        holder.loadImage(R.id.search_iv, ApiPath.IMG_URL + item.getSp_simg());
     }
 }

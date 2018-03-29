@@ -4,6 +4,7 @@ import com.lala.lashop.ui.cate.bean.ShopInfoBean;
 import com.lala.lashop.ui.home.bean.BannerBean;
 import com.lala.lashop.ui.home.bean.CategoryBean;
 import com.lala.lashop.ui.home.bean.ShopsBean;
+import com.lala.lashop.ui.user.bean.CollBean;
 import com.lala.lashop.ui.user.bean.UserBean;
 
 import java.util.List;
@@ -11,7 +12,6 @@ import java.util.List;
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
 import retrofit2.http.Body;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
 /**
@@ -49,6 +49,7 @@ public interface Http {
     Observable<HttpResult<List<ShopsBean>>> cate_search(@Body RequestBody body);
 
     /**
+     * 商品详情
      * shopid 商品id
      * userid user 用户user_id
      */
@@ -91,7 +92,6 @@ public interface Http {
      * m_id 是否默认 1\0
      * fullName 名字
      */
-    @FormUrlEncoded
     @POST("addressHandler/add.action")
     Observable<HttpResult> address_add(@Body RequestBody body);
 
@@ -106,7 +106,6 @@ public interface Http {
      * m_id 是否默认 1\0
      * fullName 名字
      */
-    @FormUrlEncoded
     @POST("addressHandler/update.action")
     Observable<HttpResult> address_update(@Body RequestBody body);
 
@@ -115,7 +114,6 @@ public interface Http {
      * user_id 用户id
      * address 地址json
      */
-    @FormUrlEncoded
     @POST("addressHandler/delete.action")
     Observable<HttpResult> address_delete(@Body RequestBody body);
 
@@ -123,7 +121,6 @@ public interface Http {
      * 查询地址
      * user_id 用户id
      */
-    @FormUrlEncoded
     @POST("addressHandler/getList.action")
     Observable<HttpResult> address_list(@Body RequestBody body);
 
@@ -131,7 +128,21 @@ public interface Http {
      * 地址详情
      * addressid 地址id
      */
-    @FormUrlEncoded
     @POST("addressHandler/getAddress.action")
     Observable<HttpResult> address_detail(@Body RequestBody body);
+
+    /**
+     * 添加收藏
+     * 用户user id
+     * 商品shopid
+     */
+    @POST("collectHandler/add.action")
+    Observable<HttpResult> coll_add(@Body RequestBody body);
+
+    /**
+     * 收藏列表
+     * 用户user id
+     */
+    @POST("collectHandler/getList.action")
+    Observable<HttpResult<List<CollBean>>> coll_list(@Body RequestBody body);
 }

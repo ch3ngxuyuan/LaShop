@@ -15,8 +15,11 @@
  */
 package com.lala.lashop.base;
 
+import android.support.annotation.IdRes;
 import android.view.View;
+import android.widget.ImageView;
 
+import com.lala.lashop.utils.GlideUtil;
 import com.lala.lashop.utils.SupportMultipleScreensUtil;
 
 
@@ -29,4 +32,11 @@ public class BaseViewHolder extends com.chad.library.adapter.base.BaseViewHolder
         super(view);
         SupportMultipleScreensUtil.scale(view);
     }
+
+    public BaseViewHolder loadImage(@IdRes int viewId, String url) {
+        ImageView view = getView(viewId);
+        GlideUtil.loadImage(view.getContext(), url, view);
+        return this;
+    }
+
 }

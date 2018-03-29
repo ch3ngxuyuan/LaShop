@@ -33,6 +33,8 @@ public class CollAdapter extends BaseAdapter<CollBean> {
 
     @Override
     protected void convert(final BaseViewHolder holder, CollBean item) {
+        holder.loadImage(R.id.coll_iv, item.getSp_img());
+
         holder.setVisible(R.id.coll_iv_delete, deleteFlag);
         holder.setImageResource(R.id.coll_iv_delete, mSelectList.get(holder.getLayoutPosition())
                 ? R.drawable.general_icon_select
