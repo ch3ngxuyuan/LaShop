@@ -15,4 +15,6 @@ public interface CollView extends BaseView {
 
     String getUserId();
 
+    String getCollectId();
+
 }

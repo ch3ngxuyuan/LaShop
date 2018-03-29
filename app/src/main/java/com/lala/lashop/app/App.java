@@ -2,8 +2,10 @@ package com.lala.lashop.app;
 
 import android.app.Application;
 import android.content.Context;
+import android.text.TextUtils;
 
 import com.lala.lashop.ui.user.bean.UserBean;
+import com.lala.lashop.utils.SpUtils;
 import com.lala.lashop.utils.SupportMultipleScreensUtil;
 
 /**
@@ -23,6 +25,8 @@ public class App extends Application {
         SupportMultipleScreensUtil.init(this);
 
         mContext = this;
+
+        mUser = SpUtils.getUser();
     }
 
     public static Context getContext() {
@@ -35,5 +39,6 @@ public class App extends Application {
 
     public static void cacheUser(UserBean user) {
         mUser = user;
+        SpUtils.putUser(user);
     }
 }

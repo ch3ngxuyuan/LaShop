@@ -6,6 +6,7 @@ import android.view.View;
 import com.lala.lashop.R;
 import com.lala.lashop.base.BaseAdapter;
 import com.lala.lashop.base.BaseViewHolder;
+import com.lala.lashop.http.ApiPath;
 import com.lala.lashop.ui.user.bean.CollBean;
 import com.lala.lashop.utils.L;
 import com.lala.lashop.utils.Tos;
@@ -26,14 +27,20 @@ public class CollAdapter extends BaseAdapter<CollBean> {
     public CollAdapter(int layoutResId, @Nullable List<CollBean> data) {
         super(layoutResId, data);
         mSelectList = new ArrayList<>();
-        for (CollBean bean : data) {
+    }
+
+    public void initSelectFlag(int size) {
+        for (int i = 0; i < size; i++) {
             mSelectList.add(false);
         }
     }
 
     @Override
     protected void convert(final BaseViewHolder holder, CollBean item) {
-        holder.loadImage(R.id.coll_iv, item.getSp_img());
+        holder.loadImage(R.id.coll_iv, ApiPath.IMG_URL + item.getSp_simg());
+        holder.setText(R.id.coll_tv_title, item.getSp_title());
+        holder.setText(R.id.coll_tv_location, item.getSp_city());
+        holder.setText(R.id.coll_tv_price, "￥"+item.getSp_mprice());
 
         holder.setVisible(R.id.coll_iv_delete, deleteFlag);
         holder.setImageResource(R.id.coll_iv_delete, mSelectList.get(holder.getLayoutPosition())

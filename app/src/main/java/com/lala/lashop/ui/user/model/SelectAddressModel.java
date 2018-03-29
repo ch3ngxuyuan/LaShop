@@ -14,9 +14,9 @@ import io.reactivex.Observable;
  * Created by JX on 2018/3/22.
  */
 
-public class AddressModel extends BaseModel {
+public class SelectAddressModel extends BaseModel {
 
-    public Observable<HttpResult<List<ProvinceBean>>> selectProvince(int pid) {
+    public Observable<HttpResult<List<ProvinceBean>>> selectProvince(String pid) {
         p("pid", pid);
         return HttpService.execute(Http.class).address_province(getRequestBody());
     }

@@ -1,5 +1,7 @@
 package com.lala.lashop.ui.cate.presenter;
 
+import android.text.TextUtils;
+
 import com.lala.lashop.base.mvp.BasePresenter;
 import com.lala.lashop.http.ApiSubscribers;
 import com.lala.lashop.http.HttpResult;
@@ -43,6 +45,24 @@ public class ShopInfoPresenter extends BasePresenter<ShopInfoView> {
         getView().showLoadingDialog();
 
         mModel.collAdd(getView().getShopId(), getView().getUserId())
+                .compose(this.<HttpResult>compose())
+                .subscribe(new ApiSubscribers<HttpResult>(getView()) {
+                    @Override
+                    public void onSuccess(HttpResult httpResult) {
+                        getView().toast(httpResult.getMess().toString());
+                    }
+
+                    @Override
+                    public void onError(ApiException e) {
+
+                    }
+                });
+    }
+
+    public void collCheck() {
+        if (TextUtils.isEmpty(getView().getUserId())) return;
+
+        mModel.collCheck(getView().getShopId(), getView().getUserId())
                 .compose(this.<HttpResult>compose())
                 .subscribe(new ApiSubscribers<HttpResult>(getView()) {
                     @Override

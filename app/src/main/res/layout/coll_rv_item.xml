@@ -34,6 +34,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/coll_tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Padded Pilot Jacket"
@@ -41,6 +42,7 @@
                 android:textSize="@dimen/text_14" />
 
             <TextView
+                android:id="@+id/coll_tv_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5px"
@@ -49,6 +51,7 @@
                 android:textSize="@dimen/text_12" />
 
             <TextView
+                android:id="@+id/coll_tv_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5px"

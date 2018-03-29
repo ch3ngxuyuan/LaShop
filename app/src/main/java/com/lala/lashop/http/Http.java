@@ -1,10 +1,13 @@
 package com.lala.lashop.http;
 
+import android.support.v7.widget.RecyclerView;
+
 import com.lala.lashop.ui.cate.bean.ShopInfoBean;
 import com.lala.lashop.ui.home.bean.BannerBean;
 import com.lala.lashop.ui.home.bean.CategoryBean;
 import com.lala.lashop.ui.home.bean.ShopsBean;
 import com.lala.lashop.ui.user.bean.CollBean;
+import com.lala.lashop.ui.user.bean.ProvinceBean;
 import com.lala.lashop.ui.user.bean.UserBean;
 
 import java.util.List;
@@ -79,7 +82,7 @@ public interface Http {
      * pid 地区上级ID 如果为1，则查出的是省份
      */
     @POST("locationHandler/list.action")
-    Observable<HttpResult> address_province(@Body RequestBody body);
+    Observable<HttpResult<List<ProvinceBean>>> address_province(@Body RequestBody body);
 
     /**
      * 添加地址
@@ -145,4 +148,22 @@ public interface Http {
      */
     @POST("collectHandler/getList.action")
     Observable<HttpResult<List<CollBean>>> coll_list(@Body RequestBody body);
+
+    /**
+     * 删除收藏
+     * 收藏collectid
+     * 用户user_id
+     */
+    @POST("collectHandler/delete.action")
+    Observable<HttpResult> coll_delete(@Body RequestBody body);
+
+    /**
+     * 判断是否收藏
+     * user_id 用户user_id
+     * shop_id 商品id
+     *
+     * return 1:已收藏 0未收藏
+     */
+    @POST("collectHandler/sole.action")
+    Observable<HttpResult> coll_check(@Body RequestBody body);
 }

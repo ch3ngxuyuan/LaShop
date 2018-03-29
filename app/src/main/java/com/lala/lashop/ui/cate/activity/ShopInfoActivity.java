@@ -8,6 +8,7 @@ import com.lala.lashop.R;
 import com.lala.lashop.app.App;
 import com.lala.lashop.base.BaseActivity;
 import com.lala.lashop.base.mvp.CreatePresenter;
+import com.lala.lashop.http.ApiPath;
 import com.lala.lashop.ui.cate.bean.ShopInfoBean;
 import com.lala.lashop.ui.cate.presenter.ShopInfoPresenter;
 import com.lala.lashop.ui.cate.view.ShopInfoView;
@@ -62,6 +63,8 @@ public class ShopInfoActivity extends BaseActivity<ShopInfoView, ShopInfoPresent
         shopid = getIntent().getStringExtra(SHOP_ID);
 
         getPresenter().getShopInfo();
+
+        getPresenter().collCheck();
     }
 
     @Override
@@ -84,7 +87,7 @@ public class ShopInfoActivity extends BaseActivity<ShopInfoView, ShopInfoPresent
     private void initBanner(List<ShopsBean> data) {
         List<String> images = new ArrayList<>();
         for (ShopsBean bean : data) {
-            images.add(bean.getSp_img());
+            images.add(ApiPath.IMG_URL + bean.getSp_img());
         }
         banner.setImageLoader(new BannerImageLoader());
         banner.setIndicatorGravity(BannerConfig.CENTER);

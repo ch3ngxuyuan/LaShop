@@ -21,4 +21,9 @@ public class CollModel extends BaseModel {
         return HttpService.execute(Http.class).coll_list(getRequestBody());
     }
 
+    public Observable<HttpResult> collDelete(String collectid, String user_id) {
+        p("collectid", collectid).p("user_id", user_id);
+        return HttpService.execute(Http.class).coll_delete(getRequestBody());
+    }
+
 }

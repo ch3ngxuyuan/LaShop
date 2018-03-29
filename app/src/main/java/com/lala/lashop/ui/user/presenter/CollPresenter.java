@@ -38,7 +38,24 @@ public class CollPresenter extends BasePresenter<CollView> {
 
                     }
                 });
+    }
 
+    public void deleteColl() {
+        getView().showLoadingDialog();
+
+        mModel.collDelete(getView().getCollectId(), getView().getUserId())
+                .compose(this.<HttpResult>compose())
+                .subscribe(new ApiSubscribers<HttpResult>(getView()) {
+                    @Override
+                    public void onSuccess(HttpResult httpResult) {
+
+                    }
+
+                    @Override
+                    public void onError(ApiException e) {
+
+                    }
+                });
     }
 
 }

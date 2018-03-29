@@ -93,6 +93,7 @@ public class CollActivity extends BaseActivity<CollView, CollPresenter> implemen
 
     @Override
     public void setData(List<CollBean> data) {
+        mAdapter.initSelectFlag(data.size());
         mAdapter.setNewData(data);
         mData = mAdapter.getData();
     }
@@ -100,5 +101,10 @@ public class CollActivity extends BaseActivity<CollView, CollPresenter> implemen
     @Override
     public String getUserId() {
         return App.getUser() != null ? App.getUser().getUser_id() : "";
+    }
+
+    @Override
+    public String getCollectId() {
+        return null;
     }
 }

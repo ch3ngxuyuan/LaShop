@@ -20,19 +20,19 @@ public class AddressPresenter extends BasePresenter<AddressView> {
     }
 
     public void getAddress() {
-        mModel.selectProvince()
-                .compose(this.<HttpResult>compose())
-                .subscribe(new ApiSubscribers<HttpResult>(getView()) {
-                    @Override
-                    public void onSuccess(HttpResult httpResult) {
-
-                    }
-
-                    @Override
-                    public void onError(ApiException e) {
-
-                    }
-                });
+//        mModel.selectProvince()
+//                .compose(this.<HttpResult>compose())
+//                .subscribe(new ApiSubscribers<HttpResult>(getView()) {
+//                    @Override
+//                    public void onSuccess(HttpResult httpResult) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onError(ApiException e) {
+//
+//                    }
+//                });
 
     }
 

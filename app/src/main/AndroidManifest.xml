@@ -32,6 +32,7 @@
         <activity android:name=".ui.user.activity.IndentActivity" />
         <activity android:name=".ui.user.activity.ApplyActivity" />
         <activity android:name=".ui.cate.activity.ShopInfoActivity" />
+        <activity android:name=".ui.user.activity.SelectAddressActivity" />
 
     </application>
 
