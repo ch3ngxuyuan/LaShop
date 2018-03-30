@@ -12,6 +12,7 @@ import com.lala.lashop.app.App;
 import com.lala.lashop.base.mvp.AbstractActivity;
 import com.lala.lashop.base.mvp.BasePresenter;
 import com.lala.lashop.base.mvp.BaseView;
+import com.lala.lashop.ui.user.activity.LoginActivity;
 import com.lala.lashop.utils.RxBus;
 import com.lala.lashop.utils.SupportMultipleScreensUtil;
 import com.lala.lashop.utils.ToolbarManager;
@@ -114,11 +115,11 @@ public abstract class BaseActivity<V extends BaseView, P extends BasePresenter<V
      */
     @Override
     public boolean checkUser() {
-//        if (App.getUser() == null) {
-//            startActivityForResult(LoginActivity.class, Constant.LOGIN);
-//            toast(R.string.no_login);
-//            return false;
-//        }
+        if (App.getUser() == null) {
+            startActivityForResult(LoginActivity.class, 1111);
+            toast("未登录");
+            return false;
+        }
         return true;
     }
 

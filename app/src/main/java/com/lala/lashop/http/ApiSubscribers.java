@@ -31,8 +31,6 @@ public abstract class ApiSubscribers<T> implements Observer<T> {
     @Override
     public void onNext(@NonNull T t) {
         HttpResult result = (HttpResult) t;
-        String json = new Gson().toJson(t);
-        L.e("ApiSubscribers", "json:" + json);
 
         if (mView != null) {
             mView.hideLoadingDialog();
@@ -44,7 +42,6 @@ public abstract class ApiSubscribers<T> implements Observer<T> {
         } else {
             onFail((String) result.getMess());
         }
-
     }
 
     /**

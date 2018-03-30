@@ -65,10 +65,12 @@ public class UserFragment extends BaseFragment {
 
     @OnClick({R.id.user_iv_head, R.id.user_tv_login, R.id.user_ly_pay, R.id.user_ly_fa, R.id.user_ly_tui, R.id.user_ly_pos, R.id.user_ly_you, R.id.user_ly_ji, R.id.user_ly_zu, R.id.user_ly_shou})
     public void onViewClicked(View view) {
+        if (view.getId() == R.id.user_iv_head) {
+            //头像
+            startActivity(LoginActivity.class);
+        }
+        if (!checkUser()) return;
         switch (view.getId()) {
-            case R.id.user_iv_head: //头像
-                startActivity(LoginActivity.class);
-                break;
             case R.id.user_tv_login:
                 break;
             case R.id.user_ly_pay: //待付款

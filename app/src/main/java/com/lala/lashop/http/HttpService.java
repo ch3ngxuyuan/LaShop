@@ -28,7 +28,7 @@ public class HttpService {
     private static Retrofit.Builder getBuilder() {
         Retrofit.Builder builder = new Retrofit.Builder()
                 .baseUrl(ApiPath.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(CusGsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         return builder;
     }

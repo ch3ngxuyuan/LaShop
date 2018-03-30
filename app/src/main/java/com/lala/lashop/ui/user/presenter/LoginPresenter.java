@@ -2,6 +2,7 @@ package com.lala.lashop.ui.user.presenter;
 
 import android.text.TextUtils;
 
+import com.google.gson.Gson;
 import com.lala.lashop.base.mvp.BasePresenter;
 import com.lala.lashop.http.ApiSubscribers;
 import com.lala.lashop.http.HttpResult;
