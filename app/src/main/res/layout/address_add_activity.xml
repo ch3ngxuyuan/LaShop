@@ -32,6 +32,7 @@
                     android:textSize="@dimen/text_16" />
 
                 <EditText
+                    android:id="@+id/address_et_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20px"
@@ -60,11 +61,13 @@
                     android:textSize="@dimen/text_16" />
 
                 <EditText
+                    android:id="@+id/address_et_mobile"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20px"
                     android:layout_weight="1"
                     android:background="@color/white"
+                    android:inputType="number"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_16" />
 
@@ -120,6 +123,7 @@
                     android:textSize="@dimen/text_16" />
 
                 <EditText
+                    android:id="@+id/address_et_detail"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20px"
@@ -148,6 +152,7 @@
                     android:textSize="@dimen/text_16" />
 
                 <Switch
+                    android:id="@+id/address_switch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right|center_vertical" />

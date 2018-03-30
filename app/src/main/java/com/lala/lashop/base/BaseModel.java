@@ -12,7 +12,6 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import okhttp3.MediaType;
-import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
 /**
@@ -51,7 +50,7 @@ public class BaseModel {
         return this;
     }
 
-    public Map<String, String> getParams() {
+    private Map<String, String> getParams() {
         Map<String, String> params = new TreeMap<>();
         params.putAll(mParamsMap);
         mParamsMap.clear();

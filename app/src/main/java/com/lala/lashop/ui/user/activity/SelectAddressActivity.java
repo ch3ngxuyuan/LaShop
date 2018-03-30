@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.SpannableStringBuilder;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -38,9 +37,11 @@ public class SelectAddressActivity extends BaseActivity<SelectAddressView, Selec
 
     private String pid = "1";
 
-    public SpannableStringBuilder stringBuilder;
-
     private int count = 0;
+
+    private String province;
+    private String city;
+    private String area;
 
     @Override
     public int setContentView() {
@@ -51,8 +52,6 @@ public class SelectAddressActivity extends BaseActivity<SelectAddressView, Selec
     public void onCreate() {
         getToolbar().setTitle("选择地址");
 
-        stringBuilder = new SpannableStringBuilder();
-
         mData = new ArrayList<>();
         mAdapter = new SelectAddressAdapter(R.layout.address_select_rv_item, mData);
         mAdapter.bindToRecyclerView(rv);
@@ -62,11 +61,19 @@ public class SelectAddressActivity extends BaseActivity<SelectAddressView, Selec
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                stringBuilder.append(mData.get(position).getName());
+                if (count == 1) {
+                    province = mData.get(position).getName();
+                } else if (count == 2) {
+                    city = mData.get(position).getName();
+                } else if (count == 3) {
+                    area = mData.get(position).getName();
+                }
 
                 if (count == 3) {
                     Intent intent = new Intent();
-                    intent.putExtra("address", stringBuilder.toString());
+                    intent.putExtra("province", province);
+                    intent.putExtra("city", city);
+                    intent.putExtra("area", area);
                     setResult(RESULT_OK, intent);
                     finish();
                 } else {

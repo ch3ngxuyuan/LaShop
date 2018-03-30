@@ -5,6 +5,7 @@ import com.lala.lashop.http.Http;
 import com.lala.lashop.http.HttpResult;
 import com.lala.lashop.http.HttpService;
 import com.lala.lashop.ui.home.bean.BannerBean;
+import com.lala.lashop.ui.home.bean.HomeBean;
 
 import java.util.List;
 
@@ -18,6 +19,10 @@ public class HomeModel extends BaseModel {
 
     public Observable<HttpResult<List<BannerBean>>> getBanner() {
         return HttpService.execute(Http.class).getBanner();
+    }
+
+    public Observable<HttpResult<HomeBean>> getHomeData() {
+        return HttpService.execute(Http.class).getHome();
     }
 
 }

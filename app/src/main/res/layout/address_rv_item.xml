@@ -13,6 +13,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/address_tv_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -21,6 +22,7 @@
             android:textSize="@dimen/text_16" />
 
         <TextView
+            android:id="@+id/address_tv_mobile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="13812345678"
@@ -30,6 +32,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/address_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10px"

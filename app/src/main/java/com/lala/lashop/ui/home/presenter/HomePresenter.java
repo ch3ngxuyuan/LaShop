@@ -5,6 +5,7 @@ import com.lala.lashop.http.ApiSubscribers;
 import com.lala.lashop.http.HttpResult;
 import com.lala.lashop.http.exception.ApiException;
 import com.lala.lashop.ui.home.bean.BannerBean;
+import com.lala.lashop.ui.home.bean.HomeBean;
 import com.lala.lashop.ui.home.model.HomeModel;
 import com.lala.lashop.ui.home.view.HomeView;
 
@@ -23,8 +24,6 @@ public class HomePresenter extends BasePresenter<HomeView> {
     }
 
     public void getBanner() {
-        getView().showLoadingDialog();
-
         mModel.getBanner()
                 .compose(this.<HttpResult<List<BannerBean>>>compose())
                 .subscribe(new ApiSubscribers<HttpResult<List<BannerBean>>>(getView()) {
@@ -38,6 +37,23 @@ public class HomePresenter extends BasePresenter<HomeView> {
 
                     }
                 });
+    }
 
+    public void getHomeData() {
+        getView().showLoadingDialog();
+
+        mModel.getHomeData()
+                .compose(this.<HttpResult<HomeBean>>compose())
+                .subscribe(new ApiSubscribers<HttpResult<HomeBean>>(getView()) {
+                    @Override
+                    public void onSuccess(HttpResult<HomeBean> homeBeanHttpResult) {
+                        getView().setHomeData(homeBeanHttpResult.getMess());
+                    }
+
+                    @Override
+                    public void onError(ApiException e) {
+
+                    }
+                });
     }
 }

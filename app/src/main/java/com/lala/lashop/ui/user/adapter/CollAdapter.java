@@ -9,7 +9,6 @@ import com.lala.lashop.base.BaseViewHolder;
 import com.lala.lashop.http.ApiPath;
 import com.lala.lashop.ui.user.bean.CollBean;
 import com.lala.lashop.utils.L;
-import com.lala.lashop.utils.Tos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,11 +35,11 @@ public class CollAdapter extends BaseAdapter<CollBean> {
     }
 
     @Override
-    protected void convert(final BaseViewHolder holder, CollBean item) {
+    protected void convert(final BaseViewHolder holder, final CollBean item) {
         holder.loadImage(R.id.coll_iv, ApiPath.IMG_URL + item.getSp_simg());
         holder.setText(R.id.coll_tv_title, item.getSp_title());
         holder.setText(R.id.coll_tv_location, item.getSp_city());
-        holder.setText(R.id.coll_tv_price, "￥"+item.getSp_mprice());
+        holder.setText(R.id.coll_tv_price, "￥" + item.getSp_mprice());
 
         holder.setVisible(R.id.coll_iv_delete, deleteFlag);
         holder.setImageResource(R.id.coll_iv_delete, mSelectList.get(holder.getLayoutPosition())
@@ -60,7 +59,11 @@ public class CollAdapter extends BaseAdapter<CollBean> {
                         onSelectAllListener.onSelectAll(checkSelectAll());
                     }
                 } else {
-                    Tos.toast(mContext, "跳转详情");
+//                    Intent intent = new Intent(mContext, ShopInfoActivity.class);
+//                    Bundle bundle = new Bundle();
+//                    bundle.putString(ShopInfoActivity.SHOP_ID, item.getSp_id());
+//                    intent.putExtras(bundle);
+//                    mContext.startActivity(intent);
                 }
             }
         });

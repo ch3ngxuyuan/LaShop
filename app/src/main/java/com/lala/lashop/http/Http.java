@@ -1,11 +1,11 @@
 package com.lala.lashop.http;
 
-import android.support.v7.widget.RecyclerView;
-
 import com.lala.lashop.ui.cate.bean.ShopInfoBean;
 import com.lala.lashop.ui.home.bean.BannerBean;
 import com.lala.lashop.ui.home.bean.CategoryBean;
+import com.lala.lashop.ui.home.bean.HomeBean;
 import com.lala.lashop.ui.home.bean.ShopsBean;
+import com.lala.lashop.ui.user.bean.AddressBean;
 import com.lala.lashop.ui.user.bean.CollBean;
 import com.lala.lashop.ui.user.bean.ProvinceBean;
 import com.lala.lashop.ui.user.bean.UserBean;
@@ -35,7 +35,7 @@ public interface Http {
      * 首页数据
      */
     @POST("homeHandler/home.action")
-    Observable<HttpResult> getHome();
+    Observable<HttpResult<HomeBean>> getHome();
 
     /**
      * 产品分类
@@ -108,6 +108,7 @@ public interface Http {
      * addressDetail
      * m_id 是否默认 1\0
      * fullName 名字
+     * addressid
      */
     @POST("addressHandler/update.action")
     Observable<HttpResult> address_update(@Body RequestBody body);
@@ -125,7 +126,7 @@ public interface Http {
      * user_id 用户id
      */
     @POST("addressHandler/getList.action")
-    Observable<HttpResult> address_list(@Body RequestBody body);
+    Observable<HttpResult<List<AddressBean>>> address_list(@Body RequestBody body);
 
     /**
      * 地址详情
@@ -161,7 +162,7 @@ public interface Http {
      * 判断是否收藏
      * user_id 用户user_id
      * shop_id 商品id
-     *
+     * <p>
      * return 1:已收藏 0未收藏
      */
     @POST("collectHandler/sole.action")

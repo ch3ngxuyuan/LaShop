@@ -14,4 +14,6 @@ public interface AddressView extends BaseView {
     void setData(List<AddressBean> data);
 
     void deleteSuccess();
+
+    String getUserId();
 }
