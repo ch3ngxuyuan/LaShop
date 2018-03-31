@@ -23,6 +23,6 @@ public class AddressAdapter extends BaseAdapter<AddressBean> {
     protected void convert(BaseViewHolder holder, AddressBean item) {
         holder.setText(R.id.address_tv_name, item.getFullName());
         holder.setText(R.id.address_tv_mobile, item.getMobile());
-        holder.setText(R.id.address_tv, item.getProv() + item.getCity() + item.getArea() + item.getAddressDetail());
+        holder.setText(R.id.address_tv, item.getProvincialName() + item.getCityName() + item.getAreaName() + item.getAddressDetail());
     }
 }

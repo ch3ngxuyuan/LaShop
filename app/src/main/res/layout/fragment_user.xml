@@ -40,23 +40,23 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
             android:layout_marginTop="5px"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="40px"
-                android:scaleType="centerInside"
                 android:layout_height="40px"
+                android:scaleType="centerInside"
                 android:src="@drawable/user_vip" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5px"
-                android:textSize="@dimen/text_14"
+                android:text="个人会员"
                 android:textColor="#B97400"
-                android:text="个人会员" />
+                android:textSize="@dimen/text_14" />
 
         </LinearLayout>
 
@@ -221,16 +221,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="我的订单"
+                android:text="工具"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_14" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:text="全部订单"
-                android:textColor="@color/black3"
                 android:textSize="@dimen/text_14" />
 
         </FrameLayout>

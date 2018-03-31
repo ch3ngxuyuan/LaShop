@@ -43,6 +43,8 @@ public class SelectAddressActivity extends BaseActivity<SelectAddressView, Selec
     private String city;
     private String area;
 
+    private StringBuilder stringBuilder;
+
     @Override
     public int setContentView() {
         return R.layout.address_select_activity;
@@ -51,6 +53,8 @@ public class SelectAddressActivity extends BaseActivity<SelectAddressView, Selec
     @Override
     public void onCreate() {
         getToolbar().setTitle("选择地址");
+
+        stringBuilder = new StringBuilder();
 
         mData = new ArrayList<>();
         mAdapter = new SelectAddressAdapter(R.layout.address_select_rv_item, mData);
@@ -61,16 +65,19 @@ public class SelectAddressActivity extends BaseActivity<SelectAddressView, Selec
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                stringBuilder.append(mData.get(position).getName());
+
                 if (count == 1) {
-                    province = mData.get(position).getName();
+                    province = mData.get(position).getCode();
                 } else if (count == 2) {
-                    city = mData.get(position).getName();
+                    city = mData.get(position).getCode();
                 } else if (count == 3) {
-                    area = mData.get(position).getName();
+                    area = mData.get(position).getCode();
                 }
 
                 if (count == 3) {
                     Intent intent = new Intent();
+                    intent.putExtra("address", stringBuilder.toString());
                     intent.putExtra("province", province);
                     intent.putExtra("city", city);
                     intent.putExtra("area", area);

@@ -13,6 +13,7 @@ import com.lala.lashop.base.mvp.CreatePresenter;
 import com.lala.lashop.ui.user.bean.AddressBean;
 import com.lala.lashop.ui.user.presenter.AddressAddPresenter;
 import com.lala.lashop.ui.user.view.AddressAddView;
+import com.lala.lashop.utils.L;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -43,6 +44,8 @@ public class AddressAddActivity extends BaseActivity<AddressAddView, AddressAddP
     private AddressBean addressBean;
     private boolean isUpdate = false; //是否为更新
 
+    private String addressName;
+
     private String province;
     private String city;
     private String area;
@@ -58,6 +61,7 @@ public class AddressAddActivity extends BaseActivity<AddressAddView, AddressAddP
         isUpdate = getIntent().getBooleanExtra(ADDRESS_UPDATE, false);
 
         if (isUpdate) {
+            getToolbar().setTitle("更新收货地址");
             initView();
         }
     }
@@ -71,9 +75,9 @@ public class AddressAddActivity extends BaseActivity<AddressAddView, AddressAddP
         city = addressBean.getCity();
         area = addressBean.getArea();
 
-        tvSelect.setText(province + city + area);
+        tvSelect.setText(addressBean.getProvincialName() + addressBean.getCityName() + addressBean.getAreaName());
 
-        if (addressBean.getM_id() == "1") {
+        if (addressBean.getM_id().equals("1")) {
             aSwitch.setChecked(true);
         }
     }
@@ -98,10 +102,15 @@ public class AddressAddActivity extends BaseActivity<AddressAddView, AddressAddP
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == SELECT_ADDRESS && resultCode == RESULT_OK) {
+            addressName = data.getStringExtra("address");
             province = data.getStringExtra("province");
             city = data.getStringExtra("city");
             area = data.getStringExtra("area");
-            tvSelect.setText(province + city + area);
+            L.e("addressName = " + addressName);
+            L.e("province = " + province);
+            L.e("city = " + city);
+            L.e("area = " + area);
+            tvSelect.setText(addressName);
         }
     }
 
