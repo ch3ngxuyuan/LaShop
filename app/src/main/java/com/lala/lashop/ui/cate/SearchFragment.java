@@ -11,7 +11,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.lala.lashop.R;
 import com.lala.lashop.base.BaseFragment;
 import com.lala.lashop.base.mvp.CreatePresenter;
-import com.lala.lashop.ui.cate.activity.ShopInfoActivity;
 import com.lala.lashop.ui.cate.adapter.SearchAdapter;
 import com.lala.lashop.ui.cate.presenter.SearchPresenter;
 import com.lala.lashop.ui.cate.view.SearchView;

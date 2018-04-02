@@ -1,4 +1,4 @@
-package com.lala.lashop.ui.cate.activity;
+package com.lala.lashop.ui.cate;
 
 import android.view.View;
 import android.webkit.WebView;
@@ -13,7 +13,9 @@ import com.lala.lashop.ui.cate.bean.ShopInfoBean;
 import com.lala.lashop.ui.cate.presenter.ShopInfoPresenter;
 import com.lala.lashop.ui.cate.view.ShopInfoView;
 import com.lala.lashop.ui.home.bean.ShopsBean;
+import com.lala.lashop.utils.ArrayUtil;
 import com.lala.lashop.utils.BannerImageLoader;
+import com.lala.lashop.widget.ColorGuisPopup;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 
@@ -21,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * 商品详情
@@ -42,8 +45,17 @@ public class ShopInfoActivity extends BaseActivity<ShopInfoView, ShopInfoPresent
     TextView tvPrice;
     @BindView(R.id.shopinfo_webView)
     WebView webView;
+    @BindView(R.id.shopinfo_tv_select)
+    TextView tvSelect;
 
     private String shopid; //商品id
+
+    private String color; //颜色
+    private String guis; //尺码
+    private int number = 1; //数量
+
+    private ColorGuisPopup colorGuisPopup;
+    private ShopInfoBean shopInfoBean;
 
     @Override
     public int setContentView() {
@@ -69,6 +81,7 @@ public class ShopInfoActivity extends BaseActivity<ShopInfoView, ShopInfoPresent
 
     @Override
     public void setData(ShopInfoBean data) {
+        this.shopInfoBean = data;
 
         initBanner(data.getShopPhoto());
 
@@ -78,7 +91,16 @@ public class ShopInfoActivity extends BaseActivity<ShopInfoView, ShopInfoPresent
         tvDes.setText(shopsBean.getSp_discontent());
         tvPrice.setText("￥" + shopsBean.getSp_mprice());
 
+        color = ArrayUtil.isEmpty(data.getColors()) ? "" : data.getColors().get(0).getName();
+        guis = ArrayUtil.isEmpty(data.getGuis()) ? "" : data.getGuis().get(0).getName();
+
+        setCurrentSelect();
+
         initImage(shopsBean);
+    }
+
+    private void setCurrentSelect() {
+        tvSelect.setText("已选择：" + color + "，" + guis + "，" + number + "件");
     }
 
     /**
@@ -117,5 +139,22 @@ public class ShopInfoActivity extends BaseActivity<ShopInfoView, ShopInfoPresent
     @Override
     public String getUserId() {
         return App.getUser() != null ? App.getUser().getUser_id() : "";
+    }
+
+    @OnClick({R.id.shopinfo_ll_select, R.id.shopinfo_tv_add, R.id.shopinfo_tv_buy})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.shopinfo_ll_select:
+                if (shopInfoBean == null) return;
+                if (colorGuisPopup == null) {
+                    colorGuisPopup = new ColorGuisPopup(this, shopInfoBean);
+                }
+                colorGuisPopup.showPopupWindow(tvSelect);
+                break;
+            case R.id.shopinfo_tv_add:
+                break;
+            case R.id.shopinfo_tv_buy:
+                break;
+        }
     }
 }

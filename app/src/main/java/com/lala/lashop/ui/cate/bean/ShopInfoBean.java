@@ -14,6 +14,15 @@ public class ShopInfoBean {
     private List<ShopsBean> shopPhoto;
     private List<ColorsBean> colors;
     private List<GuisBean> guis;
+    private int number;
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
 
     public List<GuisBean> getGuis() {
         return guis;

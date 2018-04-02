@@ -8,7 +8,7 @@ import com.lala.lashop.R;
 import com.lala.lashop.base.BaseAdapter;
 import com.lala.lashop.base.BaseViewHolder;
 import com.lala.lashop.http.ApiPath;
-import com.lala.lashop.ui.cate.activity.ShopInfoActivity;
+import com.lala.lashop.ui.cate.ShopInfoActivity;
 import com.lala.lashop.ui.home.bean.ShopsBean;
 
 import java.util.List;
