@@ -18,7 +18,7 @@ import java.util.List;
 
 public class ColorsAdapter extends BaseAdapter<ColorsBean> {
 
-    private int selectPos = -1;
+    private int selectPos = 0;
 
     public void setSelectPos(int position) {
         selectPos = position;
@@ -43,5 +43,9 @@ public class ColorsAdapter extends BaseAdapter<ColorsBean> {
             tv.setTextColor(Color.parseColor("#333333"));
             fl.setBackgroundResource(R.drawable.round_bg_gray);
         }
+    }
+
+    public String getColor() {
+        return getData().get(selectPos).getName();
     }
 }

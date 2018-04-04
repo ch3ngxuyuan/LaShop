@@ -29,6 +29,7 @@ public class CollAdapter extends BaseAdapter<CollBean> {
     }
 
     public void initSelectFlag(int size) {
+        mSelectList.clear();
         for (int i = 0; i < size; i++) {
             mSelectList.add(false);
         }
@@ -108,5 +109,15 @@ public class CollAdapter extends BaseAdapter<CollBean> {
 
     public interface OnSelectAllListener {
         void onSelectAll(boolean isAll);
+    }
+
+    public String getSelectId() {
+        String ids = "";
+        for (int i = 0; i < mSelectList.size(); i++) {
+            if (mSelectList.get(i)) {
+                ids += getData().get(i).getId() + ",";
+            }
+        }
+        return ids.substring(0, ids.length() - 1);
     }
 }

@@ -87,6 +87,7 @@ public class CollActivity extends BaseActivity<CollView, CollPresenter> implemen
                 mAdapter.selectAll();
                 break;
             case R.id.coll_tv_delete:
+                getPresenter().deleteColl();
                 break;
         }
     }
@@ -99,12 +100,17 @@ public class CollActivity extends BaseActivity<CollView, CollPresenter> implemen
     }
 
     @Override
+    public void deleteSuccess() {
+        getPresenter().getColl();
+    }
+
+    @Override
     public String getUserId() {
         return App.getUser() != null ? App.getUser().getUser_id() : "";
     }
 
     @Override
     public String getCollectId() {
-        return null;
+        return mAdapter.getSelectId();
     }
 }

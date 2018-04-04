@@ -7,6 +7,7 @@ import com.lala.lashop.http.exception.ApiException;
 import com.lala.lashop.ui.user.bean.CollBean;
 import com.lala.lashop.ui.user.model.CollModel;
 import com.lala.lashop.ui.user.view.CollView;
+import com.lala.lashop.utils.L;
 
 import java.util.List;
 
@@ -43,12 +44,14 @@ public class CollPresenter extends BasePresenter<CollView> {
     public void deleteColl() {
         getView().showLoadingDialog();
 
+        L.e("select id = " + getView().getCollectId());
+
         mModel.collDelete(getView().getCollectId(), getView().getUserId())
                 .compose(this.<HttpResult>compose())
                 .subscribe(new ApiSubscribers<HttpResult>(getView()) {
                     @Override
                     public void onSuccess(HttpResult httpResult) {
-
+                        getView().deleteSuccess();
                     }
 
                     @Override

@@ -2,6 +2,7 @@ package com.lala.lashop.ui.cate;
 
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.lala.lashop.R;
@@ -52,7 +53,7 @@ public class ShopInfoActivity extends BaseActivity<ShopInfoView, ShopInfoPresent
 
     private String color; //颜色
     private String guis; //尺码
-    private int number = 1; //数量
+    private String count = "1"; //数量
 
     private ColorGuisPopup colorGuisPopup;
     private ShopInfoBean shopInfoBean;
@@ -100,7 +101,7 @@ public class ShopInfoActivity extends BaseActivity<ShopInfoView, ShopInfoPresent
     }
 
     private void setCurrentSelect() {
-        tvSelect.setText("已选择：" + color + "，" + guis + "，" + number + "件");
+        tvSelect.setText("已选择：" + color + "，" + guis + "，" + count + "件");
     }
 
     /**
@@ -141,6 +142,26 @@ public class ShopInfoActivity extends BaseActivity<ShopInfoView, ShopInfoPresent
         return App.getUser() != null ? App.getUser().getUser_id() : "";
     }
 
+    @Override
+    public String getCount() {
+        return count;
+    }
+
+    @Override
+    public String getColor() {
+        return color;
+    }
+
+    @Override
+    public String getGui() {
+        return guis;
+    }
+
+    @Override
+    public String getYunFei() {
+        return shopInfoBean.getShop().getYunfei();
+    }
+
     @OnClick({R.id.shopinfo_ll_select, R.id.shopinfo_tv_add, R.id.shopinfo_tv_buy})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -148,10 +169,26 @@ public class ShopInfoActivity extends BaseActivity<ShopInfoView, ShopInfoPresent
                 if (shopInfoBean == null) return;
                 if (colorGuisPopup == null) {
                     colorGuisPopup = new ColorGuisPopup(this, shopInfoBean);
+                    colorGuisPopup.setOnDismissListener(new PopupWindow.OnDismissListener() {
+                        @Override
+                        public void onDismiss() {
+                            color = colorGuisPopup.getColor();
+                            guis = colorGuisPopup.getGuis();
+                            count = colorGuisPopup.getCount();
+
+                            setCurrentSelect();
+                        }
+                    });
                 }
                 colorGuisPopup.showPopupWindow(tvSelect);
                 break;
             case R.id.shopinfo_tv_add:
+                if (shopInfoBean == null) {
+                    getPresenter().getShopInfo();
+                }else {
+                    if (!checkUser()) return;
+                    getPresenter().addCart();
+                }
                 break;
             case R.id.shopinfo_tv_buy:
                 break;

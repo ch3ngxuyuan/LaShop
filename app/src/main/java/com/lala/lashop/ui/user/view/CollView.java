@@ -13,6 +13,8 @@ public interface CollView extends BaseView {
 
     void setData(List<CollBean> data);
 
+    void deleteSuccess();
+
     String getUserId();
 
     String getCollectId();

@@ -16,4 +16,12 @@ public interface ShopInfoView extends BaseView {
 
     String getUserId();
 
+    String getCount();
+
+    String getColor();
+
+    String getGui();
+
+    String getYunFei();
+
 }

@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.PopupWindow;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -33,6 +34,7 @@ public class ColorGuisPopup extends PopupWindow {
 
     private RecyclerView rvGuis;
     private RecyclerView rvColor;
+    private EditText etCount;
 
     private GuisAdapter guisAdapter;
     private ColorsAdapter colorsAdapter;
@@ -43,7 +45,6 @@ public class ColorGuisPopup extends PopupWindow {
         this.shopInfoBean = shopInfoBean;
 
         init();
-
     }
 
     private void init() {
@@ -58,6 +59,7 @@ public class ColorGuisPopup extends PopupWindow {
 
         rvGuis = view.findViewById(R.id.rv_guis);
         rvColor = view.findViewById(R.id.rv_color);
+        etCount = view.findViewById(R.id.et_count);
 
         guisAdapter = new GuisAdapter(R.layout.colorguis_rv_item, shopInfoBean.getGuis());
         colorsAdapter = new ColorsAdapter(R.layout.colorguis_rv_item, shopInfoBean.getColors());
@@ -101,6 +103,18 @@ public class ColorGuisPopup extends PopupWindow {
         WindowManager.LayoutParams lp = ((Activity) context).getWindow().getAttributes();
         lp.alpha = 1f;
         ((Activity) context).getWindow().setAttributes(lp);
+    }
+
+    public String getColor() {
+        return colorsAdapter.getColor();
+    }
+
+    public String getGuis() {
+        return guisAdapter.getGuis();
+    }
+
+    public String getCount() {
+        return etCount.getText().toString();
     }
 
 }

@@ -77,4 +77,25 @@ public class ShopInfoPresenter extends BasePresenter<ShopInfoView> {
                 });
     }
 
+    public void addCart() {
+        if (TextUtils.isEmpty(getView().getCount())) {
+            getView().toast("数量不能为空");
+            return;
+        }
+
+        mModel.addCart(getView().getShopId(), getView().getUserId(), getView().getCount(), getView().getColor(), getView().getGui(), getView().getYunFei())
+                .compose(this.<HttpResult>compose())
+                .subscribe(new ApiSubscribers<HttpResult>(getView()) {
+                    @Override
+                    public void onSuccess(HttpResult httpResult) {
+
+                    }
+
+                    @Override
+                    public void onError(ApiException e) {
+
+                    }
+                });
+    }
+
 }

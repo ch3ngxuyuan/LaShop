@@ -167,4 +167,23 @@ public interface Http {
      */
     @POST("collectHandler/sole.action")
     Observable<HttpResult> coll_check(@Body RequestBody body);
+
+    /**
+     * 购物车列表
+     * admin_id 用户user_id
+     */
+    @POST("myOrderHandler/mycar.action")
+    Observable<HttpResult> cart_list(@Body RequestBody body);
+
+    /**
+     * 添加到购物车
+     * shopid 商品id
+     * sp_count 购买数量
+     * color 颜色
+     * gui 规格
+     * youfei 邮费
+     * user_id 用户id
+     */
+    @POST("myOrderHandler/tobuy.action")
+    Observable<HttpResult> cart_add(@Body RequestBody body);
 }
