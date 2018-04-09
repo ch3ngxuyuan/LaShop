@@ -8,7 +8,9 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.lala.lashop.Constant;
 import com.lala.lashop.R;
+import com.lala.lashop.app.App;
 import com.lala.lashop.base.BaseFragment;
 import com.lala.lashop.ui.user.activity.AddressActivity;
 import com.lala.lashop.ui.user.activity.ApplyActivity;
@@ -17,6 +19,9 @@ import com.lala.lashop.ui.user.activity.DiscountActivity;
 import com.lala.lashop.ui.user.activity.IndentActivity;
 import com.lala.lashop.ui.user.activity.LoginActivity;
 import com.lala.lashop.ui.user.activity.PointActivity;
+import com.lala.lashop.ui.user.activity.UserDetailActivity;
+import com.lala.lashop.ui.user.bean.UserBean;
+import com.lala.lashop.utils.GlideUtil;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import butterknife.BindView;
@@ -60,14 +65,34 @@ public class UserFragment extends BaseFragment {
 
     @Override
     public void onCreate() {
+        initUserData();
+    }
 
+    @Override
+    public void onRxBus(int bus) {
+        if (bus == Constant.LOGIN) {
+            initUserData();
+        }
+    }
+
+    private void initUserData() {
+        if (App.getUser() == null) return;
+        UserBean user = App.getUser();
+        GlideUtil.loadImage(getActivity(), user.getU_img(), R.drawable.user_head, userIvHead);
+        userTvLogin.setVisibility(View.GONE);
+        userTvName.setVisibility(View.VISIBLE);
+        userTvName.setText(user.getU_account());
     }
 
     @OnClick({R.id.user_iv_head, R.id.user_tv_login, R.id.user_ly_pay, R.id.user_ly_fa, R.id.user_ly_tui, R.id.user_ly_pos, R.id.user_ly_you, R.id.user_ly_ji, R.id.user_ly_zu, R.id.user_ly_shou})
     public void onViewClicked(View view) {
         if (view.getId() == R.id.user_iv_head) {
             //头像
-            startActivity(LoginActivity.class);
+            if (App.getUser() == null) {
+                startActivity(LoginActivity.class);
+            } else {
+                startActivity(UserDetailActivity.class);
+            }
         }
         if (!checkUser()) return;
         switch (view.getId()) {

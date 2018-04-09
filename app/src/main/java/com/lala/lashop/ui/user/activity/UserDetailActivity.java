@@ -17,6 +17,6 @@ public class UserDetailActivity extends BaseActivity {
 
     @Override
     public void onCreate() {
-
+        getToolbar().setTitle("");
     }
 }

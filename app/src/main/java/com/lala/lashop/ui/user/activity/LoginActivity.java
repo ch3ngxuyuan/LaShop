@@ -3,6 +3,7 @@ package com.lala.lashop.ui.user.activity;
 import android.view.View;
 import android.widget.EditText;
 
+import com.lala.lashop.Constant;
 import com.lala.lashop.R;
 import com.lala.lashop.app.App;
 import com.lala.lashop.base.BaseActivity;
@@ -10,6 +11,7 @@ import com.lala.lashop.base.mvp.CreatePresenter;
 import com.lala.lashop.ui.user.bean.UserBean;
 import com.lala.lashop.ui.user.presenter.LoginPresenter;
 import com.lala.lashop.ui.user.view.LoginView;
+import com.lala.lashop.utils.RxBus;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -65,6 +67,7 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
     public void loginSuccess(UserBean user) {
         toast("登录成功");
         App.cacheUser(user);
+        RxBus.getInstance().post(Constant.LOGIN);
         finish();
     }
 }

@@ -40,8 +40,8 @@ public class ShopInfoModel extends BaseModel {
                                           String color,
                                           String guis,
                                           String youfei) {
-        p("shopid",shopid).p("user_id",user_id).p("sp_count",sp_count)
-                .p("color",color).p("guis",guis).p("youfei",youfei);
+        p("shopid", shopid).p("userid", user_id).p("sp_count", sp_count)
+                .p("color", color).p("guis", guis).p("youfei", youfei);
         return HttpService.execute(Http.class).cart_add(getRequestBody());
     }
 

@@ -4,4 +4,78 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <include layout="@layout/tool_bar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/main"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingBottom="20px">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/user_iv_head"
+                    android:layout_width="220px"
+                    android:layout_height="220px"
+                    android:src="@drawable/user_head" />
+
+                <TextView
+                    android:id="@+id/user_tv_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20px"
+                    android:text="注册/登录"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_20"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/user_tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20px"
+                    android:text="昵称"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_18" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5px"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="40px"
+                        android:layout_height="40px"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/user_vip" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5px"
+                        android:text="个人会员"
+                        android:textColor="#B97400"
+                        android:textSize="@dimen/text_14" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
 </LinearLayout>
