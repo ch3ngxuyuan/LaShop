@@ -93,6 +93,7 @@ public class UserFragment extends BaseFragment {
             } else {
                 startActivity(UserDetailActivity.class);
             }
+            return;
         }
         if (!checkUser()) return;
         switch (view.getId()) {

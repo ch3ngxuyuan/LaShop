@@ -2,6 +2,7 @@ package com.lala.lashop.ui.cate.presenter;
 
 import android.text.TextUtils;
 
+import com.lala.lashop.Constant;
 import com.lala.lashop.base.mvp.BasePresenter;
 import com.lala.lashop.http.ApiSubscribers;
 import com.lala.lashop.http.HttpResult;
@@ -9,6 +10,7 @@ import com.lala.lashop.http.exception.ApiException;
 import com.lala.lashop.ui.cate.bean.ShopInfoBean;
 import com.lala.lashop.ui.cate.model.ShopInfoModel;
 import com.lala.lashop.ui.cate.view.ShopInfoView;
+import com.lala.lashop.utils.RxBus;
 
 /**
  * Created by JX on 2018/3/21.
@@ -89,6 +91,7 @@ public class ShopInfoPresenter extends BasePresenter<ShopInfoView> {
                     @Override
                     public void onSuccess(HttpResult httpResult) {
                         getView().toast(httpResult.getMess().toString());
+                        RxBus.getInstance().post(Constant.CART);
                     }
 
                     @Override

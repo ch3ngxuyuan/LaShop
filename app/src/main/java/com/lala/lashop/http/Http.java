@@ -5,6 +5,7 @@ import com.lala.lashop.ui.home.bean.BannerBean;
 import com.lala.lashop.ui.home.bean.CategoryBean;
 import com.lala.lashop.ui.home.bean.HomeBean;
 import com.lala.lashop.ui.home.bean.ShopsBean;
+import com.lala.lashop.ui.shop.bean.CartBean;
 import com.lala.lashop.ui.user.bean.AddressBean;
 import com.lala.lashop.ui.user.bean.CollBean;
 import com.lala.lashop.ui.user.bean.ProvinceBean;
@@ -173,7 +174,7 @@ public interface Http {
      * admin_id 用户user_id
      */
     @POST("myOrderHandler/mycar.action")
-    Observable<HttpResult> cart_list(@Body RequestBody body);
+    Observable<HttpResult<List<CartBean>>> cart_list(@Body RequestBody body);
 
     /**
      * 添加到购物车
@@ -186,4 +187,11 @@ public interface Http {
      */
     @POST("myOrderHandler/tobuy.action")
     Observable<HttpResult> cart_add(@Body RequestBody body);
+
+    /**
+     * 购物车删除
+     * orderid 订单id
+     */
+    @POST("myOrderHandler/delcar.action")
+    Observable<HttpResult> cart_delete(@Body RequestBody body);
 }

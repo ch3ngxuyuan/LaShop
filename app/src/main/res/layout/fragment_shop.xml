@@ -63,6 +63,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/shop_tv_price"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="20px"
@@ -73,7 +74,7 @@
             android:textSize="@dimen/text_14" />
 
         <TextView
-            android:id="@+id/coll_tv_post"
+            android:id="@+id/shop_tv_post"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/round_btn_blue"
