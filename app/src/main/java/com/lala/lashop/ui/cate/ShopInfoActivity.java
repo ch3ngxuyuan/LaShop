@@ -143,6 +143,11 @@ public class ShopInfoActivity extends BaseActivity<ShopInfoView, ShopInfoPresent
     }
 
     @Override
+    public String getUserIdId() {
+        return App.getUser() != null ? App.getUser().getId() : "";
+    }
+
+    @Override
     public String getCount() {
         return count;
     }
@@ -185,7 +190,7 @@ public class ShopInfoActivity extends BaseActivity<ShopInfoView, ShopInfoPresent
             case R.id.shopinfo_tv_add:
                 if (shopInfoBean == null) {
                     getPresenter().getShopInfo();
-                }else {
+                } else {
                     if (!checkUser()) return;
                     getPresenter().addCart();
                 }

@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import com.lala.lashop.R;
 import com.lala.lashop.base.BaseFragment;
 import com.lala.lashop.base.mvp.CreatePresenter;
+import com.lala.lashop.http.ApiPath;
 import com.lala.lashop.ui.home.adapter.HomeShopAdapter;
 import com.lala.lashop.ui.home.bean.BannerBean;
 import com.lala.lashop.ui.home.bean.CategoryBean;
@@ -55,7 +56,7 @@ public class HomeFragment extends BaseFragment<HomeView, HomePresenter> implemen
     public void setBannerData(List<BannerBean> data) {
         List<String> images = new ArrayList<>();
         for (BannerBean bean : data) {
-            images.add(bean.getImg());
+            images.add(ApiPath.IMG_URL + bean.getImg());
         }
         banner.setImageLoader(new BannerImageLoader());
         banner.setIndicatorGravity(BannerConfig.CENTER);

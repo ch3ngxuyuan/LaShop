@@ -83,12 +83,12 @@ public class ShopInfoPresenter extends BasePresenter<ShopInfoView> {
             return;
         }
 
-        mModel.addCart(getView().getShopId(), getView().getUserId(), getView().getCount(), getView().getColor(), getView().getGui(), getView().getYunFei())
+        mModel.addCart(getView().getShopId(), getView().getUserIdId(), getView().getCount(), getView().getColor(), getView().getGui(), getView().getYunFei())
                 .compose(this.<HttpResult>compose())
                 .subscribe(new ApiSubscribers<HttpResult>(getView()) {
                     @Override
                     public void onSuccess(HttpResult httpResult) {
-
+                        getView().toast(httpResult.getMess().toString());
                     }
 
                     @Override
