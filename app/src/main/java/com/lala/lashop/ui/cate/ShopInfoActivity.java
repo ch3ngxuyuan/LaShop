@@ -196,6 +196,8 @@ public class ShopInfoActivity extends BaseActivity<ShopInfoView, ShopInfoPresent
                 }
                 break;
             case R.id.shopinfo_tv_buy:
+                if (!checkUser()) return;
+                getPresenter().buyNow();
                 break;
         }
     }

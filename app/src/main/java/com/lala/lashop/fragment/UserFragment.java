@@ -12,6 +12,7 @@ import com.lala.lashop.Constant;
 import com.lala.lashop.R;
 import com.lala.lashop.app.App;
 import com.lala.lashop.base.BaseFragment;
+import com.lala.lashop.ui.shop.ConfirmIndentActivity;
 import com.lala.lashop.ui.user.activity.AddressActivity;
 import com.lala.lashop.ui.user.activity.ApplyActivity;
 import com.lala.lashop.ui.user.activity.CollActivity;
@@ -91,7 +92,7 @@ public class UserFragment extends BaseFragment {
             if (App.getUser() == null) {
                 startActivity(LoginActivity.class);
             } else {
-                startActivity(UserDetailActivity.class);
+                startActivity(ConfirmIndentActivity.class);
             }
             return;
         }

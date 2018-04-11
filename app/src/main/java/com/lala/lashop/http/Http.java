@@ -194,4 +194,23 @@ public interface Http {
      */
     @POST("myOrderHandler/delcar.action")
     Observable<HttpResult> cart_delete(@Body RequestBody body);
+
+    /**
+     * 立即购买
+     * userid 用户user_id
+     * shopid 商品id
+     * sp_count 商品数量
+     * youfei  邮费
+     */
+    @POST("myOrderHandler/buyNow.action")
+    Observable<HttpResult> shop_buyNow(@Body RequestBody body);
+
+    /**
+     * shopid  商品ID
+     * userid   用户ID
+     * color   商品颜色
+     * gui   商品规格
+     */
+    @POST("myOrderHandler/jiesuan.action")
+    Observable<HttpResult> shop_jiesuan(@Body RequestBody body);
 }

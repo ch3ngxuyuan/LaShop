@@ -45,4 +45,14 @@ public class ShopInfoModel extends BaseModel {
         return HttpService.execute(Http.class).cart_add(getRequestBody());
     }
 
+    public Observable<HttpResult> buyNow(String userid, String shopid, String sp_count, String youfei) {
+        p("userid", userid).p("shopid", shopid).p("sp_count", sp_count).p("youfei", youfei);
+        return HttpService.execute(Http.class).shop_buyNow(getRequestBody());
+    }
+
+    public Observable<HttpResult> jiesuan(String shopid, String userid, String color, String gui) {
+        p("shopid",shopid).p("userid",userid).p("color",color).p("gui",gui);
+        return HttpService.execute(Http.class).shop_jiesuan(getRequestBody());
+    }
+
 }

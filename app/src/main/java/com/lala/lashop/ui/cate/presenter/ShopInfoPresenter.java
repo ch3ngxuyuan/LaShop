@@ -101,4 +101,39 @@ public class ShopInfoPresenter extends BasePresenter<ShopInfoView> {
                 });
     }
 
+    public void buyNow() {
+        getView().showLoadingDialog();
+        mModel.buyNow(getView().getUserIdId(), getView().getShopId(), getView().getCount(), getView().getYunFei())
+                .compose(this.<HttpResult>compose())
+                .subscribe(new ApiSubscribers<HttpResult>(getView()) {
+                    @Override
+                    public void onSuccess(HttpResult httpResult) {
+                        jiesuan();
+                    }
+
+                    @Override
+                    public void onError(ApiException e) {
+
+                    }
+                });
+    }
+
+    public void jiesuan() {
+        getView().showLoadingDialog();
+
+        mModel.jiesuan(getView().getShopId(), getView().getUserIdId(), getView().getColor(), getView().getGui())
+                .compose(this.<HttpResult>compose())
+                .subscribe(new ApiSubscribers<HttpResult>(getView()) {
+                    @Override
+                    public void onSuccess(HttpResult httpResult) {
+
+                    }
+
+                    @Override
+                    public void onError(ApiException e) {
+
+                    }
+                });
+    }
+
 }

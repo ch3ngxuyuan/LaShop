@@ -9,6 +9,7 @@ import com.lala.lashop.R;
 import com.lala.lashop.base.BaseAdapter;
 import com.lala.lashop.base.BaseViewHolder;
 import com.lala.lashop.ui.cate.bean.ColorsBean;
+import com.lala.lashop.utils.ArrayUtil;
 
 import java.util.List;
 
@@ -46,6 +47,9 @@ public class ColorsAdapter extends BaseAdapter<ColorsBean> {
     }
 
     public String getColor() {
+        if (ArrayUtil.isEmpty(getData())) {
+            return "";
+        }
         return getData().get(selectPos).getName();
     }
 }
