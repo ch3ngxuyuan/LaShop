@@ -192,12 +192,12 @@ public class ShopInfoActivity extends BaseActivity<ShopInfoView, ShopInfoPresent
                     getPresenter().getShopInfo();
                 } else {
                     if (!checkUser()) return;
-                    getPresenter().addCart();
+                    getPresenter().addCart(false);
                 }
                 break;
             case R.id.shopinfo_tv_buy:
                 if (!checkUser()) return;
-                getPresenter().buyNow();
+                getPresenter().addCart(true);
                 break;
         }
     }

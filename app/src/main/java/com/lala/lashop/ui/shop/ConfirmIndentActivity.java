@@ -6,6 +6,7 @@ import android.widget.ImageView;
 
 import com.lala.lashop.R;
 import com.lala.lashop.base.BaseActivity;
+import com.lala.lashop.ui.shop.adapter.InvoiceAdapter;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -49,7 +50,8 @@ public class ConfirmIndentActivity extends BaseActivity {
                 break;
             case R.id.iv_fa:
                 break;
-            case R.id.tv_fa_update:
+            case R.id.tv_fa_update: //发票
+                startActivity(InvoiceActivity.class);
                 break;
         }
     }

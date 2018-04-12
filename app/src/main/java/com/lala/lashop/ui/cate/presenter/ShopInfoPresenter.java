@@ -79,7 +79,7 @@ public class ShopInfoPresenter extends BasePresenter<ShopInfoView> {
                 });
     }
 
-    public void addCart() {
+    public void addCart(final boolean isJiesuan) {
         if (TextUtils.isEmpty(getView().getCount())) {
             getView().toast("数量不能为空");
             return;
@@ -90,8 +90,12 @@ public class ShopInfoPresenter extends BasePresenter<ShopInfoView> {
                 .subscribe(new ApiSubscribers<HttpResult>(getView()) {
                     @Override
                     public void onSuccess(HttpResult httpResult) {
-                        getView().toast(httpResult.getMess().toString());
-                        RxBus.getInstance().post(Constant.CART);
+                        if (isJiesuan) {
+                            jiesuan();
+                        }else {
+                            RxBus.getInstance().post(Constant.CART);
+                            getView().toast(httpResult.getMess().toString());
+                        }
                     }
 
                     @Override
@@ -108,7 +112,7 @@ public class ShopInfoPresenter extends BasePresenter<ShopInfoView> {
                 .subscribe(new ApiSubscribers<HttpResult>(getView()) {
                     @Override
                     public void onSuccess(HttpResult httpResult) {
-                        jiesuan();
+
                     }
 
                     @Override
