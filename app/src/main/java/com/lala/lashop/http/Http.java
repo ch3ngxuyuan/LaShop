@@ -6,8 +6,10 @@ import com.lala.lashop.ui.home.bean.CategoryBean;
 import com.lala.lashop.ui.home.bean.HomeBean;
 import com.lala.lashop.ui.home.bean.ShopsBean;
 import com.lala.lashop.ui.shop.bean.CartBean;
+import com.lala.lashop.ui.shop.bean.ConfirmBean;
 import com.lala.lashop.ui.user.bean.AddressBean;
 import com.lala.lashop.ui.user.bean.CollBean;
+import com.lala.lashop.ui.user.bean.PointBean;
 import com.lala.lashop.ui.user.bean.ProvinceBean;
 import com.lala.lashop.ui.user.bean.UserBean;
 
@@ -212,5 +214,31 @@ public interface Http {
      * gui   商品规格
      */
     @POST("myOrderHandler/jiesuan.action")
-    Observable<HttpResult> shop_jiesuan(@Body RequestBody body);
+    Observable<HttpResult<ConfirmBean>> shop_jiesuan(@Body RequestBody body);
+
+    /**
+     * 获取用户信息
+     * id 用户ID
+     */
+    @POST("userHandler/getUser.action")
+    Observable<HttpResult<UserBean>> user_info(@Body RequestBody body);
+
+    /**
+     * 拼接订单
+     * ids  订单id
+     * spids 商品id
+     * counts 商品数量
+     * simgs 商品图片
+     * prices 商品价格
+     * yunfeis 商品运费
+     */
+    @POST("myOrderHandler/pingjieOrder.action")
+    Observable<HttpResult> shop_pinjie(@Body RequestBody body);
+
+    /**
+     * 用户的积分列表
+     * user_id
+     */
+    @POST("userHandler/getUserCredit.action")
+    Observable<HttpResult<List<PointBean>>> credit_list(@Body RequestBody body);
 }

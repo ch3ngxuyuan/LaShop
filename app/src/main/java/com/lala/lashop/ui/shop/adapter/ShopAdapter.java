@@ -60,6 +60,19 @@ public class ShopAdapter extends BaseAdapter<CartBean> {
         notifyDataSetChanged();
     }
 
+    /**
+     * 获取选中的数据
+     */
+    public List<CartBean> getSelectData() {
+        List<CartBean> data = new ArrayList<>();
+        for (int i = 0; i < mSelect.size(); i++) {
+            if (mSelect.get(i)) {
+                data.add(getData().get(i));
+            }
+        }
+        return data;
+    }
+
     @Override
     protected void convert(BaseViewHolder holder, CartBean item) {
         holder.loadImage(R.id.shop_iv, ApiPath.IMG_URL + item.getSp_simg());

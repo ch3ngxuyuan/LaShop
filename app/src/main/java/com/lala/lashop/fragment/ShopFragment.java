@@ -1,12 +1,9 @@
 package com.lala.lashop.fragment;
 
-import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,6 +14,7 @@ import com.lala.lashop.base.BaseFragment;
 import com.lala.lashop.base.mvp.CreatePresenter;
 import com.lala.lashop.ui.shop.adapter.ShopAdapter;
 import com.lala.lashop.ui.shop.bean.CartBean;
+import com.lala.lashop.ui.shop.bean.JieSuanBean;
 import com.lala.lashop.ui.shop.presenter.ShopPresenter;
 import com.lala.lashop.ui.shop.view.ShopView;
 
@@ -24,9 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 /**
  * Created by JX on 2018/3/17.
@@ -41,6 +37,8 @@ public class ShopFragment extends BaseFragment<ShopView, ShopPresenter> implemen
     ImageView shopIvSelect;
     @BindView(R.id.shop_tv_price)
     TextView shopTvPrice;
+    @BindView(R.id.shop_tv_post)
+    TextView shopTvPost;
 
     private ShopAdapter mAdapter;
 
@@ -76,6 +74,7 @@ public class ShopFragment extends BaseFragment<ShopView, ShopPresenter> implemen
                 } else if (view.getId() == R.id.shop_iv_select) {
                     mAdapter.select(position);
                     setAllStatus();
+                    shopTvPost.setText("结算（" + mAdapter.getSelectData().size() + "）");
                 } else if (view.getId() == R.id.shop_tv_count) {
                     toast("改变数量");
                 }
@@ -107,6 +106,7 @@ public class ShopFragment extends BaseFragment<ShopView, ShopPresenter> implemen
             case R.id.shop_ll_all:
                 mAdapter.selectAll(isAll);
                 setAllStatus();
+                shopTvPost.setText("结算（" + mAdapter.getSelectData().size() + "）");
                 break;
             case R.id.shop_tv_post:
                 break;
@@ -116,6 +116,25 @@ public class ShopFragment extends BaseFragment<ShopView, ShopPresenter> implemen
     private void setAllStatus() {
         isAll = mAdapter.isSelectAll();
         shopIvSelect.setImageResource(isAll ? R.drawable.general_icon_select : R.drawable.general_icon_unselect);
+    }
+
+    /**
+     * 设置结算数据
+     */
+    private List<JieSuanBean> getJieSuanData() {
+        List<JieSuanBean> list = new ArrayList<>();
+        for (CartBean bean : mAdapter.getSelectData()) {
+            list.add(new JieSuanBean(bean.getOrder_id(),
+                    bean.getSp_id(),
+                    bean.getSp_count(),
+                    bean.getSp_simg(),
+                    bean.getSp_title(),
+                    bean.getSp_price(),
+                    bean.getYunfei(),
+                    bean.getColor(),
+                    bean.getGui()));
+        }
+        return list;
     }
 
 }

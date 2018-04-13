@@ -86,11 +86,18 @@
 
             <include layout="@layout/line" />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_shop"
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone" />
+                android:descendantFocusability="blocksDescendants">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_shop"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -309,10 +316,11 @@
         android:padding="20px">
 
         <TextView
+            android:id="@+id/tv_price"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="合计金额：￥659"
+            android:text="合计金额：￥0"
             android:textColor="@color/black"
             android:textSize="@dimen/text_16" />
 

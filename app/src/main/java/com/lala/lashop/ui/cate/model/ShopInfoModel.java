@@ -7,6 +7,7 @@ import com.lala.lashop.http.Http;
 import com.lala.lashop.http.HttpResult;
 import com.lala.lashop.http.HttpService;
 import com.lala.lashop.ui.cate.bean.ShopInfoBean;
+import com.lala.lashop.ui.shop.bean.ConfirmBean;
 
 import io.reactivex.Observable;
 
@@ -50,7 +51,7 @@ public class ShopInfoModel extends BaseModel {
         return HttpService.execute(Http.class).shop_buyNow(getRequestBody());
     }
 
-    public Observable<HttpResult> jiesuan(String shopid, String userid, String color, String gui) {
+    public Observable<HttpResult<ConfirmBean>> jiesuan(String shopid, String userid, String color, String gui) {
         p("shopid",shopid).p("userid",userid).p("color",color).p("gui",gui);
         return HttpService.execute(Http.class).shop_jiesuan(getRequestBody());
     }

@@ -5,9 +5,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.lala.lashop.R;
+import com.lala.lashop.app.App;
 import com.lala.lashop.base.BaseActivity;
+import com.lala.lashop.base.mvp.CreatePresenter;
 import com.lala.lashop.ui.user.adapter.PointAdapter;
 import com.lala.lashop.ui.user.bean.PointBean;
+import com.lala.lashop.ui.user.presenter.PointPresenter;
+import com.lala.lashop.ui.user.view.PointView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +23,8 @@ import butterknife.BindView;
  * Created by JX on 2018/3/20.
  */
 
-public class PointActivity extends BaseActivity {
+@CreatePresenter(PointPresenter.class)
+public class PointActivity extends BaseActivity<PointView, PointPresenter> implements PointView {
 
     @BindView(R.id.point_rv)
     RecyclerView rv;
@@ -47,5 +52,17 @@ public class PointActivity extends BaseActivity {
         mAdapter.bindToRecyclerView(rv);
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+
+        getPresenter().getCreditData();
+    }
+
+    @Override
+    public void setData(List<PointBean> data) {
+        mAdapter.setNewData(data);
+    }
+
+    @Override
+    public String getUserId() {
+        return App.getUser().getUser_id();
     }
 }

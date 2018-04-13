@@ -10,6 +10,7 @@ import com.lala.lashop.http.exception.ApiException;
 import com.lala.lashop.ui.cate.bean.ShopInfoBean;
 import com.lala.lashop.ui.cate.model.ShopInfoModel;
 import com.lala.lashop.ui.cate.view.ShopInfoView;
+import com.lala.lashop.ui.shop.bean.ConfirmBean;
 import com.lala.lashop.utils.RxBus;
 
 /**
@@ -92,27 +93,10 @@ public class ShopInfoPresenter extends BasePresenter<ShopInfoView> {
                     public void onSuccess(HttpResult httpResult) {
                         if (isJiesuan) {
                             jiesuan();
-                        }else {
+                        } else {
                             RxBus.getInstance().post(Constant.CART);
                             getView().toast(httpResult.getMess().toString());
                         }
-                    }
-
-                    @Override
-                    public void onError(ApiException e) {
-
-                    }
-                });
-    }
-
-    public void buyNow() {
-        getView().showLoadingDialog();
-        mModel.buyNow(getView().getUserIdId(), getView().getShopId(), getView().getCount(), getView().getYunFei())
-                .compose(this.<HttpResult>compose())
-                .subscribe(new ApiSubscribers<HttpResult>(getView()) {
-                    @Override
-                    public void onSuccess(HttpResult httpResult) {
-
                     }
 
                     @Override
@@ -126,11 +110,11 @@ public class ShopInfoPresenter extends BasePresenter<ShopInfoView> {
         getView().showLoadingDialog();
 
         mModel.jiesuan(getView().getShopId(), getView().getUserIdId(), getView().getColor(), getView().getGui())
-                .compose(this.<HttpResult>compose())
-                .subscribe(new ApiSubscribers<HttpResult>(getView()) {
+                .compose(this.<HttpResult<ConfirmBean>>compose())
+                .subscribe(new ApiSubscribers<HttpResult<ConfirmBean>>(getView()) {
                     @Override
-                    public void onSuccess(HttpResult httpResult) {
-
+                    public void onSuccess(HttpResult<ConfirmBean> httpResult) {
+                        getView().jieSuanSuccess(httpResult.getMess());
                     }
 
                     @Override

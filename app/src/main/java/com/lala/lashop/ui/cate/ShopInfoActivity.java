@@ -1,5 +1,7 @@
 package com.lala.lashop.ui.cate;
 
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.PopupWindow;
@@ -14,6 +16,9 @@ import com.lala.lashop.ui.cate.bean.ShopInfoBean;
 import com.lala.lashop.ui.cate.presenter.ShopInfoPresenter;
 import com.lala.lashop.ui.cate.view.ShopInfoView;
 import com.lala.lashop.ui.home.bean.ShopsBean;
+import com.lala.lashop.ui.shop.ConfirmIndentActivity;
+import com.lala.lashop.ui.shop.bean.ConfirmBean;
+import com.lala.lashop.ui.shop.bean.JieSuanBean;
 import com.lala.lashop.utils.ArrayUtil;
 import com.lala.lashop.utils.BannerImageLoader;
 import com.lala.lashop.widget.ColorGuisPopup;
@@ -98,6 +103,26 @@ public class ShopInfoActivity extends BaseActivity<ShopInfoView, ShopInfoPresent
         setCurrentSelect();
 
         initImage(shopsBean);
+    }
+
+    @Override
+    public void jieSuanSuccess(ConfirmBean data) {
+        List<JieSuanBean> list = new ArrayList<>();
+        ShopsBean shop = shopInfoBean.getShop();
+        list.add(new JieSuanBean("",
+                shop.getSp_id(),
+                getCount(),
+                shop.getSp_simg(),
+                shop.getSp_title(),
+                shop.getSp_mprice(),
+                shop.getYunfei(),
+                getColor(),
+                getGui()));
+
+        Bundle bundle = new Bundle();
+        bundle.putParcelableArrayList(ConfirmIndentActivity.JIESUAN_LIST, (ArrayList<? extends Parcelable>) list);
+        bundle.putParcelable(ConfirmIndentActivity.CONFIRM, data);
+        startActivity(ConfirmIndentActivity.class, bundle);
     }
 
     private void setCurrentSelect() {
