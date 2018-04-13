@@ -1,8 +1,11 @@
 package com.lala.lashop.fragment;
 
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,13 +15,17 @@ import com.lala.lashop.Constant;
 import com.lala.lashop.R;
 import com.lala.lashop.base.BaseFragment;
 import com.lala.lashop.base.mvp.CreatePresenter;
+import com.lala.lashop.ui.shop.ConfirmIndentActivity;
 import com.lala.lashop.ui.shop.adapter.ShopAdapter;
 import com.lala.lashop.ui.shop.bean.CartBean;
+import com.lala.lashop.ui.shop.bean.ConfirmBean;
 import com.lala.lashop.ui.shop.bean.JieSuanBean;
 import com.lala.lashop.ui.shop.presenter.ShopPresenter;
 import com.lala.lashop.ui.shop.view.ShopView;
+import com.lala.lashop.utils.ArrayUtil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
@@ -49,6 +56,8 @@ public class ShopFragment extends BaseFragment<ShopView, ShopPresenter> implemen
     @Override
     public void onRxBus(int bus) {
         if (bus == Constant.CART) {
+            getPresenter().getCartList();
+        }else if (bus == Constant.LOGIN) {
             getPresenter().getCartList();
         }
     }
@@ -96,8 +105,16 @@ public class ShopFragment extends BaseFragment<ShopView, ShopPresenter> implemen
     }
 
     @Override
+    public void jiesuanSuccess(ConfirmBean data) {
+        Bundle bundle = new Bundle();
+        bundle.putParcelableArrayList(ConfirmIndentActivity.JIESUAN_LIST, (ArrayList<? extends Parcelable>) getJieSuanData());
+        bundle.putParcelable(ConfirmIndentActivity.CONFIRM, data);
+        startActivity(ConfirmIndentActivity.class, bundle);
+    }
+
+    @Override
     public String getOrderId() {
-        return mAdapter.getData().get(clickPosition).getOrder_id();
+        return mAdapter.getData().get(clickPosition).getId();
     }
 
     @OnClick({R.id.shop_ll_all, R.id.shop_tv_post})
@@ -109,8 +126,84 @@ public class ShopFragment extends BaseFragment<ShopView, ShopPresenter> implemen
                 shopTvPost.setText("结算（" + mAdapter.getSelectData().size() + "）");
                 break;
             case R.id.shop_tv_post:
+                if (ArrayUtil.isEmpty(mAdapter.getSelectData())) {
+                    toast("请勾选商品");
+                    return;
+                }
+                getPresenter().jiesuan();
                 break;
         }
+    }
+
+    /**
+     * 获取要上传的String
+     */
+    private String getPostString(int type) {
+        List<String> list = new ArrayList<>();
+        for (JieSuanBean bean : getJieSuanData()) {
+            switch (type) {
+                case 1:
+                    list.add(bean.getOrder_id());
+                    break;
+                case 2:
+                    list.add(bean.getSp_id());
+                    break;
+                case 3:
+                    list.add(bean.getSp_count());
+                    break;
+                case 4:
+                    list.add(bean.getSp_simg());
+                    break;
+                case 5:
+                    list.add(bean.getSp_price());
+                    break;
+                case 6:
+                    list.add(bean.getYunfei());
+                    break;
+            }
+        }
+        return listConvertString(list);
+    }
+
+    private String listConvertString(List<String> list) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < list.size(); i++) {
+            if (i != 0) {
+                stringBuilder.append(",");
+            }
+            stringBuilder.append(list.get(i));
+        }
+        return stringBuilder.toString();
+    }
+
+    @Override
+    public String getIds() {
+        return getPostString(1);
+    }
+
+    @Override
+    public String getSpids() {
+        return getPostString(2);
+    }
+
+    @Override
+    public String getCounts() {
+        return getPostString(3);
+    }
+
+    @Override
+    public String getSimgs() {
+        return getPostString(4);
+    }
+
+    @Override
+    public String getPrices() {
+        return getPostString(5);
+    }
+
+    @Override
+    public String getYunfeis() {
+        return getPostString(6);
     }
 
     private void setAllStatus() {
@@ -124,7 +217,7 @@ public class ShopFragment extends BaseFragment<ShopView, ShopPresenter> implemen
     private List<JieSuanBean> getJieSuanData() {
         List<JieSuanBean> list = new ArrayList<>();
         for (CartBean bean : mAdapter.getSelectData()) {
-            list.add(new JieSuanBean(bean.getOrder_id(),
+            list.add(new JieSuanBean(bean.getId(),
                     bean.getSp_id(),
                     bean.getSp_count(),
                     bean.getSp_simg(),
@@ -136,5 +229,4 @@ public class ShopFragment extends BaseFragment<ShopView, ShopPresenter> implemen
         }
         return list;
     }
-
 }

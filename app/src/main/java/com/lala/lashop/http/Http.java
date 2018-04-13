@@ -7,6 +7,7 @@ import com.lala.lashop.ui.home.bean.HomeBean;
 import com.lala.lashop.ui.home.bean.ShopsBean;
 import com.lala.lashop.ui.shop.bean.CartBean;
 import com.lala.lashop.ui.shop.bean.ConfirmBean;
+import com.lala.lashop.ui.shop.bean.InvoiceBean;
 import com.lala.lashop.ui.user.bean.AddressBean;
 import com.lala.lashop.ui.user.bean.CollBean;
 import com.lala.lashop.ui.user.bean.PointBean;
@@ -208,6 +209,7 @@ public interface Http {
     Observable<HttpResult> shop_buyNow(@Body RequestBody body);
 
     /**
+     * 商品详情，立即购买
      * shopid  商品ID
      * userid   用户ID
      * color   商品颜色
@@ -233,7 +235,7 @@ public interface Http {
      * yunfeis 商品运费
      */
     @POST("myOrderHandler/pingjieOrder.action")
-    Observable<HttpResult> shop_pinjie(@Body RequestBody body);
+    Observable<HttpResult<ConfirmBean>> shop_pinjie(@Body RequestBody body);
 
     /**
      * 用户的积分列表
@@ -241,4 +243,25 @@ public interface Http {
      */
     @POST("userHandler/getUserCredit.action")
     Observable<HttpResult<List<PointBean>>> credit_list(@Body RequestBody body);
+
+    /**
+     * 获取默认地址
+     * userid
+     */
+    @POST("myOrderHandler/getMoren.action")
+    Observable<HttpResult<AddressBean>> shop_address(@Body RequestBody body);
+
+    /**
+     * 发票列表
+     * key:user_id
+     */
+    @POST("invoiceHandler/list.action")
+    Observable<HttpResult<List<InvoiceBean>>> invoice_list(@Body RequestBody body);
+
+    /**
+     * 添加发票抬头
+     * key:user_id,head,taxnumber,moren
+     */
+    @POST("invoiceHandler/list.action")
+    Observable<HttpResult> invoice_add(@Body RequestBody body);
 }

@@ -6,6 +6,7 @@ import com.lala.lashop.http.ApiSubscribers;
 import com.lala.lashop.http.HttpResult;
 import com.lala.lashop.http.exception.ApiException;
 import com.lala.lashop.ui.shop.bean.CartBean;
+import com.lala.lashop.ui.shop.bean.ConfirmBean;
 import com.lala.lashop.ui.shop.model.ShopModel;
 import com.lala.lashop.ui.shop.view.ShopView;
 
@@ -56,6 +57,24 @@ public class ShopPresenter extends BasePresenter<ShopView> {
                     @Override
                     public void onSuccess(HttpResult httpResult) {
                         getView().deleteSuccess();
+                    }
+
+                    @Override
+                    public void onError(ApiException e) {
+
+                    }
+                });
+    }
+
+    public void jiesuan() {
+        getView().showLoadingDialog();
+
+        mModel.shop_jiesuan(getView().getIds(), getView().getSpids(), getView().getCounts(), getView().getSimgs(), getView().getPrices(), getView().getYunfeis())
+                .compose(this.<HttpResult<ConfirmBean>>compose())
+                .subscribe(new ApiSubscribers<HttpResult<ConfirmBean>>(getView()) {
+                    @Override
+                    public void onSuccess(HttpResult<ConfirmBean> confirmBeanHttpResult) {
+                        getView().jiesuanSuccess(confirmBeanHttpResult.getMess());
                     }
 
                     @Override

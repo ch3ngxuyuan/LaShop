@@ -6,8 +6,8 @@ package com.lala.lashop;
 
 public class Constant {
 
-    public static final int LOGIN = 1;
+    public static final int LOGIN = 1; //登录成功
 
-    public static final int CART = 2;
+    public static final int CART = 2; //添加购物车需刷新
 
 }

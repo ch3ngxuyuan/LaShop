@@ -8,10 +8,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lala.lashop.R;
+import com.lala.lashop.app.App;
 import com.lala.lashop.base.BaseActivity;
+import com.lala.lashop.base.mvp.CreatePresenter;
 import com.lala.lashop.ui.shop.adapter.ConfirmShopAdapter;
 import com.lala.lashop.ui.shop.bean.ConfirmBean;
 import com.lala.lashop.ui.shop.bean.JieSuanBean;
+import com.lala.lashop.ui.shop.presenter.ConfirmIndentPresenter;
+import com.lala.lashop.ui.shop.view.ConfirmIndentView;
+import com.lala.lashop.ui.user.bean.AddressBean;
 
 import java.util.List;
 
@@ -23,7 +28,8 @@ import butterknife.OnClick;
  * Created by JX on 2018/4/11.
  */
 
-public class ConfirmIndentActivity extends BaseActivity {
+@CreatePresenter(ConfirmIndentPresenter.class)
+public class ConfirmIndentActivity extends BaseActivity<ConfirmIndentView, ConfirmIndentPresenter> implements ConfirmIndentView {
 
     public static final String JIESUAN_LIST = "jiesuan_list";
     public static final String CONFIRM = "confirm";
@@ -62,6 +68,8 @@ public class ConfirmIndentActivity extends BaseActivity {
         confirmShopAdapter.bindToRecyclerView(rvShop);
         rvShop.setLayoutManager(new LinearLayoutManager(this));
         rvShop.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+
+        getPresenter().getAddress();
     }
 
     private void initView() {
@@ -85,5 +93,15 @@ public class ConfirmIndentActivity extends BaseActivity {
                 startActivity(InvoiceActivity.class);
                 break;
         }
+    }
+
+    @Override
+    public void setAddress(AddressBean data) {
+
+    }
+
+    @Override
+    public String getUserId() {
+        return App.getUser() == null ? "" : App.getUser().getId();
     }
 }
