@@ -4,9 +4,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.lala.lashop.R;
+import com.lala.lashop.app.App;
 import com.lala.lashop.base.BaseActivity;
+import com.lala.lashop.base.mvp.CreatePresenter;
 import com.lala.lashop.ui.user.adapter.DiscountAdapter;
 import com.lala.lashop.ui.user.bean.DiscountBean;
+import com.lala.lashop.ui.user.presenter.DiscountPresenter;
+import com.lala.lashop.ui.user.view.DiscountView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +22,8 @@ import butterknife.BindView;
  * Created by JX on 2018/3/20.
  */
 
-public class DiscountActivity extends BaseActivity {
+@CreatePresenter(DiscountPresenter.class)
+public class DiscountActivity extends BaseActivity<DiscountView, DiscountPresenter> implements DiscountView {
 
     @BindView(R.id.discount_rv)
     RecyclerView rv;
@@ -38,12 +43,24 @@ public class DiscountActivity extends BaseActivity {
 
         mData = new ArrayList<>();
 
-        for (int i = 0; i < 3; i++) {
-            mData.add(new DiscountBean());
-        }
+//        for (int i = 0; i < 3; i++) {
+//            mData.add(new DiscountBean());
+//        }
 
         mAdapter = new DiscountAdapter(R.layout.discount_rv_item, mData);
         mAdapter.bindToRecyclerView(rv);
         rv.setLayoutManager(new LinearLayoutManager(this));
+
+        getPresenter().getDisCountData();
+    }
+
+    @Override
+    public void setData(List<DiscountBean> data) {
+        mAdapter.setNewData(data);
+    }
+
+    @Override
+    public String getUserId() {
+        return App.getUser() == null ? "" : App.getUser().getUser_id();
     }
 }

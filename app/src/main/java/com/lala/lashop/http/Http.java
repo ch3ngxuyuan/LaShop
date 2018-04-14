@@ -10,6 +10,7 @@ import com.lala.lashop.ui.shop.bean.ConfirmBean;
 import com.lala.lashop.ui.shop.bean.InvoiceBean;
 import com.lala.lashop.ui.user.bean.AddressBean;
 import com.lala.lashop.ui.user.bean.CollBean;
+import com.lala.lashop.ui.user.bean.DiscountBean;
 import com.lala.lashop.ui.user.bean.PointBean;
 import com.lala.lashop.ui.user.bean.ProvinceBean;
 import com.lala.lashop.ui.user.bean.UserBean;
@@ -238,6 +239,24 @@ public interface Http {
     Observable<HttpResult<ConfirmBean>> shop_pinjie(@Body RequestBody body);
 
     /**
+     * 获取结算信息
+     *
+     * @param body
+     * @return
+     */
+    @POST("myOrderHandler/topayorder.action")
+    Observable<HttpResult> shop_topayorder(@Body RequestBody body);
+
+    /**
+     * 订单列表
+     *  user_id
+     *  or_flag  0 ： 未支付 1,2：未收货 4： 未评价
+     *  orid  订单号
+     */
+    @POST("myOrderHandler/getList.action")
+    Observable<HttpResult> shop_list(@Body RequestBody body);
+
+    /**
      * 用户的积分列表
      * user_id
      */
@@ -264,4 +283,11 @@ public interface Http {
      */
     @POST("invoiceHandler/list.action")
     Observable<HttpResult> invoice_add(@Body RequestBody body);
+
+    /**
+     * 优惠券列表
+     * uid
+     */
+    @POST("couponsHandler/list.action")
+    Observable<HttpResult<List<DiscountBean>>> discount_list(@Body RequestBody body);
 }

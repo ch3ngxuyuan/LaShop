@@ -11,6 +11,7 @@ import com.lala.lashop.R;
 import com.lala.lashop.app.App;
 import com.lala.lashop.base.BaseActivity;
 import com.lala.lashop.base.mvp.CreatePresenter;
+import com.lala.lashop.ui.shop.ConfirmIndentActivity;
 import com.lala.lashop.ui.user.adapter.AddressAdapter;
 import com.lala.lashop.ui.user.bean.AddressBean;
 import com.lala.lashop.ui.user.presenter.AddressPresenter;
@@ -32,6 +33,7 @@ public class AddressActivity extends BaseActivity<AddressView, AddressPresenter>
 
     private static final int UPDATE = 1;
     private static final int ADD = 2;
+    public static final String SELECT_ADDRESS = "select_address";
 
     @BindView(R.id.address_rv_list)
     RecyclerView rvList;
@@ -39,6 +41,8 @@ public class AddressActivity extends BaseActivity<AddressView, AddressPresenter>
     private AddressAdapter mAdapter;
 
     private List<AddressBean> mData;
+
+    private boolean isConfirmAddress = false;
 
     @Override
     public int setContentView() {
@@ -48,6 +52,8 @@ public class AddressActivity extends BaseActivity<AddressView, AddressPresenter>
     @Override
     public void onCreate() {
         getToolbar().setTitle("选择收货地址");
+
+        isConfirmAddress = getIntent().getBooleanExtra(SELECT_ADDRESS, false);
 
         mData = new ArrayList<>();
 
@@ -59,10 +65,17 @@ public class AddressActivity extends BaseActivity<AddressView, AddressPresenter>
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Intent intent = new Intent(AddressActivity.this, AddressAddActivity.class);
-                intent.putExtra(AddressAddActivity.ADDRESS_UPDATE, true);
-                intent.putExtra(AddressAddActivity.ADDRESSBEAN, mData.get(position));
-                startActivityForResult(intent, UPDATE);
+                if (isConfirmAddress) {
+                    Intent intent = new Intent();
+                    intent.putExtra(ConfirmIndentActivity.ADDRESSBEAN, mAdapter.getData().get(position));
+                    setResult(RESULT_OK, intent);
+                    finish();
+                } else {
+                    Intent intent = new Intent(AddressActivity.this, AddressAddActivity.class);
+                    intent.putExtra(AddressAddActivity.ADDRESS_UPDATE, true);
+                    intent.putExtra(AddressAddActivity.ADDRESSBEAN, mData.get(position));
+                    startActivityForResult(intent, UPDATE);
+                }
             }
         });
 

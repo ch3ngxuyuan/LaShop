@@ -1,5 +1,6 @@
 package com.lala.lashop.ui.shop;
 
+import android.content.Intent;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +17,7 @@ import com.lala.lashop.ui.shop.bean.ConfirmBean;
 import com.lala.lashop.ui.shop.bean.JieSuanBean;
 import com.lala.lashop.ui.shop.presenter.ConfirmIndentPresenter;
 import com.lala.lashop.ui.shop.view.ConfirmIndentView;
+import com.lala.lashop.ui.user.activity.AddressActivity;
 import com.lala.lashop.ui.user.bean.AddressBean;
 
 import java.util.List;
@@ -33,6 +35,9 @@ public class ConfirmIndentActivity extends BaseActivity<ConfirmIndentView, Confi
 
     public static final String JIESUAN_LIST = "jiesuan_list";
     public static final String CONFIRM = "confirm";
+    public static final String ADDRESSBEAN = "addressBean";
+
+    private static final int UPDATE_ADDRESS = 111;
 
     @BindView(R.id.rv_shop)
     RecyclerView rvShop;
@@ -44,11 +49,19 @@ public class ConfirmIndentActivity extends BaseActivity<ConfirmIndentView, Confi
     ImageView ivFa;
     @BindView(R.id.tv_price)
     TextView tvPrice;
+    @BindView(R.id.tv_address_name)
+    TextView tvAddressName;
+    @BindView(R.id.tv_address_phone)
+    TextView tvAddressPhone;
+    @BindView(R.id.tv_address_detail)
+    TextView tvAddressDetail;
 
     private List<JieSuanBean> mJieSuanData;
     private ConfirmBean mConfirmBean;
 
     private ConfirmShopAdapter confirmShopAdapter;
+
+    private AddressBean addressBean;
 
     @Override
     public int setContentView() {
@@ -80,6 +93,9 @@ public class ConfirmIndentActivity extends BaseActivity<ConfirmIndentView, Confi
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_address_update:
+                Intent intent = new Intent(this, AddressActivity.class);
+                intent.putExtra(AddressActivity.SELECT_ADDRESS, true);
+                startActivityForResult(intent, UPDATE_ADDRESS);
                 break;
             case R.id.tv_point_update:
                 break;
@@ -97,11 +113,30 @@ public class ConfirmIndentActivity extends BaseActivity<ConfirmIndentView, Confi
 
     @Override
     public void setAddress(AddressBean data) {
+        setAddressView(data);
+    }
 
+    private void setAddressView(AddressBean data) {
+        addressBean = data;
+        tvAddressName.setText("收货人：" + addressBean.getFullName());
+        tvAddressPhone.setText(addressBean.getMobile());
+        tvAddressDetail.setText("收货地址：" + addressBean.getProvincialName()
+                + addressBean.getCityName()
+                + addressBean.getAreaName()
+                + addressBean.getAddressDetail());
     }
 
     @Override
     public String getUserId() {
         return App.getUser() == null ? "" : App.getUser().getId();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == UPDATE_ADDRESS && resultCode == RESULT_OK) {
+            AddressBean addressBean = data.getParcelableExtra(ADDRESSBEAN);
+            setAddressView(addressBean);
+        }
     }
 }
