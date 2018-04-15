@@ -69,7 +69,7 @@
             android:layout_marginRight="20px"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="合计：￥100"
+            android:text="合计：￥0"
             android:textColor="@color/black"
             android:textSize="@dimen/text_14" />
 

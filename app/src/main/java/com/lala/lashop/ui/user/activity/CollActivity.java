@@ -53,7 +53,6 @@ public class CollActivity extends BaseActivity<CollView, CollPresenter> implemen
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        toast("删除");
                         deleteFlag = !deleteFlag;
                         flDelete.setVisibility(deleteFlag ? View.VISIBLE : View.GONE);
                         mAdapter.openDelete(deleteFlag);

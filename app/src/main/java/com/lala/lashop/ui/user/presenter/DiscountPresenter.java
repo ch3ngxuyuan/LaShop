@@ -40,4 +40,8 @@ public class DiscountPresenter extends BasePresenter<DiscountView> {
                 });
     }
 
+    public void delete() {
+        getView().showLoadingDialog();
+    }
+
 }

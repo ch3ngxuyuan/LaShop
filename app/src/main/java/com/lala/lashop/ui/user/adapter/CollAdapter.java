@@ -1,5 +1,7 @@
 package com.lala.lashop.ui.user.adapter;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
@@ -7,6 +9,7 @@ import com.lala.lashop.R;
 import com.lala.lashop.base.BaseAdapter;
 import com.lala.lashop.base.BaseViewHolder;
 import com.lala.lashop.http.ApiPath;
+import com.lala.lashop.ui.cate.ShopInfoActivity;
 import com.lala.lashop.ui.user.bean.CollBean;
 import com.lala.lashop.utils.L;
 
@@ -39,7 +42,7 @@ public class CollAdapter extends BaseAdapter<CollBean> {
     protected void convert(final BaseViewHolder holder, final CollBean item) {
         holder.loadImage(R.id.coll_iv, ApiPath.IMG_URL + item.getSp_simg());
         holder.setText(R.id.coll_tv_title, item.getSp_title());
-        holder.setText(R.id.coll_tv_location, item.getSp_city());
+//        holder.setText(R.id.coll_tv_location, item.getSp_city());
         holder.setText(R.id.coll_tv_price, "￥" + item.getSp_mprice());
 
         holder.setVisible(R.id.coll_iv_delete, deleteFlag);
@@ -60,11 +63,11 @@ public class CollAdapter extends BaseAdapter<CollBean> {
                         onSelectAllListener.onSelectAll(checkSelectAll());
                     }
                 } else {
-//                    Intent intent = new Intent(mContext, ShopInfoActivity.class);
-//                    Bundle bundle = new Bundle();
-//                    bundle.putString(ShopInfoActivity.SHOP_ID, item.getSp_id());
-//                    intent.putExtras(bundle);
-//                    mContext.startActivity(intent);
+                    Intent intent = new Intent(mContext, ShopInfoActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString(ShopInfoActivity.SHOP_ID, item.getShop_id());
+                    intent.putExtras(bundle);
+                    mContext.startActivity(intent);
                 }
             }
         });

@@ -12,6 +12,8 @@ public interface ShopInfoView extends BaseView {
 
     void setData(ShopInfoBean data);
 
+    void checkCollSuccess(Integer mess);
+
     void jieSuanSuccess(ConfirmBean data);
 
     String getShopId();
@@ -27,5 +29,4 @@ public interface ShopInfoView extends BaseView {
     String getGui();
 
     String getYunFei();
-
 }

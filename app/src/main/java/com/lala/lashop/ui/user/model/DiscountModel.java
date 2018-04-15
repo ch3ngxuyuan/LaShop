@@ -21,4 +21,9 @@ public class DiscountModel extends BaseModel {
         return HttpService.execute(Http.class).discount_list(getRequestBody());
     }
 
+    public Observable<HttpResult> discount_delete(String cid) {
+        p("cid", cid);
+        return HttpService.execute(Http.class).discount_delete(getRequestBody());
+    }
+
 }

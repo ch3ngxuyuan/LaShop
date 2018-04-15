@@ -1,5 +1,7 @@
 package com.lala.lashop.ui.shop;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.lala.lashop.R;
 import com.lala.lashop.app.App;
 import com.lala.lashop.base.BaseActivity;
@@ -56,12 +59,22 @@ public class InvoiceActivity extends BaseActivity<InvoiceView, InvoicePresenter>
 
         mData = new ArrayList<>();
 
-        mData.add(new InvoiceBean());
-
         mAdapter = new InvoiceAdapter(R.layout.invoice_rv_item, mData);
         mAdapter.bindToRecyclerView(rv);
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+
+        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Intent intent = new Intent();
+                Bundle bundle = new Bundle();
+                bundle.putParcelable(ConfirmIndentActivity.INVOICEBEAN, mAdapter.getData().get(position));
+                intent.putExtras(bundle);
+                setResult(RESULT_OK, intent);
+                finish();
+            }
+        });
 
         getPresenter().getList();
     }
@@ -73,7 +86,8 @@ public class InvoiceActivity extends BaseActivity<InvoiceView, InvoicePresenter>
 
     @Override
     public void addSuccess() {
-
+        setResult(RESULT_OK);
+        finish();
     }
 
     @Override

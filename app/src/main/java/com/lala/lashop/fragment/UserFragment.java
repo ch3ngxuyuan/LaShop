@@ -13,12 +13,14 @@ import com.lala.lashop.R;
 import com.lala.lashop.app.App;
 import com.lala.lashop.base.BaseFragment;
 import com.lala.lashop.ui.shop.ConfirmIndentActivity;
+import com.lala.lashop.ui.shop.InvoiceActivity;
 import com.lala.lashop.ui.user.activity.AddressActivity;
 import com.lala.lashop.ui.user.activity.ApplyActivity;
 import com.lala.lashop.ui.user.activity.CollActivity;
 import com.lala.lashop.ui.user.activity.DiscountActivity;
 import com.lala.lashop.ui.user.activity.IndentActivity;
 import com.lala.lashop.ui.user.activity.LoginActivity;
+import com.lala.lashop.ui.user.activity.PathActivity;
 import com.lala.lashop.ui.user.activity.PointActivity;
 import com.lala.lashop.ui.user.activity.UserDetailActivity;
 import com.lala.lashop.ui.user.bean.UserBean;
@@ -85,14 +87,14 @@ public class UserFragment extends BaseFragment {
         userTvName.setText(user.getU_account());
     }
 
-    @OnClick({R.id.user_iv_head, R.id.user_tv_login, R.id.user_ly_pay, R.id.user_ly_fa, R.id.user_ly_tui, R.id.user_ly_pos, R.id.user_ly_you, R.id.user_ly_ji, R.id.user_ly_zu, R.id.user_ly_shou})
+    @OnClick({R.id.user_iv_head, R.id.tv_all_indent, R.id.user_tv_login, R.id.user_ly_pay, R.id.user_ly_fa, R.id.user_ly_tui, R.id.user_ly_pos, R.id.user_ly_you, R.id.user_ly_ji, R.id.user_ly_zu, R.id.user_ly_shou})
     public void onViewClicked(View view) {
         if (view.getId() == R.id.user_iv_head) {
             //头像
             if (App.getUser() == null) {
                 startActivity(LoginActivity.class);
             } else {
-                startActivity(ConfirmIndentActivity.class);
+                startActivity(UserDetailActivity.class);
             }
             return;
         }
@@ -100,11 +102,20 @@ public class UserFragment extends BaseFragment {
         switch (view.getId()) {
             case R.id.user_tv_login:
                 break;
+            case R.id.tv_all_indent:// 全部订单
+                Bundle bundle = new Bundle();
+                bundle.putInt(IndentActivity.POSITION, 0);
+                startActivity(IndentActivity.class, bundle);
+                break;
             case R.id.user_ly_pay: //待付款
-                startActivity(IndentActivity.class);
+                Bundle bundle1 = new Bundle();
+                bundle1.putInt(IndentActivity.POSITION, 1);
+                startActivity(IndentActivity.class, bundle1);
                 break;
             case R.id.user_ly_fa://待发货
-                startActivity(IndentActivity.class);
+                Bundle bundle2 = new Bundle();
+                bundle2.putInt(IndentActivity.POSITION, 2);
+                startActivity(IndentActivity.class, bundle2);
                 break;
             case R.id.user_ly_tui://退货 售后
                 startActivity(ApplyActivity.class);
@@ -119,6 +130,7 @@ public class UserFragment extends BaseFragment {
                 startActivity(PointActivity.class);
                 break;
             case R.id.user_ly_zu: //我的足迹
+                startActivity(PathActivity.class);
                 break;
             case R.id.user_ly_shou: //收藏
                 startActivity(CollActivity.class);

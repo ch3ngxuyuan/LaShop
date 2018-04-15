@@ -11,6 +11,7 @@ import com.lala.lashop.ui.shop.bean.InvoiceBean;
 import com.lala.lashop.ui.user.bean.AddressBean;
 import com.lala.lashop.ui.user.bean.CollBean;
 import com.lala.lashop.ui.user.bean.DiscountBean;
+import com.lala.lashop.ui.user.bean.IndentBean;
 import com.lala.lashop.ui.user.bean.PointBean;
 import com.lala.lashop.ui.user.bean.ProvinceBean;
 import com.lala.lashop.ui.user.bean.UserBean;
@@ -171,7 +172,7 @@ public interface Http {
      * return 1:已收藏 0未收藏
      */
     @POST("collectHandler/sole.action")
-    Observable<HttpResult> coll_check(@Body RequestBody body);
+    Observable<HttpResult<Integer>> coll_check(@Body RequestBody body);
 
     /**
      * 购物车列表
@@ -240,21 +241,24 @@ public interface Http {
 
     /**
      * 获取结算信息
-     *
-     * @param body
-     * @return
+     * userid 用户user_id
+     * shopid 商品id
+     * aid 地址id
+     * distribution 留言
+     * sp_total 商品总价格
+     * orderids 订单id
      */
     @POST("myOrderHandler/topayorder.action")
     Observable<HttpResult> shop_topayorder(@Body RequestBody body);
 
     /**
      * 订单列表
-     *  user_id
-     *  or_flag  0 ： 未支付 1,2：未收货 4： 未评价
-     *  orid  订单号
+     * user_id
+     * or_flag  0 ： 未支付 1,2：未收货 4： 未评价
+     * orid  订单号
      */
     @POST("myOrderHandler/getList.action")
-    Observable<HttpResult> shop_list(@Body RequestBody body);
+    Observable<HttpResult<IndentBean>> indent_list(@Body RequestBody body);
 
     /**
      * 用户的积分列表
@@ -262,6 +266,13 @@ public interface Http {
      */
     @POST("userHandler/getUserCredit.action")
     Observable<HttpResult<List<PointBean>>> credit_list(@Body RequestBody body);
+
+    /**
+     * 获取用户当前积分
+     * user_id  用户user_id
+     */
+    @POST("userHandler/nowCredit.action")
+    Observable<HttpResult<String>> credit_user(@Body RequestBody body);
 
     /**
      * 获取默认地址
@@ -273,6 +284,7 @@ public interface Http {
     /**
      * 发票列表
      * key:user_id
+     * moren = 1 ,获取默认发票
      */
     @POST("invoiceHandler/list.action")
     Observable<HttpResult<List<InvoiceBean>>> invoice_list(@Body RequestBody body);
@@ -281,7 +293,7 @@ public interface Http {
      * 添加发票抬头
      * key:user_id,head,taxnumber,moren
      */
-    @POST("invoiceHandler/list.action")
+    @POST("invoiceHandler/add.action")
     Observable<HttpResult> invoice_add(@Body RequestBody body);
 
     /**
@@ -290,4 +302,19 @@ public interface Http {
      */
     @POST("couponsHandler/list.action")
     Observable<HttpResult<List<DiscountBean>>> discount_list(@Body RequestBody body);
+
+    /**
+     * 使用优惠券
+     * id 优惠券ID
+     * ordid 订单ID
+     */
+    @POST("couponsHandler/useCoupons.action")
+    Observable<HttpResult> shop_discount(@Body RequestBody body);
+
+    /**
+     * 删除优惠券
+     * cid  用户领取的优惠券ID
+     */
+    @POST("couponsHandler/del.action")
+    Observable<HttpResult> discount_delete(@Body RequestBody body);
 }

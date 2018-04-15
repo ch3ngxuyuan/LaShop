@@ -4,7 +4,10 @@ import com.lala.lashop.base.BaseModel;
 import com.lala.lashop.http.Http;
 import com.lala.lashop.http.HttpResult;
 import com.lala.lashop.http.HttpService;
+import com.lala.lashop.ui.shop.bean.InvoiceBean;
 import com.lala.lashop.ui.user.bean.AddressBean;
+
+import java.util.List;
 
 import io.reactivex.Observable;
 
@@ -27,6 +30,11 @@ public class ConfirmIndentModel extends BaseModel {
                 .p("total", total)
                 .p("orderids", orderids);
         return HttpService.execute(Http.class).shop_topayorder(getRequestBody());
+    }
+
+    public Observable<HttpResult<List<InvoiceBean>>> invoice_moren(String user_id) {
+        p("user_id", user_id).p("moren", 1);
+        return HttpService.execute(Http.class).invoice_list(getRequestBody());
     }
 
 }

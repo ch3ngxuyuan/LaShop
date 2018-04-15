@@ -7,6 +7,7 @@ import android.webkit.WebView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.lala.lashop.Constant;
 import com.lala.lashop.R;
 import com.lala.lashop.app.App;
 import com.lala.lashop.base.BaseActivity;
@@ -21,6 +22,7 @@ import com.lala.lashop.ui.shop.bean.ConfirmBean;
 import com.lala.lashop.ui.shop.bean.JieSuanBean;
 import com.lala.lashop.utils.ArrayUtil;
 import com.lala.lashop.utils.BannerImageLoader;
+import com.lala.lashop.utils.RxBus;
 import com.lala.lashop.widget.ColorGuisPopup;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -106,6 +108,15 @@ public class ShopInfoActivity extends BaseActivity<ShopInfoView, ShopInfoPresent
     }
 
     @Override
+    public void checkCollSuccess(Integer mess) {
+        if (mess == 1) {
+            getToolbar().setRightImage(R.drawable.coll_icon_select);
+        } else {
+            getToolbar().setRightImage(R.drawable.coll_icon_normal);
+        }
+    }
+
+    @Override
     public void jieSuanSuccess(ConfirmBean data) {
         List<JieSuanBean> list = new ArrayList<>();
         ShopsBean shop = shopInfoBean.getShop();
@@ -122,7 +133,9 @@ public class ShopInfoActivity extends BaseActivity<ShopInfoView, ShopInfoPresent
         Bundle bundle = new Bundle();
         bundle.putParcelableArrayList(ConfirmIndentActivity.JIESUAN_LIST, (ArrayList<? extends Parcelable>) list);
         bundle.putParcelable(ConfirmIndentActivity.CONFIRM, data);
+        bundle.putBoolean(ConfirmIndentActivity.ISBUYNOW, true);
         startActivity(ConfirmIndentActivity.class, bundle);
+        RxBus.getInstance().post(Constant.CART);
     }
 
     private void setCurrentSelect() {

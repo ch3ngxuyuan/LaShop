@@ -3,6 +3,7 @@ package com.lala.lashop.ui.user.activity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.TextView;
 
 import com.lala.lashop.R;
 import com.lala.lashop.app.App;
@@ -28,6 +29,8 @@ public class PointActivity extends BaseActivity<PointView, PointPresenter> imple
 
     @BindView(R.id.point_rv)
     RecyclerView rv;
+    @BindView(R.id.tv_credit)
+    TextView tvCredit;
 
     private PointAdapter mAdapter;
     private List<PointBean> mData;
@@ -43,22 +46,23 @@ public class PointActivity extends BaseActivity<PointView, PointPresenter> imple
 
         mData = new ArrayList<>();
 
-        //测试数据
-        for (int i = 0; i < 10; i++) {
-            mData.add(new PointBean());
-        }
-
         mAdapter = new PointAdapter(R.layout.point_rv_item, mData);
         mAdapter.bindToRecyclerView(rv);
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
 
         getPresenter().getCreditData();
+        getPresenter().getCurrentCredit();
     }
 
     @Override
     public void setData(List<PointBean> data) {
         mAdapter.setNewData(data);
+    }
+
+    @Override
+    public void setCurrentCredit(String number) {
+        tvCredit.setText(number);
     }
 
     @Override

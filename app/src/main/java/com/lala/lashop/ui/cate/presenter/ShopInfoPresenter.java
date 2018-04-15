@@ -53,6 +53,7 @@ public class ShopInfoPresenter extends BasePresenter<ShopInfoView> {
                     @Override
                     public void onSuccess(HttpResult httpResult) {
                         getView().toast(httpResult.getMess().toString());
+                        collCheck();
                     }
 
                     @Override
@@ -66,11 +67,16 @@ public class ShopInfoPresenter extends BasePresenter<ShopInfoView> {
         if (TextUtils.isEmpty(getView().getUserId())) return;
 
         mModel.collCheck(getView().getShopId(), getView().getUserId())
-                .compose(this.<HttpResult>compose())
-                .subscribe(new ApiSubscribers<HttpResult>(getView()) {
+                .compose(this.<HttpResult<Integer>>compose())
+                .subscribe(new ApiSubscribers<HttpResult<Integer>>(getView()) {
                     @Override
-                    public void onSuccess(HttpResult httpResult) {
-                        getView().toast(httpResult.getMess().toString());
+                    public void onSuccess(HttpResult<Integer> httpResult) {
+                        getView().checkCollSuccess(httpResult.getMess());
+                    }
+
+                    @Override
+                    public boolean getDisplay() {
+                        return false;
                     }
 
                     @Override

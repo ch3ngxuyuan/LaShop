@@ -57,7 +57,7 @@ public class ShopFragment extends BaseFragment<ShopView, ShopPresenter> implemen
     public void onRxBus(int bus) {
         if (bus == Constant.CART) {
             getPresenter().getCartList();
-        }else if (bus == Constant.LOGIN) {
+        } else if (bus == Constant.LOGIN) {
             getPresenter().getCartList();
         }
     }
@@ -83,7 +83,6 @@ public class ShopFragment extends BaseFragment<ShopView, ShopPresenter> implemen
                 } else if (view.getId() == R.id.shop_iv_select) {
                     mAdapter.select(position);
                     setAllStatus();
-                    shopTvPost.setText("结算（" + mAdapter.getSelectData().size() + "）");
                 } else if (view.getId() == R.id.shop_tv_count) {
                     toast("改变数量");
                 }
@@ -123,7 +122,6 @@ public class ShopFragment extends BaseFragment<ShopView, ShopPresenter> implemen
             case R.id.shop_ll_all:
                 mAdapter.selectAll(isAll);
                 setAllStatus();
-                shopTvPost.setText("结算（" + mAdapter.getSelectData().size() + "）");
                 break;
             case R.id.shop_tv_post:
                 if (ArrayUtil.isEmpty(mAdapter.getSelectData())) {
@@ -209,6 +207,12 @@ public class ShopFragment extends BaseFragment<ShopView, ShopPresenter> implemen
     private void setAllStatus() {
         isAll = mAdapter.isSelectAll();
         shopIvSelect.setImageResource(isAll ? R.drawable.general_icon_select : R.drawable.general_icon_unselect);
+        shopTvPost.setText("结算（" + mAdapter.getSelectData().size() + "）");
+        double price = 0;
+        for (CartBean bean : mAdapter.getSelectData()) {
+            price += Double.parseDouble(bean.getSp_price()) * Double.parseDouble(bean.getSp_count());
+        }
+        shopTvPrice.setText("合计：￥" + price);
     }
 
     /**

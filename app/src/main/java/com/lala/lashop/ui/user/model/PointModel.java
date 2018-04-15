@@ -21,4 +21,9 @@ public class PointModel extends BaseModel {
         return HttpService.execute(Http.class).credit_list(getRequestBody());
     }
 
+    public Observable<HttpResult<String>> credit_user(String user_id) {
+        p("user_id", user_id);
+        return HttpService.execute(Http.class).credit_user(getRequestBody());
+    }
+
 }

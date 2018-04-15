@@ -13,6 +13,7 @@ public interface PointView extends BaseView {
 
     void setData(List<PointBean> data);
 
-    String getUserId();
+    void setCurrentCredit(String number);
 
+    String getUserId();
 }

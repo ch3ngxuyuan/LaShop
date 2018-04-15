@@ -63,6 +63,7 @@ public class InvoicePresenter extends BasePresenter<InvoiceView> {
                 .subscribe(new ApiSubscribers<HttpResult>(getView()) {
                     @Override
                     public void onSuccess(HttpResult httpResult) {
+                        getView().toast(httpResult.getMess().toString());
                         getView().addSuccess();
                     }
 

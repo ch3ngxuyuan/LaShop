@@ -30,7 +30,7 @@ public class ShopInfoModel extends BaseModel {
         return HttpService.execute(Http.class).coll_add(getRequestBody());
     }
 
-    public Observable<HttpResult> collCheck(String shopid, String user_id) {
+    public Observable<HttpResult<Integer>> collCheck(String shopid, String user_id) {
         p("shopid", shopid).p("user_id", user_id);
         return HttpService.execute(Http.class).coll_check(getRequestBody());
     }
