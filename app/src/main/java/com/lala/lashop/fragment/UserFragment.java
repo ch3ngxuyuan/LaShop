@@ -1,10 +1,7 @@
 package com.lala.lashop.fragment;
 
-import android.graphics.Point;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -12,8 +9,6 @@ import com.lala.lashop.Constant;
 import com.lala.lashop.R;
 import com.lala.lashop.app.App;
 import com.lala.lashop.base.BaseFragment;
-import com.lala.lashop.ui.shop.ConfirmIndentActivity;
-import com.lala.lashop.ui.shop.InvoiceActivity;
 import com.lala.lashop.ui.user.activity.AddressActivity;
 import com.lala.lashop.ui.user.activity.ApplyActivity;
 import com.lala.lashop.ui.user.activity.CollActivity;
@@ -28,9 +23,7 @@ import com.lala.lashop.utils.GlideUtil;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 /**
  * Created by JX on 2018/3/17.
@@ -60,6 +53,8 @@ public class UserFragment extends BaseFragment {
     LinearLayout userLyZu;
     @BindView(R.id.user_ly_shou)
     LinearLayout userLyShou;
+    @BindView(R.id.user_ll_vip)
+    LinearLayout userLlVip;
 
     @Override
     public int setContentView() {
@@ -85,11 +80,12 @@ public class UserFragment extends BaseFragment {
         userTvLogin.setVisibility(View.GONE);
         userTvName.setVisibility(View.VISIBLE);
         userTvName.setText(user.getU_account());
+        userLlVip.setVisibility(View.VISIBLE);
     }
 
     @OnClick({R.id.user_iv_head, R.id.tv_all_indent, R.id.user_tv_login, R.id.user_ly_pay, R.id.user_ly_fa, R.id.user_ly_tui, R.id.user_ly_pos, R.id.user_ly_you, R.id.user_ly_ji, R.id.user_ly_zu, R.id.user_ly_shou})
     public void onViewClicked(View view) {
-        if (view.getId() == R.id.user_iv_head) {
+        if (view.getId() == R.id.user_iv_head || view.getId() == R.id.user_tv_login) {
             //头像
             if (App.getUser() == null) {
                 startActivity(LoginActivity.class);
