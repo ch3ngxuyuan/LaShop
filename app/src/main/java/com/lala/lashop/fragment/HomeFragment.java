@@ -1,12 +1,17 @@
 package com.lala.lashop.fragment;
 
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.lala.lashop.R;
 import com.lala.lashop.base.BaseFragment;
 import com.lala.lashop.base.mvp.CreatePresenter;
 import com.lala.lashop.http.ApiPath;
+import com.lala.lashop.ui.home.ShopListActivity;
 import com.lala.lashop.ui.home.adapter.HomeShopAdapter;
 import com.lala.lashop.ui.home.bean.BannerBean;
 import com.lala.lashop.ui.home.bean.CategoryBean;
@@ -21,6 +26,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 
 /**
  * Created by JX on 2018/3/17.
@@ -68,4 +76,32 @@ public class HomeFragment extends BaseFragment<HomeView, HomePresenter> implemen
     public void setHomeData(HomeBean data) {
         homeShopAdapter.setNewData(data.getCategory());
     }
+
+    @OnClick({R.id.iv_0, R.id.iv_1, R.id.iv_2, R.id.iv_3, R.id.iv_4})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.iv_0:
+                toShopList(0);
+                break;
+            case R.id.iv_1:
+                toShopList(1);
+                break;
+            case R.id.iv_2:
+                toShopList(2);
+                break;
+            case R.id.iv_3:
+                toShopList(3);
+                break;
+            case R.id.iv_4:
+                toShopList(4);
+                break;
+        }
+    }
+
+    private void toShopList(int type) {
+        Bundle bundle = new Bundle();
+        bundle.putInt(ShopListActivity.TYPE, type);
+        startActivity(ShopListActivity.class, bundle);
+    }
+
 }

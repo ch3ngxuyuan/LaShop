@@ -1,6 +1,7 @@
 package com.lala.lashop.fragment;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -76,7 +77,9 @@ public class UserFragment extends BaseFragment {
     private void initUserData() {
         if (App.getUser() == null) return;
         UserBean user = App.getUser();
-        GlideUtil.loadImage(getActivity(), user.getU_img(), R.drawable.user_head, userIvHead);
+        if (!TextUtils.isEmpty(user.getU_img())) {
+            GlideUtil.loadImage(getActivity(), user.getU_img(), R.drawable.user_head, userIvHead);
+        }
         userTvLogin.setVisibility(View.GONE);
         userTvName.setVisibility(View.VISIBLE);
         userTvName.setText(user.getU_account());

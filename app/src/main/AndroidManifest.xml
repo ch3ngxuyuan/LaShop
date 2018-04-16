@@ -36,6 +36,7 @@
         <activity android:name=".ui.shop.ConfirmIndentActivity" />
         <activity android:name=".ui.shop.InvoiceActivity" />
         <activity android:name=".ui.user.activity.PathActivity" />
+        <activity android:name=".ui.home.ShopListActivity" />
 
     </application>
 
