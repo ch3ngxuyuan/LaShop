@@ -3,6 +3,7 @@ package com.lala.lashop.ui.cate.presenter;
 import android.text.TextUtils;
 
 import com.lala.lashop.Constant;
+import com.lala.lashop.app.App;
 import com.lala.lashop.base.mvp.BasePresenter;
 import com.lala.lashop.http.ApiSubscribers;
 import com.lala.lashop.http.HttpResult;
@@ -11,6 +12,7 @@ import com.lala.lashop.ui.cate.bean.ShopInfoBean;
 import com.lala.lashop.ui.cate.model.ShopInfoModel;
 import com.lala.lashop.ui.cate.view.ShopInfoView;
 import com.lala.lashop.ui.shop.bean.ConfirmBean;
+import com.lala.lashop.utils.L;
 import com.lala.lashop.utils.RxBus;
 
 /**
@@ -123,6 +125,26 @@ public class ShopInfoPresenter extends BasePresenter<ShopInfoView> {
                     @Override
                     public void onSuccess(HttpResult<ConfirmBean> httpResult) {
                         getView().jieSuanSuccess(httpResult.getMess());
+                    }
+
+                    @Override
+                    public void onError(ApiException e) {
+
+                    }
+                });
+    }
+
+    public void addPath() {
+        if (App.getUser() == null) return;
+
+        L.e("添加足迹----------");
+
+        mModel.path_add(getView().getUserIdId(), getView().getShopId())
+                .compose(this.<HttpResult>compose())
+                .subscribe(new ApiSubscribers<HttpResult>(getView()) {
+                    @Override
+                    public void onSuccess(HttpResult httpResult) {
+
                     }
 
                     @Override

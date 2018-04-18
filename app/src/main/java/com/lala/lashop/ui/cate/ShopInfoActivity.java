@@ -85,6 +85,8 @@ public class ShopInfoActivity extends BaseActivity<ShopInfoView, ShopInfoPresent
         getPresenter().getShopInfo();
 
         getPresenter().collCheck();
+
+        getPresenter().addPath();
     }
 
     @Override

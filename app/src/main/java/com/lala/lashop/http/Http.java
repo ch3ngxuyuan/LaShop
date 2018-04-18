@@ -12,6 +12,7 @@ import com.lala.lashop.ui.user.bean.AddressBean;
 import com.lala.lashop.ui.user.bean.CollBean;
 import com.lala.lashop.ui.user.bean.DiscountBean;
 import com.lala.lashop.ui.user.bean.IndentBean;
+import com.lala.lashop.ui.user.bean.PathBean;
 import com.lala.lashop.ui.user.bean.PointBean;
 import com.lala.lashop.ui.user.bean.ProvinceBean;
 import com.lala.lashop.ui.user.bean.UserBean;
@@ -317,4 +318,27 @@ public interface Http {
      */
     @POST("couponsHandler/del.action")
     Observable<HttpResult> discount_delete(@Body RequestBody body);
+
+    /**
+     * 添加足迹记录
+     * uid 用户ID
+     * shopid 商品ID
+     */
+    @POST("shopHandler/addRecord.action")
+    Observable<HttpResult> path_add(@Body RequestBody body);
+
+    /**
+     * 足迹列表
+     * uid 用户ID
+     */
+    @POST("shopHandler/findRecord.action")
+    Observable<HttpResult<List<PathBean>>> path_list(@Body RequestBody body);
+
+    /**
+     * 重置密码
+     * phone 手机号
+     * uPwd 用户新密码
+     */
+    @POST("userHandler/updatePwd.action")
+    Observable<HttpResult> user_updatePwd(@Body RequestBody body);
 }
