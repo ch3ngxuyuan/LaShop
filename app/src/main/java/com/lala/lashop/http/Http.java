@@ -222,13 +222,6 @@ public interface Http {
     Observable<HttpResult<ConfirmBean>> shop_jiesuan(@Body RequestBody body);
 
     /**
-     * 获取用户信息
-     * id 用户ID
-     */
-    @POST("userHandler/getUser.action")
-    Observable<HttpResult<UserBean>> user_info(@Body RequestBody body);
-
-    /**
      * 拼接订单
      * ids  订单id
      * spids 商品id
@@ -341,4 +334,23 @@ public interface Http {
      */
     @POST("userHandler/updatePwd.action")
     Observable<HttpResult> user_updatePwd(@Body RequestBody body);
+
+    /**
+     * 用户资料更新
+     * id 用户id
+     * uName  用户名字
+     * uImg 用户头像
+     * uSex 性别  1男0女
+     * uEmail 邮箱
+     * uBirthday 出生日期
+     */
+    @POST("userHandler/updateUser.action")
+    Observable<HttpResult> user_updateinfo(@Body RequestBody body);
+
+    /**
+     * 获取用户资料
+     * id 用户id
+     */
+    @POST("userHandler/getUser.action")
+    Observable<HttpResult<UserBean>> user_info(@Body RequestBody body);
 }

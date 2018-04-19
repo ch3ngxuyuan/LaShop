@@ -65,6 +65,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/user_ll_accout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -80,7 +81,7 @@
                     android:textSize="@dimen/text_14" />
 
                 <TextView
-                    android:id="@+id/tv_phone"
+                    android:id="@+id/tv_accout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20px"
@@ -135,6 +136,7 @@
             <include layout="@layout/line" />
 
             <LinearLayout
+                android:id="@+id/user_ll_sex"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -150,13 +152,13 @@
                     android:textSize="@dimen/text_14" />
 
                 <TextView
+                    android:id="@+id/tv_sex"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20px"
                     android:layout_marginRight="20px"
                     android:layout_weight="1"
                     android:gravity="right"
-                    android:text="男"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_14" />
 
@@ -170,6 +172,7 @@
             <include layout="@layout/line" />
 
             <LinearLayout
+                android:id="@+id/user_ll_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -185,6 +188,7 @@
                     android:textSize="@dimen/text_14" />
 
                 <TextView
+                    android:id="@+id/tv_email"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20px"
