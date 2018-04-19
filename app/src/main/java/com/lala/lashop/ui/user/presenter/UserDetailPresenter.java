@@ -27,6 +27,7 @@ public class UserDetailPresenter extends BasePresenter<UserDetailView> {
                 .subscribe(new ApiSubscribers<HttpResult>(getView()) {
                     @Override
                     public void onSuccess(HttpResult httpResult) {
+                        getView().toast(httpResult.getMess().toString());
                         getView().updateSuccess();
                     }
 

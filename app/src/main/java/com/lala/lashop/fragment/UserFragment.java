@@ -10,6 +10,7 @@ import com.lala.lashop.Constant;
 import com.lala.lashop.R;
 import com.lala.lashop.app.App;
 import com.lala.lashop.base.BaseFragment;
+import com.lala.lashop.base.mvp.CreatePresenter;
 import com.lala.lashop.ui.user.activity.AddressActivity;
 import com.lala.lashop.ui.user.activity.ApplyActivity;
 import com.lala.lashop.ui.user.activity.CollActivity;
@@ -20,6 +21,8 @@ import com.lala.lashop.ui.user.activity.PathActivity;
 import com.lala.lashop.ui.user.activity.PointActivity;
 import com.lala.lashop.ui.user.activity.UserDetailActivity;
 import com.lala.lashop.ui.user.bean.UserBean;
+import com.lala.lashop.ui.user.presenter.UserPresenter;
+import com.lala.lashop.ui.user.view.UserView;
 import com.lala.lashop.utils.GlideUtil;
 import com.makeramen.roundedimageview.RoundedImageView;
 
@@ -30,7 +33,8 @@ import butterknife.OnClick;
  * Created by JX on 2018/3/17.
  */
 
-public class UserFragment extends BaseFragment {
+@CreatePresenter(UserPresenter.class)
+public class UserFragment extends BaseFragment<UserView, UserPresenter> implements UserView {
 
     @BindView(R.id.user_iv_head)
     RoundedImageView userIvHead;
@@ -65,6 +69,8 @@ public class UserFragment extends BaseFragment {
     @Override
     public void onCreate() {
         initUserData();
+
+        getPresenter().getUserInfo();
     }
 
     @Override
@@ -135,5 +141,15 @@ public class UserFragment extends BaseFragment {
                 startActivity(CollActivity.class);
                 break;
         }
+    }
+
+    @Override
+    public void setData(UserBean data) {
+        App.cacheUser(data);
+    }
+
+    @Override
+    public String getUserId() {
+        return App.getUser() == null ? "0" : App.getUser().getId();
     }
 }

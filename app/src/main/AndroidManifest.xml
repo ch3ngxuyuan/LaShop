@@ -37,6 +37,7 @@
         <activity android:name=".ui.shop.InvoiceActivity" />
         <activity android:name=".ui.user.activity.PathActivity" />
         <activity android:name=".ui.home.ShopListActivity" />
+        <activity android:name=".ui.user.activity.UserEditActivity" />
 
     </application>
 

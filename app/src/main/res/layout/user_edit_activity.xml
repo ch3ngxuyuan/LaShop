@@ -7,9 +7,15 @@
 
     <include layout="@layout/tool_bar" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/path_rv"
+    <EditText
+        android:id="@+id/et_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20px"
+        android:background="@color/white"
+        android:hint="请输入要修改的信息"
+        android:padding="20px"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_14" />
 
 </LinearLayout>

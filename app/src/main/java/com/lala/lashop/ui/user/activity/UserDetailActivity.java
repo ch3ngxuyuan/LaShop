@@ -2,6 +2,8 @@ package com.lala.lashop.ui.user.activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
@@ -26,8 +28,12 @@ public class UserDetailActivity extends BaseActivity<UserDetailView, UserDetailP
 
     @BindView(R.id.user_tv_name)
     TextView userTvName;
-    @BindView(R.id.tv_phone)
-    TextView tvName;
+    @BindView(R.id.tv_accout)
+    TextView tvAccout;
+    @BindView(R.id.tv_sex)
+    TextView tvSex;
+    @BindView(R.id.tv_email)
+    TextView tvEmail;
 
     private UserBean user;
 
@@ -35,6 +41,8 @@ public class UserDetailActivity extends BaseActivity<UserDetailView, UserDetailP
     private String sex;
     private String email;
     private String headImg;
+
+    private AlertDialog sexDialog;
 
     @Override
     public int setContentView() {
@@ -52,18 +60,34 @@ public class UserDetailActivity extends BaseActivity<UserDetailView, UserDetailP
         user = App.getUser();
 
         userTvName.setText(user.getU_phone());
-        tvName.setText(user.getU_phone());
+        tvAccout.setText(user.getU_name());
+        tvEmail.setText(user.getU_email());
+
+        name = user.getU_name();
+        sex = user.getU_sex();
+        email = user.getU_email();
+        headImg = user.getU_img();
+
+        if (!TextUtils.isEmpty(user.getU_sex())) {
+            tvSex.setText(user.getU_sex().equals("1") ? "男" : "女");
+        }
     }
 
     @OnClick({R.id.user_ll_accout, R.id.user_ll_sex, R.id.user_ll_email})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.user_ll_accout:
+                Intent intent = new Intent(this, UserEditActivity.class);
+                intent.putExtra(UserEditActivity.CONTENT, name);
+                startActivityForResult(intent, 1);
                 break;
             case R.id.user_ll_sex:
                 selectSex();
                 break;
             case R.id.user_ll_email:
+                Intent intent1 = new Intent(this, UserEditActivity.class);
+                intent1.putExtra(UserEditActivity.CONTENT, email);
+                startActivityForResult(intent1, 2);
                 break;
         }
     }
@@ -74,15 +98,34 @@ public class UserDetailActivity extends BaseActivity<UserDetailView, UserDetailP
         builder.setSingleChoiceItems(sexs, 0, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                toast("选择了 = " + which);
+                sex = which == 0 ? "1" : "0";
+                getPresenter().update();
+                sexDialog.dismiss();
             }
         });
-        builder.create().show();
+        sexDialog = builder.create();
+        sexDialog.show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            name = data.getStringExtra(UserEditActivity.CONTENT);
+        } else if (requestCode == 2 && resultCode == RESULT_OK) {
+            email = data.getStringExtra(UserEditActivity.CONTENT);
+        }
+        getPresenter().update();
     }
 
     @Override
     public void updateSuccess() {
+        user.setU_name(name);
+        user.setU_sex(sex);
+        user.setU_email(email);
+        user.setU_img(headImg);
 
+        initView();
     }
 
     @Override
