@@ -2,6 +2,8 @@ package com.lala.lashop.ui.user.view;
 
 import com.lala.lashop.base.mvp.BaseView;
 
+import java.io.File;
+
 /**
  * Created by JX on 2018/4/19.
  */
@@ -9,6 +11,8 @@ import com.lala.lashop.base.mvp.BaseView;
 public interface UserDetailView extends BaseView {
 
     void updateSuccess();
+
+    void uploadSuccess(String headName);
 
     String getUserId();
 
@@ -21,5 +25,7 @@ public interface UserDetailView extends BaseView {
     String getEmail();
 
     String getBirthday();
+
+    File getHeadFile();
 
 }

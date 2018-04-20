@@ -26,6 +26,15 @@
         <item name="android:textColor">@drawable/main_bottom_text_color</item>
     </style>
 
+    <style name="RxGalleryStyle" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="gallery_toolbar_bg">@color/colorPrimary</item>
+        <item name="gallery_ucrop_status_bar_color">@color/colorPrimary</item>
+        <item name="gallery_color_statusbar">@color/colorPrimary</item>
+        <item name="gallery_ucrop_toolbar_color">@color/colorPrimary</item>
+        <item name="gallery_toolbar_over_button_normal_color">@android:color/transparent</item>
+        <item name="gallery_toolbar_over_button_pressed_color">@android:color/transparent</item>
+    </style>
+
     <!--对话框透明样式-->
     <style name="DialogStyle" parent="android:style/Theme.Dialog">
         <item name="android:background">@android:color/transparent</item>

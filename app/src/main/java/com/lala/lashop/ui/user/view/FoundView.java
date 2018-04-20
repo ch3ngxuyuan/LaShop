@@ -10,10 +10,16 @@ public interface FoundView extends BaseView {
 
     void updateSuccess();
 
+    void sendSuccess(String code);
+
     String getPhone();
 
     String getNewPwd();
 
     String getConfirmPwd();
+
+    String getCode();
+
+    String getSendCode();
 
 }

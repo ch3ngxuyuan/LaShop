@@ -83,7 +83,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="40px"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <include layout="@layout/line" />
 

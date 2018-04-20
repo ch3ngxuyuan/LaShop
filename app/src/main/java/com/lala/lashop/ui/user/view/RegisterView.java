@@ -8,10 +8,16 @@ import com.lala.lashop.base.mvp.BaseView;
 
 public interface RegisterView extends BaseView {
 
+    void registerSuccess();
+
+    void sendSuccess(String code);
+
     String getPhone();
 
     String getPwd();
 
-    void registerSuccess();
+    String getCode();
+
+    String getSendCode();
 
 }

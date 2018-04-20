@@ -11,6 +11,7 @@ import com.lala.lashop.R;
 import com.lala.lashop.app.App;
 import com.lala.lashop.base.BaseFragment;
 import com.lala.lashop.base.mvp.CreatePresenter;
+import com.lala.lashop.http.ApiPath;
 import com.lala.lashop.ui.user.activity.AddressActivity;
 import com.lala.lashop.ui.user.activity.ApplyActivity;
 import com.lala.lashop.ui.user.activity.CollActivity;
@@ -84,7 +85,7 @@ public class UserFragment extends BaseFragment<UserView, UserPresenter> implemen
         if (App.getUser() == null) return;
         UserBean user = App.getUser();
         if (!TextUtils.isEmpty(user.getU_img())) {
-            GlideUtil.loadImage(getActivity(), user.getU_img(), R.drawable.user_head, userIvHead);
+            GlideUtil.loadImage(getActivity(), ApiPath.BASE_URL + user.getU_img(), R.drawable.user_head, userIvHead);
         }
         userTvLogin.setVisibility(View.GONE);
         userTvName.setVisibility(View.VISIBLE);
@@ -146,10 +147,17 @@ public class UserFragment extends BaseFragment<UserView, UserPresenter> implemen
     @Override
     public void setData(UserBean data) {
         App.cacheUser(data);
+        initUserData();
     }
 
     @Override
     public String getUserId() {
         return App.getUser() == null ? "0" : App.getUser().getId();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initUserData();
     }
 }

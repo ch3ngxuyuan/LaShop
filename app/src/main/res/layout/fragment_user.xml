@@ -16,7 +16,8 @@
             android:id="@+id/user_iv_head"
             android:layout_width="220px"
             android:layout_height="220px"
-            android:src="@drawable/user_head" />
+            android:src="@drawable/user_head"
+            app:riv_corner_radius="220px" />
 
         <TextView
             android:id="@+id/user_tv_login"
@@ -33,19 +34,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20px"
-            android:visibility="gone"
             android:text="昵称"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_18" />
+            android:textSize="@dimen/text_18"
+            android:visibility="gone" />
 
         <LinearLayout
             android:id="@+id/user_ll_vip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
             android:layout_marginTop="5px"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="40px"

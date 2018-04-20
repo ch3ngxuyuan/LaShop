@@ -9,6 +9,7 @@ import com.lala.lashop.ui.shop.bean.CartBean;
 import com.lala.lashop.ui.shop.bean.ConfirmBean;
 import com.lala.lashop.ui.shop.bean.InvoiceBean;
 import com.lala.lashop.ui.user.bean.AddressBean;
+import com.lala.lashop.ui.user.bean.CodeBean;
 import com.lala.lashop.ui.user.bean.CollBean;
 import com.lala.lashop.ui.user.bean.DiscountBean;
 import com.lala.lashop.ui.user.bean.IndentBean;
@@ -353,4 +354,21 @@ public interface Http {
      */
     @POST("userHandler/getUser.action")
     Observable<HttpResult<UserBean>> user_info(@Body RequestBody body);
+
+    /**
+     * 上传图片
+     *
+     * @param body
+     * @return
+     */
+    @POST("upload")
+    Observable<HttpResult<String>> upload_image(@Body RequestBody body);
+
+    /**
+     * 发送短信
+     * phone
+     */
+    @POST("smsHandler/code.action")
+    Observable<HttpResult<CodeBean>> sms_send(@Body RequestBody body);
+
 }

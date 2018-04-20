@@ -38,4 +38,21 @@ public class UserDetailPresenter extends BasePresenter<UserDetailView> {
                 });
     }
 
+    public void uploadImage() {
+        getView().showLoadingDialog();
+
+        mModel.upload_image(getView().getHeadFile())
+                .compose(this.<HttpResult<String>>compose())
+                .subscribe(new ApiSubscribers<HttpResult<String>>(getView()) {
+                    @Override
+                    public void onSuccess(HttpResult<String> stringHttpResult) {
+                        getView().uploadSuccess(stringHttpResult.getMess());
+                    }
+
+                    @Override
+                    public void onError(ApiException e) {
+
+                    }
+                });
+    }
 }
