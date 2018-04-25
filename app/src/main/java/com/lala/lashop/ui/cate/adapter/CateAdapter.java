@@ -11,6 +11,7 @@ import com.lala.lashop.base.BaseAdapter;
 import com.lala.lashop.base.BaseViewHolder;
 import com.lala.lashop.ui.home.bean.CategoryBean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,15 +25,32 @@ public class CateAdapter extends BaseAdapter<CategoryBean> {
     private int parentPosition = -1;
     private int childPosition = -1;
 
+    private List<Boolean> openStatusList;
+
     public CateAdapter(int layoutResId, @Nullable List<CategoryBean> data) {
         super(layoutResId, data);
+        openStatusList = new ArrayList<>();
+    }
+
+    public void initStatus(int size) {
+        for (int i = 0; i < size; i++) {
+            openStatusList.add(false);
+        }
     }
 
     @Override
     protected void convert(final BaseViewHolder holder, CategoryBean item) {
         holder.setText(R.id.cate_tv, item.getTitle());
 
+        holder.addOnClickListener(R.id.cate_tv);
+
         RecyclerView rvSub = holder.getView(R.id.cate_rv_sub);
+
+        if (openStatusList.get(holder.getLayoutPosition())) {
+            rvSub.setVisibility(View.VISIBLE);
+        } else {
+            rvSub.setVisibility(View.GONE);
+        }
 
         rvSub.setLayoutManager(new LinearLayoutManager(mContext));
         subAdapter = new CateSubAdapter(R.layout.cate_rv_sub_item, item.getChildren());
@@ -64,6 +82,11 @@ public class CateAdapter extends BaseAdapter<CategoryBean> {
 
     public interface OnAdapterItemClickListener {
         void onItemClick(View view, int parent, int position);
+    }
+
+    public void changeStatus(int position) {
+        openStatusList.set(position, !openStatusList.get(position));
+        notifyItemChanged(position);
     }
 
 }

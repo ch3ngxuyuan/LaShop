@@ -86,5 +86,6 @@ public class ShopAdapter extends BaseAdapter<CartBean> {
         holder.addOnClickListener(R.id.shop_iv_delete);
         holder.addOnClickListener(R.id.shop_tv_count);
         holder.addOnClickListener(R.id.shop_iv_select);
+        holder.addOnClickListener(R.id.shop_ll_shop);
     }
 }

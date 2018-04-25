@@ -57,10 +57,10 @@ public class PathActivity extends BaseActivity<PathView, PathPresenter> implemen
             }
         }
 
-        for (PathBean bean : data) {
+        for (int i = 0; i < times.size(); i++) {
             List<PathBean> item = new ArrayList<>();
-            String time = bean.getAddtime().substring(0, 10);
-            for (int i = 0; i < times.size(); i++) {
+            for (PathBean bean : data) {
+                String time = bean.getAddtime().substring(0, 10);
                 if (times.get(i).equals(time)) {
                     item.add(bean);
                 }

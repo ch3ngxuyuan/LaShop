@@ -144,7 +144,11 @@ public class ConfirmIndentActivity extends BaseActivity<ConfirmIndentView, Confi
 
     @Override
     public void setInvoice(List<InvoiceBean> data) {
-        setInvoiceView(data.get(0));
+        if (!ArrayUtil.isEmpty(data)) {
+            setInvoiceView(data.get(0));
+        }else {
+
+        }
     }
 
     private void setInvoiceView(InvoiceBean data) {

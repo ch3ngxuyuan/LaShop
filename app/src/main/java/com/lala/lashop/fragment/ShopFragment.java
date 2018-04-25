@@ -5,7 +5,6 @@ import android.os.Parcelable;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,6 +14,7 @@ import com.lala.lashop.Constant;
 import com.lala.lashop.R;
 import com.lala.lashop.base.BaseFragment;
 import com.lala.lashop.base.mvp.CreatePresenter;
+import com.lala.lashop.ui.cate.ShopInfoActivity;
 import com.lala.lashop.ui.shop.ConfirmIndentActivity;
 import com.lala.lashop.ui.shop.adapter.ShopAdapter;
 import com.lala.lashop.ui.shop.bean.CartBean;
@@ -25,7 +25,6 @@ import com.lala.lashop.ui.shop.view.ShopView;
 import com.lala.lashop.utils.ArrayUtil;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
@@ -85,6 +84,10 @@ public class ShopFragment extends BaseFragment<ShopView, ShopPresenter> implemen
                     setAllStatus();
                 } else if (view.getId() == R.id.shop_tv_count) {
                     toast("改变数量");
+                } else if (view.getId() == R.id.shop_ll_shop) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString(ShopInfoActivity.SHOP_ID, mAdapter.getData().get(position).getSp().getId());
+                    startActivity(ShopInfoActivity.class, bundle);
                 }
             }
         });

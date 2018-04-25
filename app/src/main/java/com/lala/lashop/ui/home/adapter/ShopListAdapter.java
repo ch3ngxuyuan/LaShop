@@ -24,7 +24,7 @@ public class ShopListAdapter extends BaseAdapter<ShopsBean> {
     protected void convert(BaseViewHolder holder, ShopsBean item) {
         holder.setText(R.id.search_tv_title, item.getSp_title());
         holder.loadImage(R.id.search_iv, ApiPath.IMG_URL + item.getSp_simg());
-        holder.setText(R.id.search_tv_price, "$" + item.getSp_price());
+        holder.setText(R.id.search_tv_price, "$" + item.getSp_mprice());
         holder.setText(R.id.search_tv_vip_price, "$" + item.getSp_vprice());
     }
 }

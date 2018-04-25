@@ -4,6 +4,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.lala.lashop.R;
 import com.lala.lashop.base.BaseFragment;
 import com.lala.lashop.base.mvp.CreatePresenter;
@@ -55,6 +56,15 @@ public class CateFragment extends BaseFragment<CateView, CatePresenter> implemen
             }
         });
 
+        mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                if (view.getId() == R.id.cate_tv) {
+                    mAdapter.changeStatus(position);
+                }
+            }
+        });
+
         searchFragment = new SearchFragment();
         getChildFragmentManager().beginTransaction().replace(R.id.cate_fl_search, searchFragment).commit();
 
@@ -64,6 +74,7 @@ public class CateFragment extends BaseFragment<CateView, CatePresenter> implemen
     @Override
     public void setData(List<CategoryBean> data) {
         mAdapter.setNewData(data);
+        mAdapter.initStatus(data.size());
         mData = mAdapter.getData();
     }
 
